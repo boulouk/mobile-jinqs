@@ -1,0 +1,7 @@
+target/
+bin/
+*.project
+*.classpath
+*.prefs
+*.png
+*.lck
