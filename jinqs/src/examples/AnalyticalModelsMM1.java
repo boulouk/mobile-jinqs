@@ -4,48 +4,70 @@ public class AnalyticalModelsMM1 {
 	public double meanResponseTime;
 	public double networkCompletions;
 	public double duration;
-	public double Sft;
+	public double Ssim;
+	public double LambdaRate;
+	public double ServiceRate;
 	
-	public AnalyticalModelsMM1(double mD, double netC, double d, double sft) {
+	public AnalyticalModelsMM1(double mD, double netC, double d, double Stsim, double LR, double SR) {
 		meanResponseTime = mD;
 		networkCompletions = netC;
 		duration = d;
-		Sft = sft;
+		Ssim = Stsim;
+		LambdaRate = LR;
+		ServiceRate = SR;
 	}
+	
+	public double computeRmodel() {
+		double R = 0;
+		double S = 1/ServiceRate;
+		R = S / (1 - (LambdaRate * S));
 
-	public double computeL() {
+		return R;
+	}
+	
+	public double computeQModel() {
+		double N = 0;
+		double R = computeRmodel();
+		N = R * LambdaRate;
+
+		return N;
+	}
+	
+	public double computePModel() {
+		double P = 0;
+		P = LambdaRate/ServiceRate;
+		
+		return P;
+	}
+	
+
+	public double computeLsim() {
 		double L = 0;
 		L = networkCompletions / duration;
 
 		return L;
 	}
 	
-	public double computeS() {
-		double S = 0;
-		double L = 0;
-		
-		L = computeL();		
-		S = meanResponseTime / (1 + (meanResponseTime * L));
-		
-		return S;
-	}
 	
-	public double computeR_Sft() {
+	
+	public double computeRSimModel() {
 		double R = 0;
-		double L = computeL();
+		double L = computeLsim();
 
-		R = Sft / (1 - (L * Sft));
+		R = Ssim / (1 - (L * Ssim));
 
 		return R;
 	}
 	
-	public double computeN() {
+	public double computeQsim() {
 		double N = 0;
-		double L = computeL();
+		double L = computeLsim();
 
 		N = L * meanResponseTime;
 
 		return N;
 	}
+	
+	
 
 }

@@ -12,18 +12,23 @@ class MM1Sim extends Sim {
 
 	public static double duration = 0;
 	public static double noOfCust = 0;
+	public static double util = 0;
 	public static Exp serviceTime;
-
+	public static double lambdaRate = 0;
+	public static double serviceRate = 0;
+	
 	public MM1Sim(double d) {
 
 		duration = d;
 
 		Network.initialise();
 
-		serviceTime = new Exp(8);
+		serviceRate = 8;
+		serviceTime = new Exp(serviceRate);
 		Delay serveTime = new Delay(serviceTime);
 
-		Source source = new Source("Source", new Exp(2));
+		lambdaRate = 4;
+		Source source = new Source("Source", new Exp(lambdaRate));
 
 		QueueingNode mm1 = new QueueingNode("MM1", serveTime, 1);
 		Sink sink = new Sink("Sink");
@@ -38,6 +43,7 @@ class MM1Sim extends Sim {
 		Network.logResult("Response Time", Network.responseTime.mean());
 		
 		noOfCust = mm1.meanNoOfQueuedCustomers();
+		util = mm1.serverUtilisation();
 	}
 
 	public boolean stop() {
@@ -50,11 +56,15 @@ class MM1Sim extends Sim {
 
 		try {
 
-			AnalyticalModelsMM1 an = new AnalyticalModelsMM1(Network.responseTime.mean(), Network.completions, duration, serviceTime.average());
+			AnalyticalModelsMM1 an = new AnalyticalModelsMM1(Network.responseTime.mean(), Network.completions, duration, serviceTime.average(), lambdaRate, serviceRate);
 
-			String data = "L: " + an.computeL() + " -- Sft: " + serviceTime.average() + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
-			String simulator = "Rs: " + Network.responseTime.mean() + " -- Ss: " + an.computeS() + " -- Ns (num of cust in the queue): " + noOfCust;
-			String model = "Rm: " + an.computeR_Sft()  + " -- Nm: " + an.computeN();
+			String data = "LambdaRate: " + lambdaRate + " - ServiceTime: " + 1/serviceRate + " - Completions: " + Network.completions + " - Duration: " + duration;
+			String model = "Rmodel: " + an.computeRmodel() + " - QModel (no-of-cust in the system): " + an.computeQModel() + " - Pmodel: " + an.computePModel(); 
+			String simulator = "Lsim: " + an.computeLsim() + " - Ssim: " + serviceTime.average();
+			String resutlsSim = "Rsim: " + Network.responseTime.mean() + " - QSim (no-of-cust in the system): " + an.computeQsim() + " - PSim: " + util;
+			String other = "no-of-cust (in the queue): " + noOfCust;
+			
+
 
 			File file = new File("mm1.txt");
 
@@ -66,9 +76,13 @@ class MM1Sim extends Sim {
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(data);
 			bw.write("\n");
+			bw.write(model);
+			bw.write("\n");
 			bw.write(simulator);
 			bw.write("\n");
-			bw.write(model);
+			bw.write(resutlsSim);
+			bw.write("\n");
+			bw.write(other);
 			bw.write("\n");
 			bw.write("\n");
 			bw.close();
