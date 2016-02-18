@@ -6,7 +6,7 @@ public class AnalyticalModelsMM1 {
 	public double duration;
 	public double Ssim;
 	public double LambdaRate;
-	public double ServiceRate;
+	public double serviceRate;
 	
 	public AnalyticalModelsMM1(double mD, double netC, double d, double Stsim, double LR, double SR) {
 		meanResponseTime = mD;
@@ -14,12 +14,12 @@ public class AnalyticalModelsMM1 {
 		duration = d;
 		Ssim = Stsim;
 		LambdaRate = LR;
-		ServiceRate = SR;
+		serviceRate = SR;
 	}
 	
 	public double computeRmodel() {
 		double R = 0;
-		double S = 1/ServiceRate;
+		double S = 1/serviceRate;
 		R = S / (1 - (LambdaRate * S));
 
 		return R;
@@ -35,7 +35,7 @@ public class AnalyticalModelsMM1 {
 	
 	public double computePModel() {
 		double P = 0;
-		P = LambdaRate/ServiceRate;
+		P = LambdaRate/serviceRate;
 		
 		return P;
 	}

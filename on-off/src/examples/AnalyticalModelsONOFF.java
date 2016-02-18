@@ -59,21 +59,8 @@ public class AnalyticalModelsONOFF {
 		double LoffModel = 0;
 		double L = computeL();
 		
-		//LoffModel = (L * (Sft + avgOFF) - (Math.pow(L, 2) * Sft * avgOFF)) / (avgON + (L * Math.pow(avgOFF, 2)));
-		
-		//LoffModel = ((2 * L * Sft) - (Math.pow(L, 2) * Sft * avgOFF) + (L * avgOFF)) / ((2 * avgON) + (L * Math.pow(avgOFF, 2)));
-
-		//LoffModel = (1 * (0.125 + 20) - (Math.pow(1, 2) * 0.125 * 20)) / (20 + (1 * Math.pow(20, 2))); 
-		
-		//LoffModel = 0.05 * (20/(20+20));
-		
-		//LoffModel = ((L*Sft) - (Math.pow(L, 2) * Sft) + L) / (avgON + (L * avgOFF));
-		
-		//LoffModel = L * ((avgOFF/2) / (avgOFF + avgON));
 		LoffModel = 1 / (avgOFF + avgON);
-		
-		//LoffModel = L * (Sft / avgON);
-		
+			
 		return LoffModel;
 	}
 	
@@ -144,45 +131,18 @@ public class AnalyticalModelsONOFF {
 		double Loff = 0;
 		double L = 0;
 		
-		//Lon = computeLon();
-		//Loff = computeLoff();
+		
 		
 		Lon = computeLOnModel();
 		Loff = computeLOffModel();
-		
-//		Lon = computeLOnModel();
-//		Loff = computeLOffModel();
-		
+			
 		double son = Sft;
 		double soff = avgOFF + Sft;
 		
 		L= computeL();
-		//double soff = Sft + avgOFF;
-		
-//		Ron = stOn / (1 - (Lon * stOn));
-//		Ron = stOn / (1 - (Lon * stOn) - (Loff * stOff));
-//		Ron = (stOn - (stOn * stOff * Loff) + (Loff * Math.pow(stOff, 2))) / (1 - (Lon * stOn) - (Loff * stOff));
-		
-		//pririorities:s
-//		Ron = (stOn + (Loff * Math.pow(stOff, 2) * Math.pow((L/stOff), 2))) / (1 - (Lon * Math.pow(stOn, 2)));
-//		double part1 = 1 - (Lon * Math.pow(stOn, 2));
-//		double part2 = Math.pow((-1 + (Lon * Math.pow(stOn, 2))), 2);
-//		double part3 = 4 * (Math.pow(Lon, 2)) * (Math.pow(stOn, 3)) * Loff;
-//		double part4 = 2 * (Math.pow(Lon, 2)) * (Math.pow(stOn, 2)) * Loff;
-//		
-//		Ron = (part1 + Math.sqrt((part2 - part3))) / (part4);
-//	
-		
-		//Ron = stOn / (1 - (L * virtualServiceTime));
-		
-//		Ron = (stOn - (stOn * stOff * Loff) + (Loff * Math.pow(stOff, 2)) + stOff) / (2 - (2 * (Lon * stOn)) - (2 * (Loff * stOff)));
-//		Ron = ((2 * L * stOff) - (Loff * stOn) + (Loff * stOff) + (L * Loff * stOn * stOff) - (L * Loff * Math.pow(stOff, 2))) / ((2*L) - (2 * L * Lon * stOn) - (2 * L * Loff * stOff));
-		
-//		Ron = ((Loff * stOff) + (Lon * stOn) + (L * stOn) - (L * Loff * stOn * stOff) + (L * Loff * Math.pow(stOff, 2))) / ((2*L) - (2 * L * Lon * stOn) - (2 * L * Loff * stOff));
-		
+	
 		Ron = ((Loff * soff) + (Lon * son) + (L * son) - (L * Loff * son * soff) + (L * Loff * Math.pow(soff, 2))) / ((2*L) - (2 * L * Lon * son) - (2 * L * Loff * soff));
 
-		//Ron = ((((Loff * soff * (soff - son)) / 2)) + (soff/2) + son) / (1 - (Lon * son) - (Loff * soff));
 		
 		return Ron;
 	}
@@ -193,28 +153,13 @@ public class AnalyticalModelsONOFF {
 		double Loff = 0;
 		double L = 0;
 		
-//		Lon = computeLon();
-//		Loff = computeLoff();
-		
+
 		Lon = computeLOnModel();
 		Loff = computeLOffModel();
-		
-//		Lon = computeLOnModel();
-//		Loff = computeLOffModel();
 		
 		L = computeL();
 		double son = Sft;
 		double soff = avgOFF + Sft;
-		
-
-		//double soff = Sft + avgOFF;
-		
-//		Roff = stOff / (1 - (Loff * stOff));
-//		Roff = (stOff - (stOn * stOff * Lon) + (Lon * Math.pow(stOn, 2))) / (1 - (Lon * stOn) - (Loff * stOff));
-		//Roff = stOff / (1 - (L * virtualServiceTime));
-		
-//		Roff = ((2 * stOff) - (stOn * stOff * Lon) + (Lon * Math.pow(stOn, 2))) / (2 - (2 * (Lon * stOn)) - (2 * (Loff * stOff)));
-//		Roff = ((Lon * stOn) + (Loff * stOff) + (L * stOff) - (L * Lon * stOn * stOff) + (L * Lon * Math.pow(stOn, 2))) / ((2*L) - (2 * L * Lon * stOn) - (2 * L * Loff * stOff));
 		
 		Roff = ((Lon * son) + (Loff * soff) + (L * soff) - (L * Lon * son * soff) + (L * Lon * Math.pow(son, 2))) / ((2*L) - (2 * L * Lon * son) - (2 * L * Loff * soff));
 		
@@ -232,9 +177,7 @@ public class AnalyticalModelsONOFF {
 		Loff = computeLoff();
 		L = computeL();
 		
-		
-		//R = ((Lon / L) * computeRon()) +  ((Loff / L) * computeRoff());
-		
+				
 		double R1 = (Math.pow(avgOFF, 2) / (avgON + avgOFF)) + (Sft * ((avgON + avgOFF) / avgON));
 		double R2 = 1 - (L * Sft * ((avgON + avgOFF) / avgON));
 		
@@ -264,8 +207,6 @@ public class AnalyticalModelsONOFF {
 		R_1 = (L * s_sq) / (2 * (1 - ro));
 		R_2 = (s + (b * (1 + L * (s + (1/thetaOFF))))) / (1 + (L*b)); 
 		
-		//R_2 = ((2*stOff) + (L * (Math.pow(stOff, 2) - Math.pow(stOn, 2)))) / (2 * (1 + L * (stOff - stOn)));
-		//R = ST / (1 - (L * ST));
 
 		return R_1 + R_2;
 	}
@@ -285,6 +226,24 @@ public class AnalyticalModelsONOFF {
 		Qoff = computeLoff() * meanResponseTimeOff;
 		
 		return Qoff;
+	}
+	
+	public double computeQsim() {
+		double N = 0;
+		double L = computeL();
+
+		N = L * meanResponseTime;
+
+		return N;
+	}
+	
+	public double computePmodelSim() {
+		double P = 0;
+		double L = computeL();
+
+		P = L * Sft * ((avgON+avgOFF)/avgON);
+
+		return P;
 	}
 	
 
