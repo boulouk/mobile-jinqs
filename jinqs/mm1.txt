@@ -1,6 +1,126 @@
-LambdaRate: 4.0 - ServiceTime: 0.125 - Completions: 7999304 - Duration: 2000000.0
+LambdaRate: 0.02 - ServiceTime: 0.125 - Completions: 39900 - Duration: 2000000.0
+Rmodel: 0.12531328320802004 - QModel (no-of-cust in the system): 0.002506265664160401 - Pmodel: 0.0025
+Lsim: 0.01995 - Ssim: 0.12550877215745243
+Rsim: 0.12556159129717578 - QSim (no-of-cust in the system): 0.0025049537463786567 - PSim: 0.0024999348752281314
+no-of-cust (in the queue): 4.990931786225001E-6
+
+LambdaRate: 1.0 - ServiceTime: 0.125 - Completions: 2001867 - Duration: 2000000.0
+Rmodel: 0.14285714285714285 - QModel (no-of-cust in the system): 0.14285714285714285 - Pmodel: 0.125
+Lsim: 1.0009335 - Ssim: 0.12504995649578302
+Rsim: 0.14294988071313633 - QSim (no-of-cust in the system): 0.14308332442678204 - PSim: 0.12516274415011702
+no-of-cust (in the queue): 0.017920569982347447
+
+LambdaRate: 2.6 - ServiceTime: 0.125 - Completions: 5200117 - Duration: 2000000.0
+Rmodel: 0.18518518518518517 - QModel (no-of-cust in the system): 0.48148148148148145 - Pmodel: 0.325
+Lsim: 2.6000585 - Ssim: 0.12499906181907325
+Rsim: 0.1850437176189016 - QSim (no-of-cust in the system): 0.48112449086662484 - PSim: 0.32500090383878866
+no-of-cust (in the queue): 0.15612353989935282
+
+LambdaRate: 4.0 - ServiceTime: 0.125 - Completions: 8001302 - Duration: 2000000.0
 Rmodel: 0.25 - QModel (no-of-cust in the system): 1.0 - Pmodel: 0.5
-Lsim: 3.999652 - Ssim: 0.12509915752559972
-Rsim: 0.25022363854985297 - QSim (no-of-cust in the system): 1.0008074763731967 - PSim: 0.5003487230522249
-no-of-cust (in the queue): 0.5004583745858949
+Lsim: 4.000651 - Ssim: 0.12502781920375086
+Rsim: 0.2501412806120913 - QSim (no-of-cust in the system): 1.0007279644220437 - PSim: 0.5001886813061365
+no-of-cust (in the queue): 0.5005391808140311
+
+LambdaRate: 4.8 - ServiceTime: 0.125 - Completions: 9597281 - Duration: 2000000.0
+Rmodel: 0.3125 - QModel (no-of-cust in the system): 1.5 - Pmodel: 0.6
+Lsim: 4.7986405 - Ssim: 0.12490940057830001
+Rsim: 0.3119381613152964 - QSim (no-of-cust in the system): 1.4968790943831147 - PSim: 0.5993910360198274
+no-of-cust (in the queue): 0.8974877838728906
+
+LambdaRate: 5.35 - ServiceTime: 0.125 - Completions: 10698876 - Duration: 2000000.0
+Rmodel: 0.3773584905660377 - QModel (no-of-cust in the system): 2.0188679245283017 - Pmodel: 0.66875
+Lsim: 5.349438 - Ssim: 0.12508518702959473
+Rsim: 0.37843781437080337 - QSim (no-of-cust in the system): 2.0244296248321216 - PSim: 0.6691315024531198
+no-of-cust (in the queue): 1.355298083584293
+
+LambdaRate: 5.7 - ServiceTime: 0.125 - Completions: 11403355 - Duration: 2000000.0
+Rmodel: 0.4347826086956522 - QModel (no-of-cust in the system): 2.4782608695652177 - Pmodel: 0.7125
+Lsim: 5.7016775 - Ssim: 0.1250696862436163
+Rsim: 0.43526315515799585 - QSim (no-of-cust in the system): 2.481730138343354 - PSim: 0.7131023150734132
+no-of-cust (in the queue): 1.768627231340689
+
+LambdaRate: 6.0 - ServiceTime: 0.125 - Completions: 12000960 - Duration: 2000000.0
+Rmodel: 0.5 - QModel (no-of-cust in the system): 3.0 - Pmodel: 0.75
+Lsim: 6.00048 - Ssim: 0.1250138446070853
+Rsim: 0.5018642066581198 - QSim (no-of-cust in the system): 3.0114261347679148 - PSim: 0.7501387626482798
+no-of-cust (in the queue): 2.261287188753943
+
+LambdaRate: 6.22 - ServiceTime: 0.125 - Completions: 12433714 - Duration: 2000000.0
+Rmodel: 0.5617977528089887 - QModel (no-of-cust in the system): 3.4943820224719095 - Pmodel: 0.7775
+Lsim: 6.216857 - Ssim: 0.12490044325083949
+Rsim: 0.5586140485781595 - QSim (no-of-cust in the system): 3.472823658201471 - PSim: 0.7764841817643303
+no-of-cust (in the queue): 2.6963391382578754
+
+LambdaRate: 6.4 - ServiceTime: 0.125 - Completions: 12798650 - Duration: 2000000.0
+Rmodel: 0.6250000000000001 - QModel (no-of-cust in the system): 4.000000000000001 - Pmodel: 0.8
+Lsim: 6.399325 - Ssim: 0.12502875214046877
+Rsim: 0.6256132373608502 - QSim (no-of-cust in the system): 4.003502430174223 - PSim: 0.800095647558801
+no-of-cust (in the queue): 3.2034066112524653
+
+LambdaRate: 6.55 - ServiceTime: 0.125 - Completions: 13102773 - Duration: 2000000.0
+Rmodel: 0.689655172413793 - QModel (no-of-cust in the system): 4.517241379310344 - Pmodel: 0.81875
+Lsim: 6.5513865 - Ssim: 0.12499102470704306
+Rsim: 0.687358454202402 - QSim (no-of-cust in the system): 4.5031508975224845 - PSim: 0.8188533309760087
+no-of-cust (in the queue): 3.6842916346115135
+
+LambdaRate: 6.67 - ServiceTime: 0.125 - Completions: 13342884 - Duration: 2000000.0
+Rmodel: 0.7518796992481203 - QModel (no-of-cust in the system): 5.015037593984962 - Pmodel: 0.83375
+Lsim: 6.671442 - Ssim: 0.12502129260822398
+Rsim: 0.7556604334102612 - QSim (no-of-cust in the system): 5.04134475319142 - PSim: 0.8340680099756707
+no-of-cust (in the queue): 4.207276709146675
+
+LambdaRate: 6.86 - ServiceTime: 0.125 - Completions: 13714561 - Duration: 2000000.0
+Rmodel: 0.8771929824561406 - QModel (no-of-cust in the system): 6.017543859649125 - Pmodel: 0.8575
+Lsim: 6.8572805 - Ssim: 0.12500300791465524
+Rsim: 0.8738489427070602 - QSim (no-of-cust in the system): 5.992227314770741 - PSim: 0.8571766929213178
+no-of-cust (in the queue): 5.135050617788333
+
+LambdaRate: 7.0 - ServiceTime: 0.125 - Completions: 13996215 - Duration: 2000000.0
+Rmodel: 1.0 - QModel (no-of-cust in the system): 7.0 - Pmodel: 0.875
+Lsim: 6.9981075 - Ssim: 0.12499731384751449
+Rsim: 0.9994598097498897 - QSim (no-of-cust in the system): 6.994327190559276 - PSim: 0.8747395344094184
+no-of-cust (in the queue): 6.1195866773672964
+
+LambdaRate: 7.12 - ServiceTime: 0.125 - Completions: 14235169 - Duration: 2000000.0
+Rmodel: 1.1363636363636365 - QModel (no-of-cust in the system): 8.090909090909092 - Pmodel: 0.89
+Lsim: 7.1175845 - Ssim: 0.12499199010479253
+Rsim: 1.1290770842941746 - QSim (no-of-cust in the system): 8.036301554477411 - PSim: 0.8896319141530484
+no-of-cust (in the queue): 7.146664533651788
+
+LambdaRate: 7.2 - ServiceTime: 0.125 - Completions: 14400100 - Duration: 2000000.0
+Rmodel: 1.2500000000000002 - QModel (no-of-cust in the system): 9.000000000000002 - Pmodel: 0.9
+Lsim: 7.20005 - Ssim: 0.12503764900277217
+Rsim: 1.2598604628293923 - QSim (no-of-cust in the system): 9.071058325394766 - PSim: 0.9002732428532457
+no-of-cust (in the queue): 8.170784827916798
+
+LambdaRate: 7.275 - ServiceTime: 0.125 - Completions: 14550133 - Duration: 2000000.0
+Rmodel: 1.379310344827587 - QModel (no-of-cust in the system): 10.034482758620696 - Pmodel: 0.909375
+Lsim: 7.2750665 - Ssim: 0.1250248980368739
+Rsim: 1.3792836170058678 - QSim (no-of-cust in the system): 10.03438003607822 - PSim: 0.9095597214033802
+no-of-cust (in the queue): 9.124821131792258
+
+LambdaRate: 7.335 - ServiceTime: 0.125 - Completions: 14666830 - Duration: 2000000.0
+Rmodel: 1.5037593984962405 - QModel (no-of-cust in the system): 11.030075187969924 - Pmodel: 0.916875
+Lsim: 7.333415 - Ssim: 0.1250187505792216
+Rsim: 1.5004732960853515 - QSim (no-of-cust in the system): 11.003593376611757 - PSim: 0.9168073161659871
+no-of-cust (in the queue): 10.086783169771092
+
+LambdaRate: 7.39 - ServiceTime: 0.125 - Completions: 14781176 - Duration: 2000000.0
+Rmodel: 1.6393442622950811 - QModel (no-of-cust in the system): 12.114754098360649 - Pmodel: 0.92375
+Lsim: 7.390588 - Ssim: 0.1250377406334774
+Rsim: 1.6406936094610005 - QSim (no-of-cust in the system): 12.125690501759157 - PSim: 0.9240958087295184
+no-of-cust (in the queue): 11.20159639151379
+
+LambdaRate: 7.385 - ServiceTime: 0.125 - Completions: 14773098 - Duration: 2000000.0
+Rmodel: 1.6260162601626011 - QModel (no-of-cust in the system): 12.00813008130081 - Pmodel: 0.923125
+Lsim: 7.386549 - Ssim: 0.12493622318859236
+Rsim: 1.6149134728281775 - QSim (no-of-cust in the system): 11.928637497805502 - PSim: 0.922837790761143
+no-of-cust (in the queue): 11.005816542763295
+
+LambdaRate: 7.43 - ServiceTime: 0.125 - Completions: 14861178 - Duration: 2000000.0
+Rmodel: 1.7543859649122797 - QModel (no-of-cust in the system): 13.035087719298238 - Pmodel: 0.92875
+Lsim: 7.430589 - Ssim: 0.12496181994808392
+Rsim: 1.7517501628095993 - QSim (no-of-cust in the system): 13.016535490521218 - PSim: 0.9284983040626871
+no-of-cust (in the queue): 12.088082961938525
 

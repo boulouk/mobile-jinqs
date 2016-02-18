@@ -27,7 +27,7 @@ class MM1Sim extends Sim {
 		serviceTime = new Exp(serviceRate);
 		Delay serveTime = new Delay(serviceTime);
 
-		lambdaRate = 4;
+		lambdaRate = 7.43;
 		Source source = new Source("Source", new Exp(lambdaRate));
 
 		QueueingNode mm1 = new QueueingNode("MM1", serveTime, 1);
