@@ -1,114 +1,121 @@
-package network ;
+package network;
 
-import tools.* ;
+import tools.*;
 
 public abstract class Queue {
-  protected int pop = 0 ;
-  private CustomerMeasure queueingTime = new CustomerMeasure() ;
-  private SystemMeasure popMeasure = new SystemMeasure() ;
-  private int capacity ;
+	protected int pop = 0;
+	private CustomerMeasure queueingTime = new CustomerMeasure();
+	private SystemMeasure popMeasure = new SystemMeasure();
+	private int capacity;
+	private QueueProbs probs;
 
-  public Queue() {
-    capacity = Integer.MAX_VALUE ;
-  }
- 
-  public Queue( int cap ) {
-    capacity = cap ;
-  }
+	public QueueProbs getProbs() {
+		return probs;
+	}
 
-  public int getCapacity() {
-    return capacity ;
-  }
+	public Queue() {
+		capacity = Integer.MAX_VALUE;
+		probs = new QueueProbs();
+	}
 
-  public boolean isInfinite() {
-    return ( capacity == Integer.MAX_VALUE ) ;
-  }
+	public Queue(int cap) {
+		capacity = cap;
+	}
 
-  public boolean isEmpty() {
-    return ( pop == 0 ) ;
-  }
+	public int getCapacity() {
+		return capacity;
+	}
 
-  public boolean canAccept( Customer c ) {
-    return pop < capacity ;
-  }
+	public boolean isInfinite() {
+		return (capacity == Integer.MAX_VALUE);
+	}
 
-  public int queueLength() {
-    return pop ;
-  }
+	public boolean isEmpty() {
+		return (pop == 0);
+	}
 
-  public void enqueue( Customer c ) {
-    Check.check( canAccept( c ), "Attempt to add to a full queue" ) ;
-    c.setQueueInsertionTime( Sim.now() ) ;
-    insertIntoQueue( c ) ;
-    pop++ ;
-    popMeasure.add( (float)pop ) ;
-  }
+	public boolean canAccept(Customer c) {
+		return pop < capacity;
+	}
 
-//
-// The check isn't necessary as this can only be called after preemption
-// i.e. after an arrival; the arrival will have checked the queue
-// for spare capacity
-//
-  public void enqueueAtHead( Customer c ) {
-    Check.check( canAccept( c ), "Attempt to add to a full queue" ) ;
-    c.setQueueInsertionTime( Sim.now() ) ;
-    insertAtHeadOfQueue( c ) ;
-    pop++ ;
-    popMeasure.add( (float)pop ) ;
-  }
+	public int queueLength() {
+		return pop;
+	}
 
-  public Customer head() {
-    Check.check( pop > 0, "Attempt to take the head of an empty queue" ) ;  
-    Customer c = headOfQueue() ;
-    return c ;
-  }
+	public void enqueue(Customer c) {
+		Check.check(canAccept(c), "Attempt to add to a full queue");
+		c.setQueueInsertionTime(Sim.now());
+		insertIntoQueue(c);
+		pop++;
+		// insert to hashmap to encounter the probabilities
+		probs.add(pop);
+		popMeasure.add((float) pop);
+	}
 
-  public Customer dequeue() {
-    Check.check( pop > 0, "Attempt to dequeue an empty queue!" ) ;
-    Customer c = removeFromQueue() ;
-    pop-- ;
-    popMeasure.add( (float)pop ) ;
-    queueingTime.add( Sim.now() - c.getQueueInsertionTime() ) ;
-    return c ;
-  }
+	//
+	// The check isn't necessary as this can only be called after preemption
+	// i.e. after an arrival; the arrival will have checked the queue
+	// for spare capacity
+	//
+	public void enqueueAtHead(Customer c) {
+		Check.check(canAccept(c), "Attempt to add to a full queue");
+		c.setQueueInsertionTime(Sim.now());
+		insertAtHeadOfQueue(c);
+		pop++;
+		popMeasure.add((float) pop);
+	}
 
-/**
- * These abstract methods allow different queueing disciplines
- * to be supported - see the various subclasses
-*/
- 
+	public Customer head() {
+		Check.check(pop > 0, "Attempt to take the head of an empty queue");
+		Customer c = headOfQueue();
+		return c;
+	}
 
-  protected abstract void insertIntoQueue( Customer o ) ;
+	public Customer dequeue() {
+		Check.check(pop > 0, "Attempt to dequeue an empty queue!");
+		Customer c = removeFromQueue();
+		pop--;
+		popMeasure.add((float) pop);
+		queueingTime.add(Sim.now() - c.getQueueInsertionTime());
+		return c;
+	}
 
-  protected abstract void insertAtHeadOfQueue( Customer o ) ;
+	/**
+	 * These abstract methods allow different queueing disciplines to be supported
+	 * - see the various subclasses
+	 */
 
-  protected abstract Customer headOfQueue() ;
+	protected abstract void insertIntoQueue(Customer o);
 
-  protected abstract Customer removeFromQueue() ; 
+	protected abstract void insertAtHeadOfQueue(Customer o);
 
-/**
- * Generic measures
-*/
+	protected abstract Customer headOfQueue();
 
-  public double meanQueueLength() {
-    return popMeasure.mean() ;
-  }
+	protected abstract Customer removeFromQueue();
 
-  public double varQueueLength() {
-    return popMeasure.variance() ;
-  }
+	/**
+	 * Generic measures
+	 */
 
-  public double meanTimeInQueue() {
-    return queueingTime.mean() ;
-  }
+	public double meanQueueLength() {
+		return popMeasure.mean();
+	}
 
-  public double varTimeInQueue() {
-    return queueingTime.variance() ;
-  }
+	public double varQueueLength() {
+		return popMeasure.variance();
+	}
 
-  public void resetMeasures() {
-    queueingTime.resetMeasures() ;
-    popMeasure.resetMeasures() ;
-  }
+	public double meanTimeInQueue() {
+		return queueingTime.mean();
+	}
+
+	public double varTimeInQueue() {
+		return queueingTime.variance();
+	}
+
+	public void resetMeasures() {
+		queueingTime.resetMeasures();
+		popMeasure.resetMeasures();
+	}
 
 }

@@ -93,7 +93,10 @@ public int queueLength() {
 	}
 
 
-
+    public QueueProbs getQueueProbs() {
+		return queue.getProbs();
+	}
+        
   public int getLosses() {
     return losses ;
   }

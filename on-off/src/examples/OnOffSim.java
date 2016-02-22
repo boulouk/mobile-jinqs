@@ -21,6 +21,8 @@ class OnOffSim extends Sim {
 	public static double LambdaRate = 0;
 	public static double serviceRate = 0;
 	public static double util = 0;
+        public static StringBuilder cusProbs;
+	public static double meanCusProbs = 0;
 
 	// Example termination function
 	public boolean stop() {
@@ -42,7 +44,7 @@ class OnOffSim extends Sim {
 		Exp offlineTime = new Exp(0.05);
 
 		Delay serveTime = new Delay(serviceTime);
-		LambdaRate = 0.965;
+		LambdaRate = 2;
 		Source source = new Source("Source", new Exp(LambdaRate));
 
 		OnOffQN mm1 = new OnOffQN("MM1", serveTime, 1);
@@ -91,6 +93,17 @@ class OnOffSim extends Sim {
 		Network.logResult("CompletionsOFF", Network.completionsOFF);
 		
 		noOfCust = mm1.meanNoOfQueuedCustomers();
+                
+                QueueProbs probs = mm1.getQueueProbs();
+                
+                cusProbs = probs.getProbabilities();
+		System.out.println(cusProbs);
+
+		meanCusProbs = probs.getMeanProbability();
+		System.out.println(meanCusProbs);
+                
+                
+                
 		
 	}
 
@@ -114,6 +127,8 @@ class OnOffSim extends Sim {
 			String model = "R-model: " + an.computeR();
 			String prob = "Pmodel: " + an.computePmodelSim() + " - Psiml: " + util; 
 //			String R_paper = " -- R_paper: " + an.computeR_paper();
+                        String probab = "Customers Probabilities:\n" + cusProbs;
+			String meanProbab = "Mean Customers Prob: " + meanCusProbs;
 			File file = new File("results_onoff.txt");
 
 			if (!file.exists()) {
@@ -134,6 +149,9 @@ class OnOffSim extends Sim {
 			bw.write("\n");
 			bw.write(prob);
 			bw.write("\n");
+                        bw.write(probab);
+			bw.write("\n");
+			bw.write(meanProbab);
 //			bw.write(R_paper);
 //			bw.write("\n");
 			bw.write("\n");

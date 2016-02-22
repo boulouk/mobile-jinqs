@@ -12,9 +12,15 @@ public abstract class Queue {
   private CustomerMeasure queueingTime = new CustomerMeasure() ;
   private SystemMeasure popMeasure = new SystemMeasure() ;
   private int capacity ;
+  private QueueProbs probs;
+
+    public QueueProbs getProbs() {
+            return probs;
+    }
 
   public Queue() {
     capacity = Integer.MAX_VALUE ;
+    probs = new QueueProbs();
   }
  
   public Queue( int cap ) {
@@ -46,6 +52,8 @@ public abstract class Queue {
     c.setQueueInsertionTime( Sim.now() ) ;
     insertIntoQueue( c ) ;
     pop++ ;
+    // insert to hashmap to encounter the probabilities
+    probs.add(pop);
     popMeasure.add( (float)pop ) ;
   }
 

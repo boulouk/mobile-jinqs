@@ -5,3 +5,9 @@ bin/
 *.prefs
 *.png
 *.lck
+/jinqs/nbproject/private/
+/jinqs/src/nbproject/private/
+/jinqs/build/
+/on-off/nbproject/private/
+/on-off/build/
+/on-off/dist/
