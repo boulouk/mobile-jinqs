@@ -44,7 +44,7 @@ class OnOffSim extends Sim {
 		Exp offlineTime = new Exp(0.05);
 
 		Delay serveTime = new Delay(serviceTime);
-		LambdaRate = 2;
+		LambdaRate = 3;
 		Source source = new Source("Source", new Exp(LambdaRate));
 
 		OnOffQN mm1 = new OnOffQN("MM1", serveTime, 1);
@@ -108,7 +108,7 @@ class OnOffSim extends Sim {
 	}
 
 	public static void main(String args[]) {
-		new OnOffSim(5000000);
+		new OnOffSim(4000000);
 		
 		Network.displayResults( 0.01 ) ;
 		

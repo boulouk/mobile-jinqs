@@ -51,9 +51,10 @@ public abstract class Queue {
     Check.check( canAccept( c ), "Attempt to add to a full queue" ) ;
     c.setQueueInsertionTime( Sim.now() ) ;
     insertIntoQueue( c ) ;
-    pop++ ;
     // insert to hashmap to encounter the probabilities
     probs.add(pop);
+    pop++ ;
+    
     popMeasure.add( (float)pop ) ;
   }
 
