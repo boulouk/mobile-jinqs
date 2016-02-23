@@ -1,8 +1,8 @@
 LambdaRate: 4.0 - ServiceTime: 0.125 - Completions: 2001968 - Duration: 500000.0
-Rmodel: 0.25 - QModel (no-of-cust in the system): 1.0 - Pmodel: 0.5
+Rmodel: 0.25 - Pmodel: 0.5
 Lsim: 4.003936 - Ssim: 0.12491254757371344
-Rsim: 0.24939544836970604 - QSim (no-of-cust in the system): 0.9985634139636074 - PSim: 0.5001261942036884
-no-of-cust (in the queue): 0.4984371582588581
+Rsim: 0.24939544836970604 - PSim: 0.5001261942036884
+QSim(in the queue): 0.4984371582588581 - QModel (in the system): 1.0 - QSim (in the system): 0.9985634139636074
 Customers Probabilities:
 0: 0.500247061465898
 1: 0.250534301614634
