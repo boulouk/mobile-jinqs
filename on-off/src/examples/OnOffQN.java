@@ -12,7 +12,11 @@ import network.*;
 public class OnOffQN extends QueueingNode {
 	public static boolean con;
 	public static double lifetime;
-	
+
+        public static boolean isCon() {
+            return con;
+        }
+        
 	public static double getLifetime() {
 		return lifetime;
 	}

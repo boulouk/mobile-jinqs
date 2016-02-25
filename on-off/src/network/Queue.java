@@ -1,5 +1,6 @@
 package network ;
 
+import examples.OnOffQN;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,14 +14,26 @@ public abstract class Queue {
   private SystemMeasure popMeasure = new SystemMeasure() ;
   private int capacity ;
   private QueueProbs probs;
+  private QueueProbs probsON;
+  private QueueProbs probsOFF;
 
     public QueueProbs getProbs() {
             return probs;
     }
 
+    public QueueProbs getProbsON() {
+        return probsON;
+    }
+
+    public QueueProbs getProbsOFF() {
+        return probsOFF;
+    }
+
   public Queue() {
     capacity = Integer.MAX_VALUE ;
     probs = new QueueProbs();
+    probsON = new QueueProbs();
+    probsOFF = new QueueProbs();
   }
  
   public Queue( int cap ) {
@@ -52,8 +65,16 @@ public abstract class Queue {
     c.setQueueInsertionTime( Sim.now() ) ;
     insertIntoQueue( c ) ;
     // insert to hashmap to encounter the probabilities
+    if(OnOffQN.isCon()) {
+        probsON.add(pop);
+    }else {
+        probsOFF.add(pop);
+    }
+    
     probs.add(pop);
     pop++ ;
+    
+    
     
     popMeasure.add( (float)pop ) ;
   }

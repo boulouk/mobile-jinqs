@@ -21,8 +21,14 @@ class OnOffSim extends Sim {
 	public static double LambdaRate = 0;
 	public static double serviceRate = 0;
 	public static double util = 0;
+        
         public static StringBuilder cusProbs;
+        public static StringBuilder cusProbsON;
+        public static StringBuilder cusProbsOFF;
+        
 	public static double meanCusProbs = 0;
+	public static double meanCusProbsON = 0;
+	public static double meanCusProbsOFF = 0;
 
 	// Example termination function
 	public boolean stop() {
@@ -44,7 +50,7 @@ class OnOffSim extends Sim {
 		Exp offlineTime = new Exp(0.05);
 
 		Delay serveTime = new Delay(serviceTime);
-		LambdaRate = 3;
+		LambdaRate = 1;
 		Source source = new Source("Source", new Exp(LambdaRate));
 
 		OnOffQN mm1 = new OnOffQN("MM1", serveTime, 1);
@@ -95,12 +101,24 @@ class OnOffSim extends Sim {
 		noOfCust = mm1.meanNoOfQueuedCustomers();
                 
                 QueueProbs probs = mm1.getQueueProbs();
+                QueueProbs probsON = mm1.getQueueProbsON();
+                QueueProbs probsOFF = mm1.getQueueProbsOFF();
                 
                 cusProbs = probs.getProbabilities();
 		System.out.println(cusProbs);
+                
+                int sum = probs.getSum();
+                cusProbsON = probsON.getProbabilities(sum);
+		System.out.println(cusProbsON);
+                cusProbsOFF = probsOFF.getProbabilities(sum);
+		System.out.println(cusProbsOFF);
 
-		meanCusProbs = probs.getMeanProbability();
+                meanCusProbs = probs.getMeanProbability();
 		System.out.println(meanCusProbs);
+		meanCusProbsON = probsON.getMeanProbability(sum);
+		System.out.println(meanCusProbsON);
+		meanCusProbsOFF = probsOFF.getMeanProbability(sum);
+		System.out.println(meanCusProbsOFF);
                 
                 
                 
@@ -129,6 +147,10 @@ class OnOffSim extends Sim {
 //			String R_paper = " -- R_paper: " + an.computeR_paper();
                         String probab = "Customers Probabilities:\n" + cusProbs;
 			String meanProbab = "Mean Customers Prob: " + meanCusProbs;
+                        String probabON = "Customers Probabilities ON:\n" + cusProbsON;
+			String meanProbabON = "Mean Customers Prob ON: " + meanCusProbsON;
+                        String probabOFF = "Customers Probabilities OFF:\n" + cusProbsOFF;
+			String meanProbabOFF = "Mean Customers Prob OFF: " + meanCusProbsOFF;
 			File file = new File("results_onoff.txt");
 
 			if (!file.exists()) {
@@ -152,9 +174,17 @@ class OnOffSim extends Sim {
                         bw.write(probab);
 			bw.write("\n");
 			bw.write(meanProbab);
-//			bw.write(R_paper);
-//			bw.write("\n");
+                        bw.write("\n");
+                        bw.write(probabON);
 			bw.write("\n");
+			bw.write(meanProbabON);
+                        bw.write("\n");
+                        bw.write(probabOFF);
+			bw.write("\n");
+			bw.write(meanProbabOFF);
+                        bw.write("\n");
+//			bw.write(R_paper);
+//			bw.write("\n");			
 			bw.close();
 
 			System.out.println("Done");

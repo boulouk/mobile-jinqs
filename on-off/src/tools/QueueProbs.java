@@ -49,11 +49,49 @@ public class QueueProbs {
 
 		return sb;
 	}
+        
+        public StringBuilder getProbabilities(int sum) {
+		String probs = null;
+		StringBuilder sb = new StringBuilder();
+
+                    
+		Iterator it = this.getIterator();
+
+		while (it.hasNext()) {
+			int key = (Integer) it.next();
+			int value = this.getCustomersMap().get(key);
+
+			Double valueDouble = (double) value;
+			double prob = valueDouble / sum;
+			sb.append(key + ": " + Double.toString(prob));
+			sb.append("\n");
+
+		}
+
+		return sb;
+	}
 
 	public Double getMeanProbability() {
 		Double prob = null;
 
 		int sum = this.getSum();
+		Iterator it = this.getIterator();
+		double sumProbs = 0;
+		while (it.hasNext()) {
+			int key = (Integer) it.next();
+			int value = this.getCustomersMap().get(key);
+
+			Double valueDouble = (double) value;
+
+			sumProbs = sumProbs + ((valueDouble / sum) * key);
+		}
+
+		return sumProbs;
+	}
+        
+        public Double getMeanProbability(int sum) {
+		Double prob = null;
+
 		Iterator it = this.getIterator();
 		double sumProbs = 0;
 		while (it.hasNext()) {
