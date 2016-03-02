@@ -8,9 +8,8 @@ import java.io.IOException;
 import network.*;
 import tools.*;
 
-
 class OnOffSim extends Sim {
-	
+
 	public static double duration = 0;
 	public static Exp serviceTime;
 	public static double averageOn = 0;
@@ -18,14 +17,15 @@ class OnOffSim extends Sim {
 	public static double durationOn = 0;
 	public static double durationOff = 0;
 	public static double noOfCust = 0;
+	public static double avgTimeinQueue = 0;
 	public static double LambdaRate = 0;
 	public static double serviceRate = 0;
 	public static double util = 0;
-        
-        public static StringBuilder cusProbs;
-        public static StringBuilder cusProbsON;
-        public static StringBuilder cusProbsOFF;
-        
+
+	public static StringBuilder cusProbs;
+	public static StringBuilder cusProbsON;
+	public static StringBuilder cusProbsOFF;
+
 	public static double meanCusProbs = 0;
 	public static double meanCusProbsON = 0;
 	public static double meanCusProbsOFF = 0;
@@ -34,7 +34,6 @@ class OnOffSim extends Sim {
 	public boolean stop() {
 		return now() > duration;
 	}
-
 
 	// Here, the constructor starts the simulation.
 	public OnOffSim(double d) {
@@ -46,8 +45,8 @@ class OnOffSim extends Sim {
 		serviceRate = 8;
 		serviceTime = new Exp(serviceRate);
 
-		Exp onlineTime = new Exp(0.05);
-		Exp offlineTime = new Exp(0.05);
+		Exp onlineTime = new Exp(0.1);
+		Exp offlineTime = new Exp(0.1);
 
 		Delay serveTime = new Delay(serviceTime);
 		LambdaRate = 1;
@@ -63,93 +62,107 @@ class OnOffSim extends Sim {
 		mm1.setLink(new Link(sink));
 
 		simulate();
-		
+
 		averageOn = onlineTime.average();
 		averageOff = offlineTime.average();
-		
+
 		durationOn = serverOnOff.getDurationOn();
 		durationOff = serverOnOff.getDurationOff();
-		
+
 		System.err.println("ON average: " + averageOn);
 		System.err.println("OFF average: " + averageOff);
 
-//		System.out.println("ON duration: " + durationOn);
-//		System.out.println("OFF duration: " + durationOff);
-		System.out.println("P-model: " + LambdaRate/serviceRate);
-		
+		// System.out.println("ON duration: " + durationOn);
+		// System.out.println("OFF duration: " + durationOff);
+		System.out.println("P-model: " + LambdaRate / serviceRate);
+
 		System.out.println("Avg Service Time: " + serviceTime.average());
-		
-		
+
 		Network.logResult("Avg Queue", mm1.meanNoOfQueuedCustomers());
-		
-//		Network.logResult("Virtual Service Time", Network.virtualServiceTime.mean());
-//		Network.logResult("ST ON", Network.serviceTimeON.mean());
-//		Network.logResult("ST OFF", Network.serviceTimeOFF.mean());
-//		Network.logResult("ST OFF Service Time", Network.serviceTimeOFFServiceTime.mean());
-		
+
+		// Network.logResult("Virtual Service Time",
+		// Network.virtualServiceTime.mean());
+		// Network.logResult("ST ON", Network.serviceTimeON.mean());
+		// Network.logResult("ST OFF", Network.serviceTimeOFF.mean());
+		// Network.logResult("ST OFF Service Time",
+		// Network.serviceTimeOFFServiceTime.mean());
+
 		Network.logResult("Response Time", Network.responseTime.mean());
 		Network.logResult("Utilisation", mm1.serverUtilisation());
 		util = mm1.serverUtilisation();
-//		Network.logResult("Response Time ON", Network.responseTimeON.mean());
-//		Network.logResult("Response Time OFF", Network.responseTimeOFF.mean());
+		// Network.logResult("Response Time ON", Network.responseTimeON.mean());
+		// Network.logResult("Response Time OFF", Network.responseTimeOFF.mean());
 
-	
 		Network.logResult("Completions", Network.completions);
 		Network.logResult("CompletionsON", Network.completionsON);
 		Network.logResult("CompletionsOFF", Network.completionsOFF);
-		
+
 		noOfCust = mm1.meanNoOfQueuedCustomers();
-                
-                QueueProbs probs = mm1.getQueueProbs();
-                QueueProbs probsON = mm1.getQueueProbsON();
-                QueueProbs probsOFF = mm1.getQueueProbsOFF();
-                
-                cusProbs = probs.getProbabilities();
+
+		QueueProbs probs = mm1.getQueueProbs();
+		QueueProbs probsON = mm1.getQueueProbsON();
+		QueueProbs probsOFF = mm1.getQueueProbsOFF();
+		
+		
+		avgTimeinQueue = mm1.meanTimeInQueue();
+
+		cusProbs = probs.getProbabilities();
 		System.out.println(cusProbs);
-                
-                int sum = probs.getSum();
-                cusProbsON = probsON.getProbabilities(sum);
+
+		int sum = probs.getSum();
+		cusProbsON = probsON.getProbabilities(sum);
 		System.out.println(cusProbsON);
-                cusProbsOFF = probsOFF.getProbabilities(sum);
+		cusProbsOFF = probsOFF.getProbabilities(sum);
 		System.out.println(cusProbsOFF);
 
-                meanCusProbs = probs.getMeanProbability();
+		meanCusProbs = probs.getMeanProbability();
 		System.out.println(meanCusProbs);
 		meanCusProbsON = probsON.getMeanProbability(sum);
 		System.out.println(meanCusProbsON);
 		meanCusProbsOFF = probsOFF.getMeanProbability(sum);
 		System.out.println(meanCusProbsOFF);
-                
-                
-                
-		
+
 	}
 
 	public static void main(String args[]) {
 		new OnOffSim(4000000);
-		
-		Network.displayResults( 0.01 ) ;
-		
+
+		Network.displayResults(0.01);
+
 		try {
 
-			AnalyticalModelsONOFF an = new AnalyticalModelsONOFF(Network.responseTime.mean(), Network.responseTimeON.mean(), Network.responseTimeOFF.mean(), Network.completions, Network.completionsON, Network.completionsOFF, duration, serviceTime.average(), Network.virtualServiceTime.mean(), Network.virtualServiceTime.variance(), Network.serviceTimeON.mean(), Network.serviceTimeOFF.mean(), durationOn, durationOff, averageOn, averageOff);
-			
-			String data = "Lsim: " + an.computeL() + " -- S-sim: " + serviceTime.average() + " -- avgON: " + averageOn + " -- avgOFF: " + averageOff + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
-//			String data = "Lsim: " + an.computeL() + " -- Lon-sim: " + an.computeLon() + " -- Loff-sim: " + an.computeLoff() + " -- S-sim: " + serviceTime.average() + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
+			AnalyticalModelsONOFF an = new AnalyticalModelsONOFF(Network.responseTime.mean(), Network.responseTimeON.mean(),
+					Network.responseTimeOFF.mean(), Network.completions, Network.completionsON, Network.completionsOFF, duration,
+					serviceTime.average(), Network.virtualServiceTime.mean(), Network.virtualServiceTime.variance(),
+					Network.serviceTimeON.mean(), Network.serviceTimeOFF.mean(), durationOn, durationOff, averageOn, averageOff);
 
-//			String new_metrics = "Lon-model: " + an.computeLOnModel() + " -- Loff-model: " + an.computeLOffModel();
-//			String simulator = "R-sim: " + Network.responseTime.mean() + " -- Ns (queue): " + noOfCust;
-			String simulator = "R-sim: " + Network.responseTime.mean() + " -- Q-sim (queue): " + noOfCust + " -- Q-sim (system): " + an.computeQsim();
-//			String onoff = "Ron-sim " + Network.responseTimeON.mean() + " -- Son-sim: " + Network.serviceTimeON.mean() + " -- Roff-sim " + Network.responseTimeOFF.mean() + " -- Soff-sim: " + Network.serviceTimeOFF.mean();
-//			String model = "Ron-model: " + an.computeRon()  + " -- Roff-model: " + an.computeRoff() + " -- R-model: " + an.computeR();
-			String model = "R-model: " + an.computeR();
-			String prob = "Pmodel: " + an.computePmodelSim() + " - Psiml: " + util; 
-//			String R_paper = " -- R_paper: " + an.computeR_paper();
-                        String probab = "Customers Probabilities:\n" + cusProbs;
+			String data = "Lsim: " + an.computeL() + " -- S-sim: " + serviceTime.average() + " -- avgON: " + averageOn
+					+ " -- avgOFF: " + averageOff + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
+			// String data = "Lsim: " + an.computeL() + " -- Lon-sim: " +
+			// an.computeLon() + " -- Loff-sim: " + an.computeLoff() + " -- S-sim: " +
+			// serviceTime.average() + " -- Arrivals: " + Network.completions +
+			// " -- Duration: " + duration;
+
+			// String new_metrics = "Lon-model: " + an.computeLOnModel() +
+			// " -- Loff-model: " + an.computeLOffModel();
+			// String simulator = "R-sim: " + Network.responseTime.mean() +
+			// " -- Ns (queue): " + noOfCust;
+			String simulator = "R-sim (mean resp time in system): " + Network.responseTime.mean() + " -- R-model (mean resp time in system): " + an.computeR()
+					+ " -- R-sim-queue (mean resp time in queue): " + avgTimeinQueue;
+			String model = " Q-sim (num of cust in queue): " + noOfCust + " -- Q-sim (num of cust in system): " + an.computeQsim();
+			// String onoff = "Ron-sim " + Network.responseTimeON.mean() +
+			// " -- Son-sim: " + Network.serviceTimeON.mean() + " -- Roff-sim " +
+			// Network.responseTimeOFF.mean() + " -- Soff-sim: " +
+			// Network.serviceTimeOFF.mean();
+			// String model = "Ron-model: " + an.computeRon() + " -- Roff-model: " +
+			// an.computeRoff() + " -- R-model: " + an.computeR();
+			String prob = "Psim (server utilization) : " + util;
+			// String R_paper = " -- R_paper: " + an.computeR_paper();
+			String probab = "Customers Probabilities:\n" + cusProbs;
 			String meanProbab = "Mean Customers Prob: " + meanCusProbs;
-                        String probabON = "Customers Probabilities ON:\n" + cusProbsON;
+			String probabON = "Customers Probabilities ON:\n" + cusProbsON;
 			String meanProbabON = "Mean Customers Prob ON: " + meanCusProbsON;
-                        String probabOFF = "Customers Probabilities OFF:\n" + cusProbsOFF;
+			String probabOFF = "Customers Probabilities OFF:\n" + cusProbsOFF;
 			String meanProbabOFF = "Mean Customers Prob OFF: " + meanCusProbsOFF;
 			File file = new File("results_onoff.txt");
 
@@ -161,30 +174,30 @@ class OnOffSim extends Sim {
 			BufferedWriter bw = new BufferedWriter(fw);
 			bw.write(data);
 			bw.write("\n");
-//			bw.write(new_metrics);
-//			bw.write("\n");
+			// bw.write(new_metrics);
+			// bw.write("\n");
 			bw.write(simulator);
 			bw.write("\n");
-//			bw.write(onoff);
-//			bw.write("\n");
+			// bw.write(onoff);
+			// bw.write("\n");
 			bw.write(model);
 			bw.write("\n");
 			bw.write(prob);
 			bw.write("\n");
-                        bw.write(probab);
+			bw.write(probab);
 			bw.write("\n");
 			bw.write(meanProbab);
-                        bw.write("\n");
-                        bw.write(probabON);
+			bw.write("\n");
+			bw.write(probabON);
 			bw.write("\n");
 			bw.write(meanProbabON);
-                        bw.write("\n");
-                        bw.write(probabOFF);
+			bw.write("\n");
+			bw.write(probabOFF);
 			bw.write("\n");
 			bw.write(meanProbabOFF);
-                        bw.write("\n");
-//			bw.write(R_paper);
-//			bw.write("\n");			
+			bw.write("\n");
+			// bw.write(R_paper);
+			// bw.write("\n");
 			bw.close();
 
 			System.out.println("Done");
