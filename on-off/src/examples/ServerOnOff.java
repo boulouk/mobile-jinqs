@@ -55,8 +55,9 @@ public class ServerOnOff {
 
 		public void invoke() {
 //			System.out.println("Server goes online at: " + time);
-			
-			OnOffQN.con = true;		
+			synchronized(OnOffQN.class){
+			    OnOffQN.con = true;
+			}
 			onTime = Sim.now();
 			Queue queue = queueingNode.getQueue();
 			Resource resources = queueingNode.getResources();
@@ -122,7 +123,9 @@ public class ServerOnOff {
 
 		public void invoke() {
 //			System.out.println("Server goes offline at: " + time);
-			OnOffQN.con = false;
+			synchronized(OnOffQN.class){
+				OnOffQN.con = false;
+			}
 			offTime = Sim.now();
 			double now = Sim.now();
 			

@@ -41,6 +41,7 @@ public class Network {
     serviceTimeOFFServiceTime = new CustomerMeasure();
     initialised = true ;
     nullNode = new NullNode() ;
+    
   }
 
   public static int add( Node n ) {

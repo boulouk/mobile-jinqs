@@ -9,7 +9,7 @@ import java.io.IOException;
 import tools.* ;
 
 public abstract class Queue {
-  protected int pop = 0 ;
+  protected static int pop = 0 ;
   private CustomerMeasure queueingTime = new CustomerMeasure() ;
   private SystemMeasure popMeasure = new SystemMeasure() ;
   private int capacity ;
@@ -59,17 +59,21 @@ public abstract class Queue {
   public int queueLength() {
     return pop ;
   }
+  
+  public static int getPop() {
+    return pop ;
+  }
 
   public void enqueue( Customer c ) {
     Check.check( canAccept( c ), "Attempt to add to a full queue" ) ;
     c.setQueueInsertionTime( Sim.now() ) ;
     insertIntoQueue( c ) ;
     // insert to hashmap to encounter the probabilities
-    if(OnOffQN.isCon()) {
-        probsON.add(pop);
-    }else {
-        probsOFF.add(pop);
-    }
+//    if(OnOffQN.isCon()) {
+//        probsON.add(pop);
+//    }else {
+//        probsOFF.add(pop);
+//    }
     
     probs.add(pop);
     pop++ ;

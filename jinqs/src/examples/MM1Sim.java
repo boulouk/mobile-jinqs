@@ -20,6 +20,10 @@ class MM1Sim extends Sim {
 	public static double serviceRate = 0;
 	public static StringBuilder cusProbs;
 	public static double meanCusProbs = 0;
+	
+	public MM1Sim() {
+		
+	}
 
 	public MM1Sim(double d) {
 
@@ -62,8 +66,9 @@ class MM1Sim extends Sim {
 		return now() > duration;
 	}
 
-	public static void main(String args[]) {
-		new MM1Sim(500000);
+//	public static void main(String args[]) {
+	public void start() {
+		new MM1Sim(900000);
 		Network.displayResults(0.01);
 
 		try {
