@@ -1,0 +1,489 @@
+A.1------------------------------------------------------------------
+source -> ON-OFF-1 + MM1-1 + MM1-2 + MM1-3 + ON-OFF-2 + MM1-4 -> sink
+---------------------------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0,03125
+
+Num of completions: 3995681
+
+Customers at the End of ON - ON-OFF-1: 6421
+Customers at the End of ON - ON-OFF-2: 7253
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.030841082486605022
+Duration of Cust at the End of ON - ON-OFF-2: 0.03095052282534887
+
+Normal duration of Cust - ON-OFF-1: 0.06291629188779951
+Normal duration of Cust - ON-OFF-2: 0.06574767457826716
+
+Rmodel: 21,589
+Rsim: 21.936
+
+A.2----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 40 
+D = 0,03125
+
+Num of completions: 3999752
+
+Customers at the End of ON - ON-OFF-1: 3255
+Customers at the End of ON - ON-OFF-2: 3598
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.031595150266515194
+Duration of Cust at the End of ON - ON-OFF-2: 0.030369052602371563
+
+Normal duration of Cust - ON-OFF-1: 0.06395233541095707
+Normal duration of Cust - ON-OFF-2: 0.06523064532995465
+
+Rmodel: 42,929
+Rsim: 43.993
+
+A.3----------------------------------------------------
+Ton1 = Toff1 = Ton2 = Toff2 = 40 
+D = 0,125
+
+Num of completions: 3992466
+
+Customers at the End of ON - ON-OFF-1: 13580
+Customers at the End of ON - ON-OFF-2: 15593
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.123
+Duration of Cust at the End of ON - ON-OFF-2: 0.122
+
+Normal duration of Cust - ON-OFF-1: 0.256
+Normal duration of Cust - ON-OFF-2: 0.27
+
+
+Rmodel: 54,6
+Rsim: 58.54
+
+A.4----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.125
+
+Num of completions: 3973978
+
+Customers at the End of ON - ON-OFF-1: 27558
+Customers at the End of ON - ON-OFF-2: 30518
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.123
+Duration of Cust at the End of ON - ON-OFF-2: 0.121
+
+Normal duration of Cust - ON-OFF-1 - ON-OFF-1: 0.258
+Normal duration of Cust - ON-OFF-2 - ON-OFF-2: 0.266
+
+Rmodel: 27,94
+Rsim: 30.46646187396322
+
+A.5----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.25
+
+Num of completions: 3973978
+
+Customers at the End of ON - ON-OFF-1: 61175
+Customers at the End of ON - ON-OFF-2: 66505
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.246
+Duration of Cust at the End of ON - ON-OFF-2: 0.246
+
+Normal duration of Cust - ON-OFF-1: 0.539
+Normal duration of Cust - ON-OFF-2: 0.552
+
+Rmodel: 43,36
+Rsim: 51.192
+
+A.6----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.4
+
+Num of completions: 3986463
+
+Customers at the End of ON - ON-OFF-1: 111409
+Customers at the End of ON - ON-OFF-2: 117109
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.39419435998517793
+Duration of Cust at the End of ON - ON-OFF-2: 0.3953178587617307
+
+Normal duration of Cust - ON-OFF-1: 0.9053026989245859
+Normal duration of Cust - ON-OFF-2: 0.9137386431453942
+
+Rmodel: 110,68
+Rsim: 149.825
+
+A.7----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.125
+
+Num of completions: 3960823
+
+Customers at the End of ON - ON-OFF-1: 55685
+Customers at the End of ON - ON-OFF-2: 60125
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.123
+Duration of Cust at the End of ON - ON-OFF-2: 0.120
+
+Normal duration of Cust - ON-OFF-1: 0.257
+Normal duration of Cust - ON-OFF-2: 0.262
+
+Rmodel: 14.6
+Rsim: 16.103
+
+A.8----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.25
+
+Num of completions: 3956165
+
+Customers at the End of ON - ON-OFF-1: 123944
+Customers at the End of ON - ON-OFF-2: 132390
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.246
+Duration of Cust at the End of ON - ON-OFF-2: 0.244
+
+Normal duration of Cust - ON-OFF-1: 0.543
+Normal duration of Cust - ON-OFF-2: 0.550
+
+Rmodel: 23,32
+Rsim: 28.424
+
+A.9----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10
+D = 0.4
+
+Num of completions: 3972355
+
+Customers at the End of ON - ON-OFF-1: 228434
+Customers at the End of ON - ON-OFF-2: 235136
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.396
+Duration of Cust at the End of ON - ON-OFF-2: 0.397
+
+Normal duration of Cust - ON-OFF-1: 0.921
+Normal duration of Cust - ON-OFF-2: 0.928
+
+Rmodel: 60,64
+Rsim: 90.51
+
+A.10----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.125
+
+Num of completions: 3933962
+
+Customers at the End of ON - ON-OFF-1: 110316
+Customers at the End of ON - ON-OFF-2: 117855
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.122
+Duration of Cust at the End of ON - ON-OFF-2: 0.122
+
+Normal duration of Cust - ON-OFF-1: 0.259
+Normal duration of Cust - ON-OFF-2: 0.263
+
+Rmodel: 7,94
+Rsim: 8.74
+
+A.11----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.25
+
+Num of completions: 3912302
+
+Customers at the End of ON - ON-OFF-1: 250917
+Customers at the End of ON - ON-OFF-2: 261649
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.24527345965867478
+Duration of Cust at the End of ON - ON-OFF-2: 0.24498373954340377
+
+Normal duration of Cust - ON-OFF-1: 0.5446133702787731
+Normal duration of Cust - ON-OFF-2: 0.5536142518202138
+
+Rmodel: 13,32
+Rsim: 16.728
+
+A.12----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.4
+
+Num of completions: 3964177
+
+Customers at the End of ON - ON-OFF-1: 479116
+Customers at the End of ON - ON-OFF-2: 486920
+
+Duration of Cust at the End of ON - ON-OFF-1: 0.3986089899271694
+Duration of Cust at the End of ON - ON-OFF-2: 0.3990429286614048
+
+Normal duration of Cust - ON-OFF-1: 0.9433107543542619
+Normal duration of Cust - ON-OFF-2: 0.9476182277657762
+
+Rmodel: 35,68
+Rsim: 73.811
+
+
+
+B.1---------------------------------------------------------
+source -> ON-OFF-1 + MM1-1 + MM1-2 + MM1-3 + MM1-4 -> sink
+------------------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.125
+
+Num of completions: 3988611
+
+Customers at the End of ON - ON-OFF-1: 27489
+Duration of Cust at the End of ON - ON-OFF-1: 0.123
+Normal duration of Cust - ON-OFF-1: 0.257
+
+Rmodel: 14,26
+Rsim: 15.067
+
+B.2----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.25
+
+Num of completions: 3985373
+
+Customers at the End of ON - ON-OFF-1: 61307
+Duration of Cust at the End of ON - ON-OFF-1: 0.247
+Normal duration of Cust - ON-OFF-1: 0.537
+
+Rmodel: 22,32
+Rsim: 24.712
+
+B.3----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.4
+
+Num of completions: 3989547
+
+Customers at the End of ON - ON-OFF-1: 112699
+Duration of Cust at the End of ON - ON-OFF-1: 0.396
+Normal duration of Cust - ON-OFF-1: 0.912
+
+Rmodel: 56.68
+Rsim: 65.979
+
+
+B.4----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.125
+
+Num of completions: 3988611
+
+Customers at the End of ON - ON-OFF-1: 55103
+Duration of Cust at the End of ON - ON-OFF-1: 0.122
+Normal duration of Cust - ON-OFF-1: 0.256
+
+Rmodel: 7.6
+Rsim: 8.11
+
+B.5----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.25
+
+Num of completions: 3973182
+
+Customers at the End of ON - ON-OFF-1: 123306
+Duration of Cust at the End of ON - ON-OFF-1: 0.243
+Normal duration of Cust - ON-OFF-1: 0.538
+
+Rmodel: 12,32
+Rsim: 13.939
+
+B.6----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.4
+
+Num of completions: 3983197
+
+Customers at the End of ON - ON-OFF-1: 227713
+Duration of Cust at the End of ON - ON-OFF-1: 0.39781160918132175
+Normal duration of Cust - ON-OFF-1: 0.919743968400349
+
+Rmodel: 31.68
+Rsim: 42.0888
+
+B.7----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.125
+
+Num of completions: 3958642
+
+Customers at the End of ON - ON-OFF-1: 111747
+Duration of Cust at the End of ON - ON-OFF-1: 0.123
+Normal duration of Cust - ON-OFF-1: 0.259
+
+Rmodel: 4,26
+Rsim: 4.62
+
+B.8----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.25
+
+Num of completions: 3946564
+
+Customers at the End of ON - ON-OFF-1: 249577
+Duration of Cust at the End of ON - ON-OFF-1: 0.2438916210224373
+Normal duration of Cust - ON-OFF-1: 0.5426217509108127
+
+Rmodel: 7.36
+Rsim: 8.695
+
+B.9----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.4
+
+Num of completions: 3978790
+
+Customers at the End of ON - ON-OFF-1: 475910
+Duration of Cust at the End of ON - ON-OFF-1: 0.396
+Normal duration of Cust - ON-OFF-1: 0.937
+
+Rmodel: 19,18
+Rsim: 33.405
+
+C.1---------------------------------------------------------
+source -> MM1-1 + MM1-2 + MM1-3 + MM1-4 + ON-OFF-2 -> sink
+------------------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.125
+
+Num of completions: 3988306
+
+Customers at the End of ON - ON-OFF-2: 27514
+Duration of Cust at the End of ON - ON-OFF-2: 0.123
+Normal duration of Cust - ON-OFF-2: 0.258
+
+Rmodel: 14,26
+Rsim: 14.103
+
+C.2----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.25
+
+Num of completions: 3989547
+
+Customers at the End of ON - ON-OFF-2: 61469
+Duration of Cust at the End of ON - ON-OFF-2: 0.244
+Normal duration of Cust - ON-OFF-2: 0.535
+
+Rmodel: 22,32
+Rsim: 23.198
+
+C.3----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 20 
+D = 0.4
+
+Num of completions: 3994407
+
+Customers at the End of ON - ON-OFF-2: 113052
+Duration of Cust at the End of ON - ON-OFF-2: 0.397
+Normal duration of Cust - ON-OFF-2: 0.914
+
+Rmodel: 56.68
+Rsim: 64.209
+
+
+C.4----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.125
+
+Num of completions: 3977390
+
+Customers at the End of ON - ON-OFF-2: 55305
+Duration of Cust at the End of ON - ON-OFF-2: 0.122
+Normal duration of Cust - ON-OFF-2: 0.256
+
+Rmodel: 7.6
+Rsim: 7.555
+
+C.5----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.25
+
+Num of completions: 3972610
+
+Customers at the End of ON - ON-OFF-2: 123676
+Duration of Cust at the End of ON - ON-OFF-2: 0.246
+Normal duration of Cust - ON-OFF-2: 0.539
+
+Rmodel: 12,32
+Rsim: 12.87
+
+C.6----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 10 
+D = 0.4
+
+Num of completions: 3982380
+
+Customers at the End of ON - ON-OFF-2: 228236
+Duration of Cust at the End of ON - ON-OFF-2: 0.398
+Normal duration of Cust - ON-OFF-2: 0.920
+
+Rmodel: 31.68
+Rsim: 38.511
+
+C.7----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.125
+
+Num of completions: 3963299
+
+Customers at the End of ON - ON-OFF-2: 110602
+Duration of Cust at the End of ON - ON-OFF-2: 0.123
+Normal duration of Cust - ON-OFF-2: 0.259
+
+Rmodel: 4,26
+Rsim: 4.279
+
+C.8----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.25
+
+Num of completions: 3953080
+
+Customers at the End of ON - ON-OFF-2: 251127
+Duration of Cust at the End of ON - ON-OFF-2: 0.244
+Normal duration of Cust - ON-OFF-2: 0.545
+
+Rmodel: 7.36
+Rsim: 7.94
+
+C.9----------------------------------------------------
+
+Ton1 = Toff1 = Ton2 = Toff2 = 5
+D = 0.4
+
+Num of completions: 3970864
+
+Customers at the End of ON - ON-OFF-2: 475704
+Duration of Cust at the End of ON - ON-OFF-2: 0.396
+Normal duration of Cust - ON-OFF-2: 0.937
+
+Rmodel: 19,18
+Rsim: 31.92
