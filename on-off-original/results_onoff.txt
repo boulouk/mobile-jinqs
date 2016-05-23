@@ -1,0 +1,57 @@
+Lsim: 0.998786 -- S-sim: 0.06250898506427956 -- avgON: 39.751396263204455 -- avgOFF: 39.91326875743442 -- Arrivals: 2996358 -- Duration: 3000000.0
+R-sim (mean resp time in system): 47.83931081634091 -- R-model (mean resp time in system): 23.000259708788935 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 47.78123389300987
+ -- R_paper: 22.991301817963546
+
+ 
+ 
+Lsim: 0.9998204 -- S-sim: 0.06249839613580724 -- avgON: 110.27766935043405 -- avgOFF: 119.93616241248883 -- Arrivals: 4999102 -- Duration: 5000000.0
+R-sim (mean resp time in system): 118.78340324439078 -- R-model (mean resp time in system): 72.00767790186264 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 118.76206974516809
+ -- R_paper: 71.99789153606778
+ 
+ 
+Lsim: 0.9998662 -- S-sim: 0.062479777805318035 -- avgON: 293.78745032242625 -- avgOFF: 79.7827191006848 -- Arrivals: 4999331 -- Duration: 5000000.0
+R-sim (mean resp time in system): 45.423835471180766 -- R-model (mean resp time in system): 18.595677355307117 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 45.41775776199472
+ -- R_paper: 18.592249558971876
+ 
+ 
+Lsim: 0.100061 -- S-sim: 0.06251710955660564 -- avgON: 59.85313495019483 -- avgOFF: 598.7408334066233 -- Arrivals: 500305 -- Duration: 5000000.0
+R-sim (mean resp time in system): 1699.1683325555202 -- R-model (mean resp time in system): 585.3030358096105 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 170.0204825238379
+ -- R_paper: 585.2776104804769
+ 
+Lsim: 0.09994653846153846 -- S-sim: 0.06244846109402813 -- avgON: 59.90148302061733 -- avgOFF: 587.2997471628446 -- Arrivals: 1299305 -- Duration: 1.3E7
+R-sim (mean resp time in system): 1057.1927759034154 -- R-model (mean resp time in system): 572.204263083015 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 105.66275843809132
+ -- R_paper: 572.1798677879
+
+ 
+ Lsim: 0.9906845 -- S-sim: 0.062496784337016345 -- avgON: 1.6004044585369364 -- avgOFF: 5.98703036853438 -- Arrivals: 3962738 -- Duration: 4000000.0
+R-sim (mean resp time in system): 16.36417651141197 -- R-model (mean resp time in system): 7.1064845892927675 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 16.21173602511991
+ -- R_paper: 7.044930086104758
+
+ 
+ 
+ 
+Lsim: 0.998755 -- S-sim: 0.06248145170804629 -- avgON: 60.35185187193554 -- avgOFF: 1.600363104991485 -- Arrivals: 3995020 -- Duration: 4000000.0
+R-sim (mean resp time in system): 4.3058072880231135 -- R-model (mean resp time in system): 0.11269850364225906 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 4.300446557949525
+ -- R_paper: 0.11050360265614947
+Lsim: 0.99967225 -- S-sim: 0.06250880714818606 -- avgON: 59.916609518791006 -- avgOFF: 1.49690626899941 -- Arrivals: 3998689 -- Duration: 4000000.0
+R-sim (mean resp time in system): 4.296699625100706 -- R-model (mean resp time in system): 0.10743772035358787 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 4.295291381798579
+ -- R_paper: 0.10524546755817595
+Lsim: 0.999065 -- S-sim: 0.06249265140067892 -- avgON: 59.97766458352047 -- avgOFF: 1.498242022034498 -- Arrivals: 3996260 -- Duration: 4000000.0
+R-sim (mean resp time in system): 1.804238513330966 -- R-model (mean resp time in system): 0.10744339795958788 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 1.8025515503210015
+ -- R_paper: 0.1052537529059435
+ 
+ 
+ 
+Lsim: 1.9265405 -- S-sim: 0.06250937375186155 -- avgON: 0.9992095272494448 -- avgOFF: 1.0016903712728735 -- Arrivals: 7706162 -- Duration: 4000000.0
+R-sim (mean resp time in system): 2.5172258842096253 -- R-model (mean resp time in system): 0.825778905345543 -- R-sim-queue (mean resp time in queue): 0.0
+ Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 4.849537613578153
+ -- R_paper: 0.8058895077817445

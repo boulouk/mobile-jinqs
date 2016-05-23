@@ -1,0 +1,46 @@
+L: 0.08430142195767196 --- Response Time: 30.09170646565717 --- Avg Queue Input: 2.4527690543180616 --- CurrentLine: 2016
+-------
+L: 0.08017361111111111 --- Response Time: 29.631178790949072 --- Avg Queue Input: 2.2959708288860305 --- CurrentLine: 4032
+-------
+L: 0.08035300925925926 --- Response Time: 30.097732056685242 --- Avg Queue Input: 2.338820474588898 --- CurrentLine: 6048
+-------
+L: 0.0805665798503452 --- Response Time: 30.034607031253806 --- Avg Queue Input: 2.339868809582911 --- CurrentLine: 8063
+-------
+L: 0.08170056216931217 --- Response Time: 30.11475113267823 --- Avg Queue Input: 2.379379146526261 --- CurrentLine: 10080
+-------
+L: 0.08198164682539683 --- Response Time: 30.067873481214345 --- Avg Queue Input: 2.383857908287504 --- CurrentLine: 12096
+-------
+L: 0.08292446145124717 --- Response Time: 30.202203118939014 --- Avg Queue Input: 2.422328896760641 --- CurrentLine: 14112
+-------
+L: 0.08297546709656084 --- Response Time: 30.258298924669088 --- Avg Queue Input: 2.4284650844560964 --- CurrentLine: 16128
+-------
+L: 0.08307052836566725 --- Response Time: 30.24549592471444 --- Avg Queue Input: 2.4301837790627188 --- CurrentLine: 18144
+-------
+L: 0.08279290674603175 --- Response Time: 30.110281180253676 --- Avg Queue Input: 2.410872284304387 --- CurrentLine: 20160
+-------
+L: 0.0825499037999038 --- Response Time: 29.96538332257381 --- Avg Queue Input: 2.391919187578287 --- CurrentLine: 22176
+-------
+L: 0.08201257991622575 --- Response Time: 29.909464674887793 --- Avg Queue Input: 2.371779975849949 --- CurrentLine: 24192
+-------
+L: 0.08142596408221409 --- Response Time: 29.97225727208055 --- Avg Queue Input: 2.359887898435365 --- CurrentLine: 26208
+-------
+L: 0.08144215325018897 --- Response Time: 30.43716232657073 --- Avg Queue Input: 2.3982154089833108 --- CurrentLine: 28224
+-------
+L: 0.0833735119047619 --- Response Time: 32.06105427739484 --- Avg Queue Input: 2.5904750809836683 --- CurrentLine: 30240
+-------
+L: 0.0847503306878307 --- Response Time: 32.26962870168169 --- Avg Queue Input: 2.6509169073788037 --- CurrentLine: 32256
+-------
+L: 0.08552214635854341 --- Response Time: 32.26473110330856 --- Avg Queue Input: 2.6746316524710037 --- CurrentLine: 34272
+-------
+L: 0.08571130033803645 --- Response Time: 32.14871434786141 --- Avg Queue Input: 2.6705957888151337 --- CurrentLine: 36288
+-------
+L: 0.08625087023113338 --- Response Time: 32.13878562466764 --- Avg Queue Input: 2.6865488961212467 --- CurrentLine: 38304
+-------
+L: 0.08560681216931217 --- Response Time: 31.96351985735854 --- Avg Queue Input: 2.651491474402134 --- CurrentLine: 40320
+-------
+L: 0.085446271101033 --- Response Time: 31.882910905673754 --- Avg Queue Input: 2.6396299748302248 --- CurrentLine: 42336
+-------
+L: 0.08488786676286676 --- Response Time: 31.723308485177437 --- Avg Queue Input: 2.6088302560713212 --- CurrentLine: 44352
+-------
+L: 0.08447557223372441 --- Response Time: 31.59909296884622 --- Avg Queue Input: 2.585685541597113 --- CurrentLine: 46368
+-------
