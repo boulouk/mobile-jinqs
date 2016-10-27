@@ -36,7 +36,7 @@ class OnOffSim extends Sim {
 
 		
 		serviceTime = new Exp(8);
-		serviceTime2 = new Exp(8);
+		serviceTime2 = new Exp(16);
 
 
 		Exp onlineTime1 = new Exp(0.05);
