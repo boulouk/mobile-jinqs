@@ -13,24 +13,25 @@ public abstract class Queue {
   private CustomerMeasure queueingTime = new CustomerMeasure() ;
   private SystemMeasure popMeasure = new SystemMeasure() ;
   private int capacity ;
-  private QueueProbs probs;
-  private QueueProbs probsON;
-  private QueueProbs probsOFF;
+  private static QueueProbs probs;
+  private static QueueProbs probsON;
+  private static QueueProbs probsOFF;
 
-    public QueueProbs getProbs() {
+    public static QueueProbs getProbs() {
             return probs;
     }
 
-    public QueueProbs getProbsON() {
+    public static QueueProbs getProbsON() {
         return probsON;
     }
 
-    public QueueProbs getProbsOFF() {
+    public static QueueProbs getProbsOFF() {
         return probsOFF;
     }
 
   public Queue() {
     capacity = Integer.MAX_VALUE ;
+//    capacity = 20 ;
     probs = new QueueProbs();
     probsON = new QueueProbs();
     probsOFF = new QueueProbs();
@@ -75,7 +76,7 @@ public abstract class Queue {
 //        probsOFF.add(pop);
 //    }
     
-    probs.add(pop);
+//    probs.add(pop);
     pop++ ;
     
     

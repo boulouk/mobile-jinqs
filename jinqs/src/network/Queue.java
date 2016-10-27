@@ -1,21 +1,26 @@
 package network;
 
+import java.util.concurrent.Semaphore;
+
 import tools.*;
 
 public abstract class Queue {
 	protected static int pop = 0;
+//	protected static Semaphore semaphore;
 	private CustomerMeasure queueingTime = new CustomerMeasure();
 	private SystemMeasure popMeasure = new SystemMeasure();
 	private int capacity;
-	private QueueProbs probs;
+	private static QueueProbs probs;
 
-	public QueueProbs getProbs() {
+	public static QueueProbs getProbs() {
 		return probs;
 	}
 
 	public Queue() {
 		capacity = Integer.MAX_VALUE;
+//		capacity = 5;
 		probs = new QueueProbs();
+//		semaphore = new Semaphore(pop);
 	}
 
 	public Queue(int cap) {
@@ -42,16 +47,16 @@ public abstract class Queue {
 		return pop;
 	}
 	
-	public static int getPop() {
+	public synchronized static int getPop() {
     return pop ;
   }
 
-	public void enqueue(Customer c) {
+	public synchronized void enqueue(Customer c) {
 		Check.check(canAccept(c), "Attempt to add to a full queue");
 		c.setQueueInsertionTime(Sim.now());
 		insertIntoQueue(c);
                 // insert to hashmap to encounter the probabilities
-		probs.add(pop);
+		
 		pop++;
 		
 		popMeasure.add((float) pop);
@@ -62,7 +67,7 @@ public abstract class Queue {
 	// i.e. after an arrival; the arrival will have checked the queue
 	// for spare capacity
 	//
-	public void enqueueAtHead(Customer c) {
+	public synchronized void enqueueAtHead(Customer c) {
 		Check.check(canAccept(c), "Attempt to add to a full queue");
 		c.setQueueInsertionTime(Sim.now());
 		insertAtHeadOfQueue(c);
@@ -76,7 +81,7 @@ public abstract class Queue {
 		return c;
 	}
 
-	public Customer dequeue() {
+	public synchronized Customer dequeue() {
 		Check.check(pop > 0, "Attempt to dequeue an empty queue!");
 		Customer c = removeFromQueue();
 		pop--;
@@ -84,6 +89,10 @@ public abstract class Queue {
 		queueingTime.add(Sim.now() - c.getQueueInsertionTime());
 		return c;
 	}
+	
+//	public static int getSemaphore() {
+//    return semaphore.availablePermits() ;
+//  }
 
 	/**
 	 * These abstract methods allow different queueing disciplines to be supported

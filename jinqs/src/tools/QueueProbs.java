@@ -42,7 +42,7 @@ public class QueueProbs {
 
 			Double valueDouble = (double) value;
 			double prob = valueDouble / sum;
-			sb.append(key + ": " + Double.toString(prob));
+			sb.append(key + ": " + Double.toString(prob) + ": " + value + "/" + sum);
 			sb.append("\n");
 
 		}

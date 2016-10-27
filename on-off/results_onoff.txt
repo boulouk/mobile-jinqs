@@ -1,4 +1,0 @@
-Lsim: 0.9948634 -- S-sim: 0.1250389441840107 -- avgON: 9.984433178092008 -- avgOFF: 9.992879522302767 -- Arrivals: 4974317 -- Duration: 5000000.0
-R-sim (mean resp time in system): 7.0434808291306155 -- R-model (mean resp time in system): 6.988052090184896 -- R-sim-queue (mean resp time in queue): 11.020951198283683
- Q-sim (num of cust in queue): 6.883503738850716 -- Q-sim (num of cust in system): 7.0073012855037025
-Psim (server utilization) : 0.12379807878744792

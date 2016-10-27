@@ -6,6 +6,7 @@ package examples;
 
 import tools.QueueProbs;
 import network.Monitor;
+import network.Network;
 
 /**
  * @author Georgios Bouloukakis (boulouk@gmail.com)
@@ -41,7 +42,7 @@ class SimulatorTh implements Runnable {
 
 	public void run() {
 		OnOffSim onOff = new OnOffSim();
-		onOff.start();
+//		onOff.start();
 		setFlagON(false);
 		// new OnOffSim(1000000);
 	}
@@ -74,15 +75,15 @@ class MonitorTh implements Runnable {
 		Monitor monitor = Monitor.getInstance();
 		try {
 			while (SimulatorTh.getFlagON()) {
-				monitor.checkOnoffServerStatus();
-				Thread.sleep(2);
+				if(Network.completions > 2) {
+					monitor.checkOnoffServerStatus();
+					Thread.sleep(2);
+				}
 			}
 			
 			QueueProbs probs = monitor.getProbs();
 			QueueProbs probsON = monitor.getProbsON();
 			QueueProbs probsOFF = monitor.getProbsOFF();
-			
-			
 			
 
 			cusProbs = probs.getProbabilities();

@@ -76,17 +76,25 @@ public class OnOffQN extends QueueingNode {
 				double serveTime = c.getServiceDemand() ;
 			   if ((Sim.now() + serveTime) < serverOnOff.getNextOff()) {
 				   invokeService(c);
-			   }else {
-			  	 
+			   } else {
+				   c.setMiddleCustomer(true);
+			
 			  	 int cust = this.getCustomersEndOn();
 			  	 this.setCustomersEndOn(cust + 1);
 			  	 
 			  	 double delayDif = serverOnOff.getNextOff() - Sim.now();
+			  	
+			  	 
+			  	 
 			  	 double dur = this.getDurationCustomersEndOn();
 			  	 this.setDurationCustomersEndOn(dur + delayDif);
 			  	 
 			  	 double ser = this.getServeTimeCustEndOn();
 			  	 this.setServeTimeCustEndOn(ser + serveTime);
+			  	
+			  	c.setServiceDemand(serveTime - delayDif);
+//			  	queue.enqueue(c);
+//			  	invokeService(c);
 			  	 
 				   resources.release();
 			   }
@@ -167,10 +175,17 @@ public class OnOffQN extends QueueingNode {
 			  	 this.setServeTimeCustEndOn(ser + serveTime);
 				   
 				 //This is the case that an on off period is really small and messages can not served during that period (ServerOnOff.nextOff - ServerOnOff.onTime)
-				 if(tempHead.isOff()){
+				 if(tempHead.isOff()) {
 					   tempHead.setBadLack(true);
 
-				   }
+				 }
+				 
+//				 tempHead.setServiceDemand(serveTime - delayDif);
+				 queue.head().setServiceDemand(serveTime - delayDif);
+				 queue.head().setMiddleCustomer(true);
+//				 queue.dequeue();
+//				 invokeService(c);
+				 
 				   resources.release();
 			   }
 				

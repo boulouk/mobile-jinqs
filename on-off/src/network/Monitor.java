@@ -5,6 +5,7 @@
 package network;
 
 import tools.QueueProbs;
+import tools.Resource;
 import examples.OnOffQN;
 
 /**
@@ -35,12 +36,25 @@ public class Monitor {
 	public void checkOnoffServerStatus() throws InterruptedException {
 		boolean con = OnOffQN.isCon();
 		int len = Queue.getPop();
-		if (con)
-			probsON.add(len);
-		else
-			probsOFF.add(len);
-
-		probs.add(len);
+		if (con) {
+			if(Resource.getSemaphore() == 1 && Queue.getPop() == 0){
+				probsON.add(0);
+				probs.add(0);
+			} else {
+				probsON.add(len + 1);
+				probs.add(len + 1);
+			}
+		} else {
+			if(Resource.getSemaphore() == 1 && Queue.getPop() == 0){
+				probsOFF.add(0);
+				probs.add(0);
+			} else {
+				probsOFF.add(len + 1);
+				probs.add(len + 1);
+			}
+		}
+		
+		
 	}
 
 	public QueueProbs getProbs() {

@@ -5,7 +5,7 @@ import tools.*;
 public class ResourcePool extends InfiniteServerNode {
 	protected int noOfResources;
 	protected Queue queue;
-	protected Resource resources;
+	protected static Resource resources;
 	protected int losses = 0;
 	protected Node lossNode = Network.nullNode;
 
@@ -37,11 +37,14 @@ public class ResourcePool extends InfiniteServerNode {
 	// If the queue is full customers are routed to the loss node.
 	//
 	protected void accept(Customer c) {
+		
 		if (resources.resourceIsAvailable()) {
+			Queue.getProbs().add(0);
 			Debug.trace("Resource claimed");
 			resources.claim();
 			invokeService(c);
 		} else {
+			Queue.getProbs().add(Queue.getPop()+1);
 			if (queue.canAccept(c)) {
 				Debug.trace("No resources. Enqueueing customer...");
 				queue.enqueue(c);

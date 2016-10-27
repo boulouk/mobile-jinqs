@@ -5,6 +5,7 @@
 package network;
 
 import tools.QueueProbs;
+import tools.Resource;
 
 /**
  * @author Georgios Bouloukakis (boulouk@gmail.com)
@@ -27,9 +28,21 @@ public class Monitor {
 		return instance;
 	}
 
-	public void checkOnoffServerStatus() throws InterruptedException {
-		int len = Queue.getPop();
-		probs2.add(len);
+	public synchronized void checkOnoffServerStatus() throws InterruptedException {
+//		int len = Queue.getPop();
+		
+		if(Resource.getSemaphore() == 1 && Queue.getPop() == 0){
+			probs2.add(0);
+		} else 
+			probs2.add(Queue.getPop()+1);
+		
+//		if(Resource.numberOfAvailableResources() == 1) {
+//			probs2.add(0);
+//		} else 
+//			probs2.add(Queue.getPop()+1);
+			
+		
+		
 	}
 
 	public QueueProbs getProbs() {

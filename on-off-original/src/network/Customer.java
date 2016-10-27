@@ -19,6 +19,7 @@ public class Customer implements Ordered {
 
 	private boolean off;
 	private boolean badLack;
+	private boolean middleCustomer;
 	
 	
 	public boolean isBadLack() {
@@ -27,6 +28,14 @@ public class Customer implements Ordered {
 
 	public void setBadLack(boolean badLack) {
 		this.badLack = badLack;
+	}
+
+	public boolean isMiddleCustomer() {
+		return middleCustomer;
+	}
+
+	public void setMiddleCustomer(boolean middleCustomer) {
+		this.middleCustomer = middleCustomer;
 	}
 
 	public double getArriveForService() {
@@ -69,6 +78,7 @@ public class Customer implements Ordered {
 		arrivalTime = Sim.now();
 		off = false;
 		badLack = false;
+		middleCustomer = false;
 	}
 
 	public Customer(int type) {
@@ -80,6 +90,7 @@ public class Customer implements Ordered {
 		arrivalTime = Sim.now();
 		off = false;
 		badLack = false;
+		middleCustomer = false;
 	}
 
 	public Customer(int type, int priority) {

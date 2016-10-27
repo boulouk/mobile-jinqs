@@ -1,10 +1,13 @@
 package tools ; 
 
+import java.util.concurrent.Semaphore;
+
 public class Resource {
   boolean resourceAvailable ;
   SystemMeasure resourceCount = new SystemMeasure() ;
   int resources ;
   int nresources ;
+  protected static Semaphore semaphore ;
  
   public Resource() {
     resources = 1 ;
@@ -13,6 +16,7 @@ public class Resource {
 
   public Resource( int n ) {
     resources = n ;
+    semaphore = new Semaphore(resources);
     nresources = n ;
   }
 
@@ -20,6 +24,12 @@ public class Resource {
     Check.check( resourceIsAvailable(),
                  "Attempt to claim unavailable resource" ) ;
     resources-- ;
+    try {
+			semaphore.acquire();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     resourceCount.add( (float)( nresources - resources ) ) ;
   }
 
@@ -29,8 +39,13 @@ public class Resource {
 + " " + resources + " " + nresources 
 ) ;
     resources++ ;
+    semaphore.release();
     resourceCount.add( (float)( nresources - resources ) ) ;
   } 
+  
+  public static int getSemaphore() {
+    return semaphore.availablePermits() ;
+  }
 
   public int numberOfAvailableResources() {
     return resources ;

@@ -26,6 +26,7 @@ public class Sink extends Node {
   protected void accept( Customer c ) {
     Network.completions++ ;
     Network.registerCompletion( Sim.now() - c.getArrivalTime() ) ;
+    System.out.println("hello: " +c.getId());
     
     if (c.isOff()) {
     	Network.completionsOFF++ ;

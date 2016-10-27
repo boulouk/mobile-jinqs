@@ -111,27 +111,48 @@ class OnOffSim extends Sim {
 		avgTimeinQueue = mm1.meanTimeInQueue();
 
 		cusProbs = probs.getProbabilities();
-		System.out.println("----OLDWAY------probs:");
+		System.out.println("-------------probs:");
 		System.out.println(cusProbs);
-//
-//		int sum = probs.getSum();
-//		cusProbsON = probsON.getProbabilities(sum);
-//		System.out.println(cusProbsON);
-//		cusProbsOFF = probsOFF.getProbabilities(sum);
-//		System.out.println(cusProbsOFF);
-//
+
+		int sum = probs.getSum();
+		
+		int sum2 = probsON.getSum() + probsOFF.getSum();
+		
+		cusProbsON = probsON.getProbabilities(sum2);
+		System.out.println(cusProbsON);
+		cusProbsOFF = probsOFF.getProbabilities(sum2);
+		System.out.println(cusProbsOFF);
+
 		meanCusProbs = probs.getMeanProbability();
-		System.out.println("----OLDWAY------mean:");
+		System.out.println("----------mean:");
 		System.out.println(meanCusProbs);
-//		meanCusProbsON = probsON.getMeanProbability(sum);
-//		System.out.println(meanCusProbsON);
-//		meanCusProbsOFF = probsOFF.getMeanProbability(sum);
-//		System.out.println(meanCusProbsOFF);
+		meanCusProbsON = probsON.getMeanProbability(sum2);
+		System.out.println(meanCusProbsON);
+		meanCusProbsOFF = probsOFF.getMeanProbability(sum2);
+		System.out.println(meanCusProbsOFF);
+		
+		double p01 = probsON.getValue(0)/(double)sum;
+		System.out.println("prob_p01:" +p01);
+		double p00 = probsOFF.getValue(0)/(double)sum;
+		System.out.println("prob_p00:" +p00/sum);
+		double p11 = probsON.getValue(1)/(double)sum;
+		System.out.println("prob_p11:" +p11/sum);
+		double p10 = probsOFF.getValue(1)/(double)sum;
+		System.out.println("prob_p10:" +p10/sum);
+		double p21 = probsON.getValue(2)/(double)sum;
+		System.out.println("prob_p21:" +p21/sum);
+		
+		System.out.println("1: " + (0.1 * p01) +" = "+ (1+0.1)*p00);
+		System.out.println("2: " + ((0.1 * p00) + (8*p11)) +" = "+ (1+0.1)*p01);
+		System.out.println("3: " + ((1 * p00) + (0.1*p11)) +" = "+ (1+0.1)*p10);
+		
+		System.out.println("4: " + ((1 * p01) + (8*p21) + (0.1*p10)) +" = "+ (8+1+0.1)*p11);
+		
 
 	}
 
-//	public static void main(String args[]) {
-public void start() {
+	public static void main(String args[]) {
+//public void start() {
 		new OnOffSim(5000000);
 
 		Network.displayResults(0.01);
@@ -165,12 +186,12 @@ public void start() {
 			// an.computeRoff() + " -- R-model: " + an.computeR();
 			String prob = "Psim (server utilization) : " + util;
 			// String R_paper = " -- R_paper: " + an.computeR_paper();
-//			String probab = "Customers Probabilities:\n" + cusProbs;
-//			String meanProbab = "Mean Customers Prob: " + meanCusProbs;
-//			String probabON = "Customers Probabilities ON:\n" + cusProbsON;
-//			String meanProbabON = "Mean Customers Prob ON: " + meanCusProbsON;
-//			String probabOFF = "Customers Probabilities OFF:\n" + cusProbsOFF;
-//			String meanProbabOFF = "Mean Customers Prob OFF: " + meanCusProbsOFF;
+			String probab = "Customers Probabilities:\n" + cusProbs;
+			String meanProbab = "Mean Customers Prob: " + meanCusProbs;
+			String probabON = "Customers Probabilities ON:\n" + cusProbsON;
+			String meanProbabON = "Mean Customers Prob ON: " + meanCusProbsON;
+			String probabOFF = "Customers Probabilities OFF:\n" + cusProbsOFF;
+			String meanProbabOFF = "Mean Customers Prob OFF: " + meanCusProbsOFF;
 			File file = new File("results_onoff.txt");
 
 			if (!file.exists()) {
@@ -191,18 +212,18 @@ public void start() {
 			bw.write("\n");
 			bw.write(prob);
 			bw.write("\n");
-//			bw.write(probab);
-//			bw.write("\n");
-//			bw.write(meanProbab);
-//			bw.write("\n");
-//			bw.write(probabON);
-//			bw.write("\n");
-//			bw.write(meanProbabON);
-//			bw.write("\n");
-//			bw.write(probabOFF);
-//			bw.write("\n");
-//			bw.write(meanProbabOFF);
-//			bw.write("\n");
+			bw.write(probab);
+			bw.write("\n");
+			bw.write(meanProbab);
+			bw.write("\n");
+			bw.write(probabON);
+			bw.write("\n");
+			bw.write(meanProbabON);
+			bw.write("\n");
+			bw.write(probabOFF);
+			bw.write("\n");
+			bw.write(meanProbabOFF);
+			bw.write("\n");
 			// bw.write(R_paper);
 			// bw.write("\n");
 			bw.close();

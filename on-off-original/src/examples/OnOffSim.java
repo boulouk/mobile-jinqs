@@ -35,25 +35,20 @@ class OnOffSim extends Sim {
 		Network.initialise();
 
 		
-		serviceTime = new Exp(16);
-		serviceTime2 = new Exp(16);
+		serviceTime = new Exp(8);
+		serviceTime2 = new Exp(8);
 
 
-		Exp onlineTime1 = new Exp(1);
+		Exp onlineTime1 = new Exp(0.05);
 //		Weibull onlineTime1 = new Weibull(20.9807, 1.1571);
 
-		
-		Exp offlineTime1 = new Exp(1);
+		Exp offlineTime1 = new Exp(0.05);
 //		Pareto onlineTime1 = new Pareto(-0.1388, 2, 160);
 //		Weibull offlineTime1 = new Weibull(100.9807, 1.157194);
-//		Pareto offlineTime1 = new Pareto(0.54, 0.1, 120);
-
 //		Gamma offlineTime1 = new Gamma(0.793, 90);
 		
-//		new Pareto(k, a, b)
-		
-		Exp onlineTime2 = new Exp(0.667);
-		Exp offlineTime2 = new Exp(0.667);
+		Exp onlineTime2 = new Exp(0.05);
+		Exp offlineTime2 = new Exp(0.05);
 
 		Delay serveTime = new Delay(serviceTime);
 		Delay serveTime2 = new Delay(serviceTime2);
@@ -64,25 +59,25 @@ class OnOffSim extends Sim {
 		
 		OnOffQN on0ff_1 = new OnOffQN("ON-OFF-1", serveTime, 1, onlineTime1, offlineTime1, duration);
 		
-		QueueingNode mm1_1 = new QueueingNode( "MM1-1", serveTime, 1 ) ;
-		QueueingNode mm1_2 = new QueueingNode( "MM1-2", serveTime, 1 ) ;
+//		QueueingNode mm1_1 = new QueueingNode( "MM1-1", serveTime, 1 ) ;
+//		QueueingNode mm1_2 = new QueueingNode( "MM1-2", serveTime, 1 ) ;
 		
 		
-		QueueingNode mm1_3 = new QueueingNode( "MM1-3", serveTime2, 1 ) ;
-		OnOffQN on0ff_2 = new OnOffQN("ON-OFF-2", serveTime, 1, onlineTime2, offlineTime2, duration);
+//		QueueingNode mm1_3 = new QueueingNode( "MM1-3", serveTime2, 1 ) ;
+		OnOffQN on0ff_2 = new OnOffQN("ON-OFF-2", serveTime2, 1, onlineTime2, offlineTime2, duration);
 		
-		QueueingNode mm1_4 = new QueueingNode( "MM1-4", serveTime, 1 ) ;
+//		QueueingNode mm1_4 = new QueueingNode( "MM1-4", serveTime, 1 ) ;
 		
 		Sink sink = new Sink("Sink");
 
 		source.setLink(new Link(on0ff_1));
-		on0ff_1.setLink(new Link(mm1_1));
-		mm1_1.setLink(new Link(mm1_2));
-		mm1_2.setLink(new Link(mm1_3));
-		mm1_3.setLink(new Link(on0ff_2));
-		on0ff_2.setLink(new Link(mm1_4));
-		mm1_4.setLink(new Link(sink));
-//		on0ff_2.setLink(new Link(sink));
+		on0ff_1.setLink(new Link(on0ff_2));
+//		mm1_1.setLink(new Link(mm1_2));
+//		mm1_2.setLink(new Link(mm1_3));
+//		mm1_3.setLink(new Link(on0ff_2));
+//		on0ff_2.setLink(new Link(mm1_4));
+//		mm1_4.setLink(new Link(sink));
+		on0ff_2.setLink(new Link(sink));
 
 		simulate();
 		
@@ -95,23 +90,23 @@ class OnOffSim extends Sim {
 		System.err.println("ON average 1: " + averageOn);
 		System.err.println("OFF average 1 : " + averageOff);
 		
-		System.err.println("ON average 2: " + onlineTime2.average());
-		System.err.println("OFF average 2 : " + offlineTime2.average());
+//		System.err.println("ON average 2: " + onlineTime2.average());
+//		System.err.println("OFF average 2 : " + offlineTime2.average());
 
 //		System.out.println("ON duration: " + durationOn);
 //		System.out.println("OFF duration: " + durationOff);
 		
-		System.out.println("Avg Service Time: " + serviceTime.average());
-		
-		
+//		System.out.println("Avg Service Time: " + serviceTime.average());
+//		
+//		
 		System.out.println("Customers at the End of ON - ON-OFF-1: " + on0ff_1.getCustomersEndOn());
-//		System.out.println("Customers at the End of ON - ON-OFF-2: " + on0ff_2.getCustomersEndOn());
+		System.out.println("Customers at the End of ON - ON-OFF-2: " + on0ff_2.getCustomersEndOn());
 		
 		System.out.println("Duration of Cust at the End of ON - ON-OFF-1: " + on0ff_1.getDurationCustomersEndOn()/on0ff_1.getCustomersEndOn());
-//		System.out.println("Duration of Cust at the End of ON - ON-OFF-2: " + on0ff_2.getDurationCustomersEndOn()/on0ff_2.getCustomersEndOn());
+		System.out.println("Duration of Cust at the End of ON - ON-OFF-2: " + on0ff_2.getDurationCustomersEndOn()/on0ff_2.getCustomersEndOn());
 		
 		System.out.println("Normal duration of Cust - ON-OFF-1: " + on0ff_1.getServeTimeCustEndOn()/on0ff_1.getCustomersEndOn());
-//		System.out.println("Normal duration of Cust - ON-OFF-2: " + on0ff_2.getServeTimeCustEndOn()/on0ff_2.getCustomersEndOn());
+		System.out.println("Normal duration of Cust - ON-OFF-2: " + on0ff_2.getServeTimeCustEndOn()/on0ff_2.getCustomersEndOn());
 		
 //		Network.logResult("Avg Queue", mm1.meanNoOfQueuedCustomers());
 		

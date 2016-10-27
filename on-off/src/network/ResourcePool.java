@@ -1,5 +1,6 @@
 package network ;
 
+import examples.OnOffQN;
 import tools.* ;
 
 public class ResourcePool extends InfiniteServerNode {
@@ -39,6 +40,7 @@ public class ResourcePool extends InfiniteServerNode {
 //
   protected void accept( Customer c ) {
     if ( resources.resourceIsAvailable() ) {
+    	
       Debug.trace( "Resource claimed" ) ;
       resources.claim() ;
       invokeService( c ) ;

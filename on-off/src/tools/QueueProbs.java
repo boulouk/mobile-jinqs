@@ -42,19 +42,18 @@ public class QueueProbs {
 
 			Double valueDouble = (double) value;
 			double prob = valueDouble / sum;
-			sb.append(key + ": " + Double.toString(prob));
+			sb.append(key + ": " + Double.toString(prob) + ": " + value + "/" + sum);
 			sb.append("\n");
 
 		}
 
 		return sb;
 	}
-        
-        public StringBuilder getProbabilities(int sum) {
+
+	public StringBuilder getProbabilities(int sum) {
 		String probs = null;
 		StringBuilder sb = new StringBuilder();
 
-                    
 		Iterator it = this.getIterator();
 
 		while (it.hasNext()) {
@@ -63,7 +62,7 @@ public class QueueProbs {
 
 			Double valueDouble = (double) value;
 			double prob = valueDouble / sum;
-			sb.append(key + ": " + Double.toString(prob));
+			sb.append(key + ": " + Double.toString(prob) + ": " + value + "/" + sum);
 			sb.append("\n");
 
 		}
@@ -88,8 +87,8 @@ public class QueueProbs {
 
 		return sumProbs;
 	}
-        
-        public Double getMeanProbability(int sum) {
+
+	public Double getMeanProbability(int sum) {
 		Double prob = null;
 
 		Iterator it = this.getIterator();
@@ -116,6 +115,23 @@ public class QueueProbs {
 			sum = sum + value;
 		}
 		return sum;
+	}
+	
+	public int getValue(int pointer) {
+		int sum = 0;
+		int value = 0;
+		Iterator it = this.getIterator();
+
+		while (it.hasNext()) {
+			Integer key = (Integer) it.next();
+			if (key == pointer) {
+				value = this.getCustomersMap().get(key);
+				break;
+			} else
+				value = 0;
+			
+		}
+		return value;
 	}
 
 	public HashMap<Integer, Integer> getCustomersMap() {

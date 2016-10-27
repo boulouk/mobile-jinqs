@@ -68,7 +68,8 @@ class MM1Sim extends Sim {
 
 //	public static void main(String args[]) {
 	public void start() {
-		new MM1Sim(900000);
+//		new MM1Sim(10000000);
+		new MM1Sim(1000000);
 		Network.displayResults(0.01);
 
 		try {
@@ -105,10 +106,10 @@ class MM1Sim extends Sim {
 			bw.write("\n");
 			bw.write(other);
 			bw.write("\n");
-			bw.write(probab);
-			bw.write("\n");
-			bw.write(meanProbab);
-			bw.write("\n");
+//			bw.write(probab);
+//			bw.write("\n");
+//			bw.write(meanProbab);
+//			bw.write("\n");
 			bw.write("\n");
 			bw.close();
 

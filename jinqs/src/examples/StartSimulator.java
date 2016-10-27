@@ -4,8 +4,11 @@
  */
 package examples;
 
+import java.util.concurrent.TimeUnit;
+
 import tools.QueueProbs;
 import network.Monitor;
+import network.Network;
 
 /**
  * @author Georgios Bouloukakis (boulouk@gmail.com)
@@ -57,9 +60,9 @@ class SimulatorTh implements Runnable {
 }
 
 class MonitorTh implements Runnable {
-	public static StringBuilder cusProbs;
+	public static StringBuilder cusProbs2;
 	
-	public static double meanCusProbs = 0;
+	public static double meanCusProbs2 = 0;
 	
 
 	public MonitorTh() {
@@ -67,23 +70,28 @@ class MonitorTh implements Runnable {
 	}
 
 	public void run() {
+		
 		Monitor monitor = Monitor.getInstance();
 		try {
-			while (SimulatorTh.getFlagON()) {
-				monitor.checkOnoffServerStatus();
-				Thread.sleep(10);
-			}
+			
+				while (SimulatorTh.getFlagON()) {
+					if(Network.completions > 2) {
+						monitor.checkOnoffServerStatus();
+						Thread.sleep(1);
+//						TimeUnit.NANOSECONDS.sleep(1);
+					}
+				}
 			
 			QueueProbs probs = monitor.getProbs();
 			
 
-			cusProbs = probs.getProbabilities();
+			cusProbs2 = probs.getProbabilities();
 			System.out.println("----NEWWAY------probs:");
-			System.out.println(cusProbs);
+			System.out.println(cusProbs2);
 			
-			meanCusProbs = probs.getMeanProbability();
+			meanCusProbs2 = probs.getMeanProbability();
 			System.out.println("----NEWWAY------mean:");
-			System.out.println(meanCusProbs);
+			System.out.println(meanCusProbs2);
 	
 			
 		} catch (InterruptedException e) {
