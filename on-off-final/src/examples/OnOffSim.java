@@ -35,20 +35,20 @@ class OnOffSim extends Sim {
 		Network.initialise();
 
 		
-		serviceTime = new Exp(16);
+		serviceTime = new Exp(8);
 		serviceTime2 = new Exp(8);
 
 
-		Exp onlineTime1 = new Exp(0.016);
+		Exp onlineTime1 = new Exp(0.05);
 //		Weibull onlineTime1 = new Weibull(20.9807, 1.1571);
 
-		Exp offlineTime1 = new Exp(0.0016);
+		Exp offlineTime1 = new Exp(0.05);
 //		Pareto onlineTime1 = new Pareto(-0.1388, 2, 160);
 //		Weibull offlineTime1 = new Weibull(100.9807, 1.157194);
 //		Gamma offlineTime1 = new Gamma(0.793, 90);
 		
-		Exp onlineTime2 = new Exp(0.0034);
-		Exp offlineTime2 = new Exp(0.0128);
+		Exp onlineTime2 = new Exp(0.05);
+		Exp offlineTime2 = new Exp(0.05);
 
 		Delay serveTime = new Delay(serviceTime);
 		Delay serveTime2 = new Delay(serviceTime2);
