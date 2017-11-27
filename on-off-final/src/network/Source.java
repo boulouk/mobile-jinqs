@@ -16,6 +16,7 @@ import tools.* ;
 public class Source extends Node {
   protected DistributionSampler delay ;
   protected DistributionSampler batchsize ;
+  protected DistributionSampler lifetime ;
   
   
 
@@ -34,6 +35,22 @@ public DistributionSampler getDelay() {
     batchsize = new Deterministic( 1 ) ;
     Sim.schedule( new Arrival( Sim.now() + delay.next() ) ) ;
   }
+  
+  /**
+   * @param name The name of the source node
+   * @param d The {@link DistributionSampler} used to generate the
+   *          inter-arrival times
+   * @param l The {@link DistributionSampler} used to generate the
+   *          lifetimes
+   * @param lifetimeName The name of the lifetime periods
+  */
+    public Source( String name, DistributionSampler d, DistributionSampler l, String lifetimeName) {
+      super( name ) ;
+      delay = d ;
+      batchsize = new Deterministic( 1 ) ;
+      lifetime = l;
+      Sim.schedule( new Arrival( Sim.now() + delay.next() ) ) ;
+    }
 
 /**
  * @param name The name of the source node
@@ -56,7 +73,10 @@ public DistributionSampler getDelay() {
  *
 */
   protected Customer buildCustomer() {
-    return new Customer() ;
+	  if(lifetime != null)
+		  return new Customer(lifetime.next());
+	  else 
+		  return new Customer();
   }
 
 /** 
@@ -65,31 +85,7 @@ public DistributionSampler getDelay() {
 */
   void injectCustomer() {
     Customer c =  buildCustomer() ;
-    c.setLocation( this ) ;
-    
-//    double time = Sim.now();
-//    try {
-//		String invokeTimeStr = String.valueOf(time);
-//
-//		String content = "Invoke Time: " + invokeTimeStr + " Create of: " + c.getId();
-//
-//		File file = new File("diary.txt");
-//
-//		if (!file.exists()) {
-//			file.createNewFile();
-//		}
-//
-//		FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-//		BufferedWriter bw = new BufferedWriter(fw);
-//		bw.write(content);
-//		bw.write("\n");
-//		bw.close();
-//
-//	} catch (IOException e1) {
-//		e1.printStackTrace();
-//	}
-    
-    
+    c.setLocation( this ) ;  
     forward( c ) ;
   }
 

@@ -24,6 +24,10 @@ public class Customer implements Ordered {
 	private boolean badLack;
 	private boolean middleCustomer;
 	
+	private double lifetime;
+	private boolean expired;
+	private boolean mwdExpiration;
+	
 	public static final Object middleLock = new Object();
 	
 	
@@ -89,6 +93,25 @@ public class Customer implements Ordered {
 			middleCustomer = false;
         }
 		
+		expired = false;
+		mwdExpiration = false;
+		// set to indicate that lifetime is not set
+		lifetime = -1;
+	}
+	
+	public Customer(double lifetimeDelay) {
+		id = customerId++;
+		priority = 0;
+		arrivalTime = Sim.now();
+		off = false;
+		badLack = false;
+		synchronized (middleLock) {
+			middleCustomer = false;
+        }
+		lifetime = lifetimeDelay;
+		expired = false;
+		mwdExpiration = false;
+		
 	}
 
 	public Customer(int type) {
@@ -103,6 +126,11 @@ public class Customer implements Ordered {
 		synchronized (middleLock) {
 			middleCustomer = false;
         }
+		
+		expired = false;
+		mwdExpiration = false;
+		// set to indicate that lifetime is not set
+		lifetime = -1;
 	}
 
 	public Customer(int type, int priority) {
@@ -114,6 +142,10 @@ public class Customer implements Ordered {
 		this.type = type;
 		this.priority = priority;
 		arrivalTime = Sim.now();
+		expired = false;
+		mwdExpiration = false;
+		// set to indicate that lifetime is not set
+		lifetime = -1;
 	}
 
 	public String toString() {
@@ -182,6 +214,33 @@ public class Customer implements Ordered {
 
 	public void setPriority(int p) {
 		priority = p;
+	}
+	
+	
+	//new customer's vars
+
+	public boolean isExpired() {
+		return expired;
+	}
+
+	public void setExpired(boolean expired) {
+		this.expired = expired;
+	}
+
+	public boolean isMwdExpiration() {
+		return mwdExpiration;
+	}
+
+	public void setMwdExpiration(boolean mwdExpiration) {
+		this.mwdExpiration = mwdExpiration;
+	}
+
+	public double getLifetime() {
+		return lifetime;
+	}
+
+	public void setLifetime(double lifetime) {
+		this.lifetime = lifetime;
 	}
 
 	//

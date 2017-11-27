@@ -12,9 +12,13 @@ public class Network {
   public static int completionsON = 0;
   public static int completionsOFF = 0;
   
+  public static int completionsExpired = 0;
+  
   public static CustomerMeasure responseTime = new CustomerMeasure();
   public static CustomerMeasure responseTimeON = new CustomerMeasure();
   public static CustomerMeasure responseTimeOFF = new CustomerMeasure();
+  
+  public static CustomerMeasure responseTimeExpired = new CustomerMeasure();
   
   public static CustomerMeasure virtualServiceTime = new CustomerMeasure();
   public static CustomerMeasure serviceTimeON = new CustomerMeasure();
@@ -60,6 +64,12 @@ public class Network {
 
   public static void registerCompletion( double t ) {
     responseTime.add( t ) ;
+    responseTime.addResponseTime(t);
+    responseTime.addTimestamp(Sim.now());
+  }
+  
+  public static void registerCompletionExpired(double t) {
+		responseTimeExpired.add(t);
   }
   
   public static void registerCompletionON( double t ) {
@@ -68,7 +78,7 @@ public class Network {
   
   public static void registerCompletionOFF( double t ) {
 	    responseTimeOFF.add( t ) ;
-	  }
+  }
   
   public static void computeVirtualST ( double t ) {
 	  virtualServiceTime.add( t ) ;
@@ -114,7 +124,7 @@ public class Network {
 //    Logger.logResult( "Service Time OFF", serviceTimeOFF.mean() );
     
     for ( int i = 0 ; i < nodeCount ; i++ ) {
-//      nodes[ i ].logResults() ;
+      nodes[ i ].logResults() ;
       nodes[ i ].displayResults();
     }
   }

@@ -13,12 +13,12 @@ import tools.Exp;
  */
 public class OnOffServiceCenter {
 	
-	OnOffQN mm1;
+	OnOffRQN mm1;
 	ServerOnOff serverOnOff;
 	
 	public OnOffServiceCenter (String s, Delay d, int n, Exp on, Exp off, double dur) {
 		
-		mm1 = new OnOffQN("MM1", d, n, on, off, dur);
+		mm1 = new OnOffRQN("MM1", d, n, on, off, dur);
 		serverOnOff = new ServerOnOff(on, off, dur, mm1);
 		
 	}

@@ -6,7 +6,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import examples.ServerOnOff;
-
 import tools.*;
 
 public class InfiniteServerNode extends Node {
@@ -69,8 +68,16 @@ public class InfiniteServerNode extends Node {
 		}
 
 		public void invoke() {
-			if (!customer.isMiddleCustomer())
+			if (!customer.isMiddleCustomer()){
+				if (customer.getLifetime() != -1) {
+					if ((Sim.now() - customer.getArrivalTime()) >= customer.getLifetime()) {
+						customer.setExpired(true);
+					}
+				}
+				
+				
 				forward(customer);
+			}
 			
 		}
 

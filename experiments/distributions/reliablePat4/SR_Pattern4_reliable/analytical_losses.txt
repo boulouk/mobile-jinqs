@@ -1,0 +1,1251 @@
+Success rates | Pattern1 | reliable
+For all: λ: 2 msg/sec, μ_pr = 64, μ_tr = 16
+_________________________________________________
+
+Lifetime: 10
+TON(mdw) = 10 TOFF(mdw) = 20 
+_________________________________________________
+
+TON(app) 10 TOFF(app) 70
+_________________________________________________
+
+SuccesRate: 0.08989704150905584
+CompletionsExpired
+   Point estimate:  181652.0
+Completions
+   Point estimate:  17943.0
+ResponseTime
+   Point estimate:  3.920987264919197
+sinkProducerAppLifetimeLosses:
+  Number of losses: 162554
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 19078
+sinkConsumerEnd:
+  Number of losses: 20
+  
+TON(app) 20 TOFF(app) 60
+_________________________________________________
+
+SuccesRate: 0.1541857127591259
+
+CompletionsExpired
+   Point estimate:  846913.0
+Completions
+   Point estimate:  154386.0
+ResponseTime
+   Point estimate:  3.3548077558809237
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 675567
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 171161
+sinkConsumerEnd:
+  Number of losses: 185
+
+TON(app) 30 TOFF(app) 50
+_________________________________________________
+
+SuccesRate: 0.22078701622971286
+
+CompletionsExpired
+   Point estimate:  780187.0
+Completions
+   Point estimate:  221063.0
+ResponseTime
+   Point estimate:  3.0953699292817376
+sinkProducerAppLifetimeLosses:
+  Number of losses: 528106
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 251862
+sinkConsumerEnd:
+  Number of losses: 219
+  
+TON(app) 40 TOFF(app) 40
+_________________________________________________
+
+SuccesRate: 0.2781885434329756
+
+CompletionsExpired
+   Point estimate:  722809.0
+Completions
+   Point estimate:  278573.0
+ResponseTime
+   Point estimate:  2.9460692228757575
+sinkProducerAppLifetimeLosses:
+  Number of losses: 399815
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 322755
+sinkConsumerEnd:
+  Number of losses: 239
+
+TON(app) 50 TOFF(app) 30
+_________________________________________________
+
+SuccesRate: 0.3296002686127769
+CompletionsExpired
+   Point estimate:  670867.0
+Completions
+   Point estimate:  329830.0
+ResponseTime
+   Point estimate:  2.8155704339333036
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 281661
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 388933
+sinkConsumerEnd:
+  Number of losses: 273
+
+TON(app) 60 TOFF(app) 20
+_________________________________________________
+
+SuccesRate: 0.3923972979734801
+
+CompletionsExpired
+   Point estimate:  607147.0
+Completions
+   Point estimate:  392103.0
+ResponseTime
+   Point estimate:  2.6966676351566403
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 154442
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 452388
+sinkConsumerEnd:
+  Number of losses: 317
+  
+TON(app) 70 TOFF(app) 10
+_________________________________________________
+SuccesRate: 0.4393249445567444
+
+CompletionsExpired
+   Point estimate:  559732.0
+Completions
+   Point estimate:  438586.0
+ResponseTime
+   Point estimate:  2.5850835644809464
+sinkProducerAppLifetimeLosses:
+  Number of losses: 48340
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 511082
+sinkConsumerEnd:
+  Number of losses: 310
+
+_________________________________________________
+
+Lifetime: 30
+TON(mdw) = 10 TOFF(mdw) = 20 
+_________________________________________________
+
+TON(app) 10 TOFF(app) 70 lifetime 30
+_________________________________________________
+
+SuccesRate: 0.20532576385507476
+
+CompletionsExpired
+   Point estimate:  794799.0
+Completions
+   Point estimate:  205358.0
+ResponseTime
+   Point estimate:  15.264781375337005
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 657152
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 137528
+sinkConsumerEnd:
+  Number of losses: 119
+
+TON(app) 20 TOFF(app) 60 lifetime 30
+_________________________________________________
+  
+SuccesRate: 0.31855474534350414
+
+CompletionsExpired
+   Point estimate:  681080.0
+Completions
+   Point estimate:  318384.0
+ResponseTime
+   Point estimate:  13.5728309212595
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 487592
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 193318
+sinkConsumerEnd:
+  Number of losses: 170
+  
+TON(app) 30 TOFF(app) 50 lifetime 30
+_________________________________________________
+
+SuccesRate: 0.42147058205410726
+
+CompletionsExpired
+   Point estimate:  578088.0
+Completions
+   Point estimate:  421149.0
+ResponseTime
+   Point estimate:  12.259007911418406
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 357001
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 220925
+sinkConsumerEnd:
+  Number of losses: 162
+
+  
+TON(app) 40 TOFF(app) 40 lifetime 30
+_________________________________________________
+
+SuccesRate: 0.49978870601163866
+
+CompletionsExpired
+   Point estimate:  500699.0
+Completions
+   Point estimate:  500276.0
+ResponseTime
+   Point estimate:  11.35315159180793
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 253342
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 247174
+sinkConsumerEnd:
+  Number of losses: 183
+
+  
+TON(app) 50 TOFF(app) 30 lifetime 30
+_________________________________________________
+
+SuccesRate: 0.5812543956395256
+
+CompletionsExpired
+   Point estimate:  419161.0
+Completions
+   Point estimate:  581831.0
+ResponseTime
+   Point estimate:  10.704415435170606
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 151325
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 267648
+sinkConsumerEnd:
+  Number of losses: 188
+
+TON(app) 60 TOFF(app) 20 lifetime 30
+_________________________________________________
+
+SuccesRate: 0.6582919338993475
+
+CompletionsExpired
+   Point estimate:  342263.0
+Completions
+   Point estimate:  659361.0
+ResponseTime
+   Point estimate:  9.98776743812527
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 59255
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 282830
+sinkConsumerEnd:
+  Number of losses: 178
+
+
+TON(app) 70 TOFF(app) 10 lifetime 30
+_________________________________________________
+
+SuccesRate: 0.7089528238379746
+
+CompletionsExpired
+   Point estimate:  291404.0
+Completions
+   Point estimate:  709822.0
+ResponseTime
+   Point estimate:  9.255485258393914
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 6220
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 285021
+sinkConsumerEnd:
+  Number of losses: 163
+
+_________________________________________________
+
+Lifetime: 60
+TON(mdw) = 10 TOFF(mdw) = 20 
+_________________________________________________
+
+TON(app) 10 TOFF(app) 70 lifetime 60
+_________________________________________________
+
+SuccesRate: 0.38208618590447296
+
+CompletionsExpired
+   Point estimate:  619162.0
+Completions
+   Point estimate:  382858.0
+ResponseTime
+   Point estimate:  32.723456120075234
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 482106
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 136955
+sinkConsumerEnd:
+  Number of losses: 101
+
+TON(app) 20 TOFF(app) 60 lifetime 60
+_________________________________________________
+
+SuccesRate: 0.5186583962783252
+
+CompletionsExpired
+   Point estimate:  481125.0
+Completions
+   Point estimate:  518425.0
+ResponseTime
+   Point estimate:  29.024153512279156
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 314450
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 166560
+sinkConsumerEnd:
+  Number of losses: 115
+
+TON(app) 30 TOFF(app) 50 lifetime 60
+_________________________________________________
+
+SuccesRate: 0.6306931950068927
+
+CompletionsExpired
+   Point estimate:  369432.0
+Completions
+   Point estimate:  630907.0
+ResponseTime
+   Point estimate:  25.575535358566174
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 208358
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 160946
+sinkConsumerEnd:
+  Number of losses: 128
+
+TON(app) 40 TOFF(app) 40 lifetime 60
+_________________________________________________
+
+SuccesRate: 0.7153066538476945
+
+CompletionsExpired
+   Point estimate:  284272.0
+Completions
+   Point estimate:  714248.0
+ResponseTime
+   Point estimate:  22.981118383319153
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 121973
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 162197
+sinkConsumerEnd:
+  Number of losses: 102
+
+TON(app) 50 TOFF(app) 30 lifetime 60
+_________________________________________________
+
+SuccesRate: 0.7946963147952486
+
+CompletionsExpired
+   Point estimate:  205192.0
+Completions
+   Point estimate:  794264.0
+ResponseTime
+   Point estimate:  20.963336286455494
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 55358
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 149742
+sinkConsumerEnd:
+  Number of losses: 92
+
+
+TON(app) 60 TOFF(app) 20 lifetime 60
+_________________________________________________
+
+SuccesRate: 0.8593548180542091
+
+CompletionsExpired
+   Point estimate:  140575.0
+Completions
+   Point estimate:  858926.0
+ResponseTime
+   Point estimate:  18.617740742177556
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 12814
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 127689
+sinkConsumerEnd:
+  Number of losses: 72
+
+
+TON(app) 70 TOFF(app) 10 lifetime 60
+_________________________________________________
+
+
+SuccesRate: 0.8955398275022814
+
+CompletionsExpired
+   Point estimate:  104510.0
+Completions
+   Point estimate:  895967.0
+ResponseTime
+   Point estimate:  16.290280900736224
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 283
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 104173
+sinkConsumerEnd:
+  Number of losses: 54
+
+  
+_________________________________________________
+
+Lifetime: 10
+TON(mdw) = 15 TOFF(mdw) = 15 
+_________________________________________________
+
+TON(app) 10 TOFF(app) 70
+_________________________________________________
+
+SuccesRate: 0.12150905096932929
+CompletionsExpired
+   Point estimate:  879416.0
+Completions
+   Point estimate:  121637.0
+ResponseTime
+   Point estimate:  3.587315197873898
+sinkProducerAppLifetimeLosses:
+  Number of losses: 809429
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 69861
+sinkConsumerEnd:
+  Number of losses: 126
+  
+TON(app) 20 TOFF(app) 60
+_________________________________________________
+
+SuccesRate: 0.20882193135095706
+
+CompletionsExpired
+   Point estimate:  790682.0
+Completions
+   Point estimate:  208691.0
+ResponseTime
+   Point estimate:  2.9296738184642743
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 679588
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 110903
+sinkConsumerEnd:
+  Number of losses: 191
+
+TON(app) 30 TOFF(app) 50
+_________________________________________________
+
+SuccesRate: 0.3075347325421629
+
+CompletionsExpired
+   Point estimate:  691966.0
+Completions
+   Point estimate:  307313.0
+ResponseTime
+   Point estimate:  2.5762385028093706
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 527858
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 163854
+sinkConsumerEnd:
+  Number of losses: 254
+  
+TON(app) 40 TOFF(app) 40
+_________________________________________________
+
+SuccesRate: 0.39188016823887284
+
+CompletionsExpired
+   Point estimate:  609136.0
+Completions
+   Point estimate:  392535.0
+ResponseTime
+   Point estimate:  2.3996036714351554
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 410020
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 198859
+sinkConsumerEnd:
+  Number of losses: 257
+
+TON(app) 50 TOFF(app) 30
+_________________________________________________  
+
+SuccesRate: 0.4766953620607111
+
+CompletionsExpired
+   Point estimate:  523571.0
+Completions
+   Point estimate:  476938.0
+ResponseTime
+   Point estimate:  2.2663495733051886
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 282558
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 240711
+sinkConsumerEnd:
+  Number of losses: 302
+  
+TON(app) 60 TOFF(app) 20
+_________________________________________________
+
+SuccesRate: 0.5604969647041886
+
+CompletionsExpired
+   Point estimate:  439605.0
+Completions
+   Point estimate:  560627.0
+ResponseTime
+   Point estimate:  2.1257970404821225
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 156366
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 282925
+sinkConsumerEnd:
+  Number of losses: 314
+
+TON(app) 70 TOFF(app) 10
+_________________________________________________
+
+SuccesRate: 0.6319583616402008
+
+CompletionsExpired
+   Point estimate:  367844.0
+Completions
+   Point estimate:  631619.0
+ResponseTime
+   Point estimate:  2.005536656957509
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 46069
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 321438
+sinkConsumerEnd:
+  Number of losses: 337
+
+_________________________________________________
+
+Lifetime: 30
+TON(mdw) = 15 TOFF(mdw) = 15 
+_________________________________________________
+TON(app) 10 TOFF(app) 70
+_________________________________________________
+
+SuccesRate: 0.26648622588705045
+CompletionsExpired
+   Point estimate:  733348.0
+Completions
+   Point estimate:  266426.0
+ResponseTime
+   Point estimate:  14.038899786151394
+sinkProducerAppLifetimeLosses:
+  Number of losses: 653142
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 80070
+sinkConsumerEnd:
+  Number of losses: 136
+  
+TON(app) 20 TOFF(app) 60
+_________________________________________________
+
+SuccesRate: 0.3947712052063811
+CompletionsExpired
+   Point estimate:  604859.0
+Completions
+   Point estimate:  394530.0
+ResponseTime
+   Point estimate:  11.847133066457724
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 505790
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 98911
+sinkConsumerEnd:
+  Number of losses: 158
+  
+TON(app) 30 TOFF(app) 50
+_________________________________________________
+
+SuccesRate: 0.5233060562678141
+
+CompletionsExpired
+   Point estimate:  477153.0
+Completions
+   Point estimate:  523810.0
+ResponseTime
+   Point estimate:  10.49837422136819
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 362146
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 114846
+sinkConsumerEnd:
+  Number of losses: 161
+  
+TON(app) 40 TOFF(app) 40
+_________________________________________________
+
+SuccesRate: 0.6274243068914338
+CompletionsExpired
+   Point estimate:  373028.0
+Completions
+   Point estimate:  628186.0
+ResponseTime
+   Point estimate:  9.423976816812795
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 249437
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 123423
+sinkConsumerEnd:
+  Number of losses: 168
+
+TON(app) 50 TOFF(app) 30
+_________________________________________________ 
+
+SuccesRate: 0.7202146518806036
+
+CompletionsExpired
+   Point estimate:  279822.0
+Completions
+   Point estimate:  720309.0
+ResponseTime
+   Point estimate:  8.570063332094666
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 149487
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 130178
+sinkConsumerEnd:
+  Number of losses: 157
+  
+TON(app) 60 TOFF(app) 20
+_________________________________________________
+
+SuccesRate: 0.816496323507356
+
+CompletionsExpired
+   Point estimate:  183529.0
+Completions
+   Point estimate:  816609.0
+ResponseTime
+   Point estimate:  7.611362739999604
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 58312
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 125088
+sinkConsumerEnd:
+  Number of losses: 129
+
+TON(app) 70 TOFF(app) 10
+_________________________________________________
+
+SuccesRate: 0.8803525554167796
+
+CompletionsExpired
+   Point estimate:  119649.0
+Completions
+   Point estimate:  880364.0
+ResponseTime
+   Point estimate:  6.599459315305749
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 6163
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 113383
+sinkConsumerEnd:
+  Number of losses: 103
+
+_________________________________________________
+
+Lifetime: 60
+TON(mdw) = 15 TOFF(mdw) = 15 
+_________________________________________________
+TON(app) 10 TOFF(app) 70
+_________________________________________________
+
+SuccesRate: 0.45327950313043025
+CompletionsExpired
+   Point estimate:  546820.0
+Completions
+   Point estimate:  453362.0
+ResponseTime
+   Point estimate:  29.649696380389923
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 472594
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 74122
+sinkConsumerEnd:
+  Number of losses: 104
+
+TON(app) 20 TOFF(app) 60
+_________________________________________________
+
+SuccesRate: 0.5941593785518002
+
+CompletionsExpired
+   Point estimate:  405992.0
+Completions
+   Point estimate:  594381.0
+ResponseTime
+   Point estimate:  25.198092949928196
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 329468
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 76418
+sinkConsumerEnd:
+  Number of losses: 106
+
+TON(app) 30 TOFF(app) 50
+_________________________________________________
+
+SuccesRate: 0.7206678100171503
+
+CompletionsExpired
+   Point estimate:  279328.0
+Completions
+   Point estimate:  720657.0
+ResponseTime
+   Point estimate:  21.713792956120205
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 204954
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 74270
+sinkConsumerEnd:
+  Number of losses: 104
+
+TON(app) 40 TOFF(app) 40
+_________________________________________________
+
+SuccesRate: 0.8175805918912697
+
+CompletionsExpired
+   Point estimate:  182268.0
+Completions
+   Point estimate:  816902.0
+ResponseTime
+   Point estimate:  18.674896392708906
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 116845
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 65362
+sinkConsumerEnd:
+  Number of losses: 61
+
+
+TON(app) 50 TOFF(app) 30
+_________________________________________________ 
+
+SuccesRate: 0.8929572247390684
+
+CompletionsExpired
+   Point estimate:  106917.0
+Completions
+   Point estimate:  891908.0
+ResponseTime
+   Point estimate:  16.05529024235063
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 56832
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 50016
+sinkConsumerEnd:
+  Number of losses: 69
+
+TON(app) 60 TOFF(app) 20
+_________________________________________________
+
+SuccesRate: 0.9513882915842387
+
+CompletionsExpired
+   Point estimate:  48605.0
+Completions
+   Point estimate:  951257.0
+ResponseTime
+   Point estimate:  12.8987791355513
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 12207
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 36346
+sinkConsumerEnd:
+  Number of losses: 52
+
+TON(app) 70 TOFF(app) 10
+_________________________________________________
+
+SuccesRate: 0.976360147046169
+
+CompletionsExpired
+   Point estimate:  23626.0
+Completions
+   Point estimate:  975788.0
+ResponseTime
+   Point estimate:  10.23538549111164
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 237
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 23377
+sinkConsumerEnd:
+  Number of losses: 12
+
+  
+_________________________________________________
+
+Lifetime: 10
+TON(mdw) = 20 TOFF(mdw) = 10 
+_________________________________________________
+
+TON(app) 10 TOFF(app) 70 lifetime: 10
+_________________________________________________
+
+
+SuccesRate: 0.14691209272185146
+
+CompletionsExpired
+   Point estimate:  851746.0
+Completions
+   Point estimate:  146681.0
+ResponseTime
+   Point estimate:  3.3468897633201067
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 814353
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 37231
+sinkConsumerEnd:
+  Number of losses: 162
+
+TON(app) 20 TOFF(app) 60 lifetime: 10
+_________________________________________________
+
+SuccesRate: 0.2643690921620224
+
+CompletionsExpired
+   Point estimate:  735511.0
+Completions
+   Point estimate:  264326.0
+ResponseTime
+   Point estimate:  2.6187031365391453
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 675154
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 60171
+sinkConsumerEnd:
+  Number of losses: 186
+  
+TON(app) 30 TOFF(app) 50 lifetime: 10
+_________________________________________________
+
+SuccesRate: 0.3894003073503464
+
+CompletionsExpired
+   Point estimate:  611493.0
+Completions
+   Point estimate:  389970.0
+ResponseTime
+   Point estimate:  2.2016216259148904
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 532300
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 78967
+sinkConsumerEnd:
+  Number of losses: 226
+
+TON(app) 40 TOFF(app) 40 lifetime: 10
+_________________________________________________
+
+SuccesRate: 0.4960140815804616
+
+CompletionsExpired
+   Point estimate:  504502.0
+Completions
+   Point estimate:  496522.0
+ResponseTime
+   Point estimate:  1.9903574869390968
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 404648
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 99586
+sinkConsumerEnd:
+  Number of losses: 268
+  
+TON(app) 50 TOFF(app) 30 lifetime: 10
+_________________________________________________
+
+SuccesRate: 0.5952657396156789
+
+CompletionsExpired
+   Point estimate:  404712.0
+Completions
+   Point estimate:  595233.0
+ResponseTime
+   Point estimate:  1.8136607684644228
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 285766
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 118690
+sinkConsumerEnd:
+  Number of losses: 256
+  
+TON(app) 60 TOFF(app) 20 lifetime: 10
+_________________________________________________
+
+SuccesRate: 0.710074039935478
+
+CompletionsExpired
+   Point estimate:  289378.0
+Completions
+   Point estimate:  708732.0
+ResponseTime
+   Point estimate:  1.7039286011163908
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 149333
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 139745
+sinkConsumerEnd:
+  Number of losses: 300
+
+TON(app) 70 TOFF(app) 10 lifetime: 10
+_________________________________________________
+
+SuccesRate: 0.7964501189985149
+
+CompletionsExpired
+   Point estimate:  203809.0
+Completions
+   Point estimate:  797464.0
+ResponseTime
+   Point estimate:  1.5464131326961592
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 47280
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 156232
+sinkConsumerEnd:
+  Number of losses: 297
+
+_________________________________________________
+
+Lifetime: 30
+TON(mdw) = 20 TOFF(mdw) = 10 
+_________________________________________________
+
+TON(app) 10 TOFF(app) 70 lifetime: 30
+_________________________________________________
+
+
+SuccesRate: 0.3142372172716243
+
+CompletionsExpired
+   Point estimate:  685603.0
+Completions
+   Point estimate:  314164.0
+ResponseTime
+   Point estimate:  13.073329004313518
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 648119
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 37349
+sinkConsumerEnd:
+  Number of losses: 135
+
+TON(app) 20 TOFF(app) 60 lifetime: 30
+_________________________________________________
+
+SuccesRate: 0.45286179618427175
+
+CompletionsExpired
+   Point estimate:  546747.0
+Completions
+   Point estimate:  452538.0
+ResponseTime
+   Point estimate:  10.57319746299137
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 505107
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 41505
+sinkConsumerEnd:
+  Number of losses: 135
+  
+TON(app) 30 TOFF(app) 50 lifetime: 30
+_________________________________________________
+
+SuccesRate: 0.5803302846086493
+
+CompletionsExpired
+   Point estimate:  420350.0
+Completions
+   Point estimate:  581271.0
+ResponseTime
+   Point estimate:  8.912091617622792
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 376775
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 43435
+sinkConsumerEnd:
+  Number of losses: 140
+
+
+TON(app) 40 TOFF(app) 40 lifetime: 30
+_________________________________________________
+
+SuccesRate: 0.7012501301384674
+
+CompletionsExpired
+   Point estimate:  298432.0
+Completions
+   Point estimate:  700504.0
+ResponseTime
+   Point estimate:  7.719266566712879
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 252330
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 45977
+sinkConsumerEnd:
+  Number of losses: 125
+
+TON(app) 50 TOFF(app) 30 lifetime: 30
+_________________________________________________
+
+SuccesRate: 0.8065229237175866
+
+CompletionsExpired
+   Point estimate:  193509.0
+Completions
+   Point estimate:  806656.0
+ResponseTime
+   Point estimate:  6.733503670640902
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 149928
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 43443
+sinkConsumerEnd:
+  Number of losses: 138
+  
+TON(app) 60 TOFF(app) 20 lifetime: 30
+_________________________________________________
+
+SuccesRate: 0.9049139638146197
+
+CompletionsExpired
+   Point estimate:  94930.0
+Completions
+   Point estimate:  903429.0
+ResponseTime
+   Point estimate:  5.392241016154515
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 56800
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 38044
+sinkConsumerEnd:
+  Number of losses: 86
+
+TON(app) 70 TOFF(app) 10 lifetime: 30
+_________________________________________________
+
+SuccesRate: 0.9628748491203227
+
+CompletionsExpired
+   Point estimate:  37124.0
+Completions
+   Point estimate:  962845.0
+ResponseTime
+   Point estimate:  4.264487952115096
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 5600
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 31491
+sinkConsumerEnd:
+  Number of losses: 33
+
+_________________________________________________
+
+Lifetime: 60
+TON(mdw) = 20 TOFF(mdw) = 10 
+_________________________________________________
+
+TON(app) 10 TOFF(app) 70 lifetime: 60
+_________________________________________________
+
+SuccesRate: 0.4969560996483693
+
+CompletionsExpired
+   Point estimate:  503143.0
+Completions
+   Point estimate:  497054.0
+ResponseTime
+   Point estimate:  27.35518053545398
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 473505
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 29556
+sinkConsumerEnd:
+  Number of losses: 82
+
+
+TON(app) 20 TOFF(app) 60 lifetime: 60
+_________________________________________________
+
+
+SuccesRate: 0.6649974054491579
+
+CompletionsExpired
+   Point estimate:  334415.0
+Completions
+   Point estimate:  663831.0
+ResponseTime
+   Point estimate:  22.316497462038782
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 304226
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 30100
+sinkConsumerEnd:
+  Number of losses: 89
+  
+TON(app) 30 TOFF(app) 50 lifetime: 60
+_________________________________________________
+
+SuccesRate: 0.7642002059962697
+
+CompletionsExpired
+   Point estimate:  236033.0
+Completions
+   Point estimate:  764956.0
+ResponseTime
+   Point estimate:  18.37882620250592
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 213500
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 22440
+sinkConsumerEnd:
+  Number of losses: 93
+
+TON(app) 40 TOFF(app) 40 lifetime: 60
+_________________________________________________
+
+SuccesRate: 0.8544091373085771
+
+CompletionsExpired
+   Point estimate:  145621.0
+Completions
+   Point estimate:  854586.0
+ResponseTime
+   Point estimate:  15.20447918684207
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 123668
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 21889
+sinkConsumerEnd:
+  Number of losses: 64
+
+TON(app) 50 TOFF(app) 30 lifetime: 60
+_________________________________________________
+
+SuccesRate: 0.9240372037347858
+
+CompletionsExpired
+   Point estimate:  75898.0
+Completions
+   Point estimate:  923249.0
+ResponseTime
+   Point estimate:  12.237293637778079
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 60047
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 15809
+sinkConsumerEnd:
+  Number of losses: 42
+
+  
+TON(app) 60 TOFF(app) 20 lifetime: 60
+_________________________________________________
+
+SuccesRate: 0.9785238454580437
+
+CompletionsExpired
+   Point estimate:  21487.0
+Completions
+   Point estimate:  979018.0
+ResponseTime
+   Point estimate:  8.555660223342993
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 14185
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 7285
+sinkConsumerEnd:
+  Number of losses: 17
+
+TON(app) 70 TOFF(app) 10 lifetime: 60
+_________________________________________________
+
+SuccesRate: 0.9970730399571059
+
+CompletionsExpired
+   Point estimate:  2926.0
+Completions
+   Point estimate:  996746.0
+ResponseTime
+   Point estimate:  5.491294857787479
+
+sinkProducerAppLifetimeLosses:
+  Number of losses: 410
+sinkProducerMdwLifetimeLosses:
+  Number of losses: 2512
+sinkConsumerEnd:
+  Number of losses: 4

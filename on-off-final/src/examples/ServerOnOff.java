@@ -12,7 +12,7 @@ public class ServerOnOff {
 
 	protected DistributionSampler delayOn;
 	protected DistributionSampler delayOff;
-	protected OnOffQN queueingNode;
+	protected OnOffRQN queueingNode;
 	protected double duration = 0;
 	protected double durationOn = 0;
 	protected double durationOff = 0;
@@ -37,11 +37,11 @@ public class ServerOnOff {
 		return nextOn;
 	}
 	
-	public OnOffQN getQueueingNode() {
+	public OnOffRQN getQueueingNode() {
 		return queueingNode;
 	}
 
-	public ServerOnOff(DistributionSampler dOn, DistributionSampler dOff, double d, OnOffQN qn) {
+	public ServerOnOff(DistributionSampler dOn, DistributionSampler dOff, double d, OnOffRQN qn) {
 		delayOn = dOn;
 		delayOff = dOff;
 		duration = d;
@@ -90,7 +90,7 @@ public class ServerOnOff {
 				Sim.schedule(new Off(addition, duration));
 			}
 			
-			synchronized (OnOffQN.resourcesLock) {
+			synchronized (OnOffRQN.resourcesLock) {
 
 				if (!resources.resourceIsAvailable() && getQueueingNode().getCurrentCustomer().isMiddleCustomer()) {
 					

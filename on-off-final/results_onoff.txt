@@ -1,4 +1,18 @@
-Lsim: 1.200187125 -- S-sim: 0.12505055613505006 -- avgON: 19.9574385010455 -- avgOFF: 20.06840882326649 -- Arrivals: 9601497 -- Duration: 8000000.0
-R-sim (mean resp time in system): 32.01590108669465 -- R-model (mean resp time in system): 14.753733206048793 -- R-sim-queue (mean resp time in queue): 0.0 -- R-model-mosxolios (mean resp time in system): 14.753733206048798
- Q-sim (num of cust in queue): 0.0 -- Q-sim (num of cust in system): 38.42507227952443
- -- R_paper: 14.699734150239141
+L=0.05
+Lsim: 0.0500296 -- S-sim: 0.9980406330631697 -- avgON: 1003.3224441581033 -- avgOFF: 53.03355197064703 -- Arrivals: 750444 -- Duration: 1.5E7
+R-sim (mean resp time in system): 3.9456083705687233 -- R-model (mean resp time in system): 3.9193477269651997 -- R-sim-queue (mean resp time in queue): 0.0 -- R-model-mosxolios (mean resp time in system): 3.9193477269651997
+ Q-moscholios_paper: 0.19608339904097816 Q-sim: 0.197397208536205
+ -- R_paper: 3.890194523171933
+
+L=0.5
+ Lsim: 0.5003700666666666 -- S-sim: 0.999664802493957 -- avgON: 997.3033492020032 -- avgOFF: 53.210962519314585 -- Arrivals: 7505551 -- Duration: 1.5E7
+R-sim (mean resp time in system): 7.887080641992009 -- R-model (mean resp time in system): 7.9226050182648615 -- R-sim-queue (mean resp time in queue): 0.0 -- R-model-mosxolios (mean resp time in system): 7.92260501826486
+ Q-moscholios_paper: 3.964234401162855 Q-sim: 3.9464590666389174
+ -- R_paper: 7.3362536987161935
+ 
+ L=0.8
+ Lsim: 0.7997546666666666 -- S-sim: 1.0000461327396204 -- avgON: 983.6818100137895 -- avgOFF: 53.519843899308924 -- Arrivals: 11996320 -- Duration: 1.5E7
+R-sim (mean resp time in system): 24.629662755524347 -- R-model (mean resp time in system): 24.35384531697496 -- R-sim-queue (mean resp time in queue): 0.0 -- R-model-mosxolios (mean resp time in system): 24.35384531697498
+ Q-moscholios_paper: 19.477101443528884 Q-sim: 19.697687727156787
+ -- R_paper: 21.516366564427027
+

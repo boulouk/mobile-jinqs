@@ -7,6 +7,8 @@ public class Node {
   String name ;
   Link link = Link.earth ;
   int arrivals = 0 ;
+  int lifetimeLosses = 0;
+  int mdwLosses = 0;
 
   public Node() {
     name = "Base Node" ;
@@ -45,6 +47,8 @@ public class Node {
   public void displayResults() {
     System.out.println( name + ":" ) ;
     System.out.println( "  Number of arrivals: " + arrivals ) ;
+    System.out.println( "  Number of lifetime losses: " + lifetimeLosses ) ;
+    System.out.println( "  Number of middleware losses: " + mdwLosses ) ;
   }
 
 // ----------------------------------------------------------------------
@@ -69,6 +73,24 @@ public class Node {
   protected void forward( Customer c ) {
     link.move( c ) ;
   }
+
+public void setLifetimeLosses(int lifetimeLosses) {
+	this.lifetimeLosses = lifetimeLosses;
+}
+
+public int getLifetimeLosses() {
+	return lifetimeLosses;
+}
+
+public int getMdwLosses() {
+	return mdwLosses;
+}
+
+public void setMdwLosses(int mdwLosses) {
+	this.mdwLosses = mdwLosses;
+}
+
+  
 
 }
 

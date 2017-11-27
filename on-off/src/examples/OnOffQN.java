@@ -5,12 +5,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import tools.DistributionSampler;
 import tools.Sim;
 import network.*;
 
 public class OnOffQN extends QueueingNode {
 	public static boolean con;
 	public static double lifetime;
+	public ServerOnOff serverOnOff;
 
 	public static boolean isCon() {
 		return con;
@@ -19,10 +21,17 @@ public class OnOffQN extends QueueingNode {
 	public static double getLifetime() {
 		return lifetime;
 	}
-
-	public OnOffQN(String s, Delay d, int n) {
+	
+	public OnOffQN(String s, Delay d, int n, DistributionSampler on, DistributionSampler off, double dur) {
 		super(s, d, n);
 		con = true;
+		serverOnOff = new ServerOnOff(on, off, dur, this);
+	}
+
+	public OnOffQN(String s, Delay d, int n, Queue q, DistributionSampler on, DistributionSampler off, double dur) {
+		super(s, d, n, q);
+		con = true;
+		serverOnOff = new ServerOnOff(on, off, dur, this);
 	}
 
 	@Override

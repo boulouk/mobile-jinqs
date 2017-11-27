@@ -1,10 +1,15 @@
 package tools ; 
 
+import java.text.DecimalFormat;
+
 public abstract class Measure {
   private final int maxMeasures = 10 ;
   protected int moments, n = 0 ;
   protected double moment[] = new double[ 100 ] ;
   protected double resetTime = 0.0 ;
+  
+  protected StringBuilder responseMeasures = new StringBuilder("responses = [");
+  protected StringBuilder timestamps = new StringBuilder("times = [");
 
   public Measure() {
     moments = 2 ;
@@ -30,7 +35,7 @@ public abstract class Measure {
   public abstract double mean() ;
 
   public abstract double variance() ;
-
+  
   public double moment( int n ) {
     return moment[ n ] ;
   }

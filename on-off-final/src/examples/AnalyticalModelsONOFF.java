@@ -207,6 +207,27 @@ public class AnalyticalModelsONOFF {
 		return R;
 	}
 	
+	public double computeEN_mosxolios() {
+		double EN = 0;
+		double L = 0;
+		
+		double theta_OFF = 1 / avgOFF;
+		double theta_ON = 1 / avgON;
+		
+		double mu = 1 / Sft;
+
+		L = computeL();
+		
+				
+		double EN1 = (L / (mu * (theta_OFF / (theta_ON + theta_OFF)))) + (L * avgOFF * (theta_ON / (theta_ON + theta_OFF)));
+		double EN2 = 1 - (L / (mu * (theta_OFF / (theta_ON + theta_OFF))));
+		
+		
+		EN = (EN1 / EN2);
+		
+		return EN;
+	}
+	
 
 	public double computeR_paper() {
 		double R_1 = 0;

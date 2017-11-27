@@ -46,19 +46,17 @@ class OnOffSim extends Sim {
 
 		Network.initialise();
 
-		serviceRate = 8;
+		serviceRate = 1;
 		serviceTime = new Exp(serviceRate);
 
-		Exp onlineTime = new Exp(0.1);
-		Exp offlineTime = new Exp(0.1);
+		Exp onlineTime = new Exp(0.001);
+		Exp offlineTime = new Exp(0.019);
 
 		Delay serveTime = new Delay(serviceTime);
 		LambdaRate = 1;
 		Source source = new Source("Source", new Exp(LambdaRate));
 
-		OnOffQN mm1 = new OnOffQN("MM1", serveTime, 1);
-
-		ServerOnOff serverOnOff = new ServerOnOff(onlineTime, offlineTime, duration, mm1);
+		OnOffQN mm1 = new OnOffQN("ON-OFF-1", serveTime, 1, onlineTime, offlineTime, duration);
 
 		Sink sink = new Sink("Sink");
 
@@ -69,9 +67,6 @@ class OnOffSim extends Sim {
 
 		averageOn = onlineTime.average();
 		averageOff = offlineTime.average();
-
-		durationOn = serverOnOff.getDurationOn();
-		durationOff = serverOnOff.getDurationOff();
 
 		System.err.println("ON average: " + averageOn);
 		System.err.println("OFF average: " + averageOff);
@@ -134,13 +129,13 @@ class OnOffSim extends Sim {
 		double p01 = probsON.getValue(0)/(double)sum;
 		System.out.println("prob_p01:" +p01);
 		double p00 = probsOFF.getValue(0)/(double)sum;
-		System.out.println("prob_p00:" +p00/sum);
+		System.out.println("prob_p00:" +p00);
 		double p11 = probsON.getValue(1)/(double)sum;
-		System.out.println("prob_p11:" +p11/sum);
+		System.out.println("prob_p11:" +p11);
 		double p10 = probsOFF.getValue(1)/(double)sum;
-		System.out.println("prob_p10:" +p10/sum);
+		System.out.println("prob_p10:" +p10);
 		double p21 = probsON.getValue(2)/(double)sum;
-		System.out.println("prob_p21:" +p21/sum);
+		System.out.println("prob_p21:" +p21);
 		
 		System.out.println("1: " + (0.1 * p01) +" = "+ (1+0.1)*p00);
 		System.out.println("2: " + ((0.1 * p00) + (8*p11)) +" = "+ (1+0.1)*p01);
@@ -153,7 +148,7 @@ class OnOffSim extends Sim {
 
 	public static void main(String args[]) {
 //public void start() {
-		new OnOffSim(5000000);
+		new OnOffSim(50000);
 
 		Network.displayResults(0.01);
 		
