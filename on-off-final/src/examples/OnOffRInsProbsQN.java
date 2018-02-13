@@ -17,7 +17,7 @@ public class OnOffRInsProbsQN extends OnOffRQN {
 
 	public OnOffRInsProbsQN(String s, Delay d, int n, DistributionSampler on, DistributionSampler off, double insProb, double dur) {
 		super(s, d, n, on, off, dur);
-		insertProb = new Geometric(insProb);	
+		insertProb = new Geometric(insProb);
 	}
 
 	public OnOffRInsProbsQN(String s, Delay d, int n, Queue q, DistributionSampler on, DistributionSampler off, double insProb, double dur) {

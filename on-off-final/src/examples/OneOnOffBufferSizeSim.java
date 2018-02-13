@@ -37,17 +37,19 @@ class OneOnOffBufferSizeSim extends Sim {
 		Network.initialise();
 
 		
-		serviceTime = new Exp(32);
+		serviceTime = new Exp(8);
 		Delay serveTime = new Delay(serviceTime);
 		
-		Exp onlineTime1 = new Exp(0.028);
+		Exp onlineTime1 = new Exp(0.05);
 //		Deterministic onlineTime1 = new Deterministic(30);
-		Exp offlineTime1 = new Exp(0.2);
+		Exp offlineTime1 = new Exp(0.05);
 		
 //		Exp lifetime = new Exp(0.1);
 		Deterministic lifetime = new Deterministic(30);
 
-		Source source = new Source("Source", new Exp(5));
+		
+		double L = 3.9;
+		Source source = new Source("Source", new Exp(L));
 //		
 //		Source source = new Source("Source", new Exp(2), lifetime, "lifetime");
 		
@@ -102,7 +104,7 @@ class OneOnOffBufferSizeSim extends Sim {
 	}
 
 	public static void main(String args[]) {
-		new OneOnOffBufferSizeSim(80000);
+		new OneOnOffBufferSizeSim(1000000);
 		
 		Network.displayResults( 0.01 ) ;
 		

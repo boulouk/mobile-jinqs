@@ -38,12 +38,12 @@ class OneOnOffSim extends Sim {
 		Network.initialise();
 
 		
-		serviceTime = new Exp(1);
+		serviceTime = new Exp(8);
 		Delay serveTime = new Delay(serviceTime);
 		
-		Exp onlineTime1 = new Exp(0.001);
+		Exp onlineTime1 = new Exp(0.05);
 //		Deterministic onlineTime1 = new Deterministic(30);
-		Exp offlineTime1 = new Exp(0.019);
+		Exp offlineTime1 = new Exp(0.05);
 		
 //		10 = 0.1
 //		20 = 0.05
@@ -52,19 +52,20 @@ class OneOnOffSim extends Sim {
 //		timeouts40 = [10, 15, 20, 25, 30, 35];
 		
 //		Exp lifetime = new Exp(0.1);
-//		Deterministic lifetime = new Deterministic(10);
-		double L = 0.8;
+		Deterministic lifetime = new Deterministic(30);
+		double L = 3.9;
 
-		Source source = new Source("Source", new Exp(L));
+//		Source source = new Source("Source", new Exp(L));
 //		
-//		Source source = new Source("Source", new Exp(2), lifetime, "lifetime");
+		
+		Source source = new Source("Source", new Exp(L), lifetime, "lifetime");
 		
 		OnOffRQN on0ff_1 = new OnOffRQN("ON-OFF-1", serveTime, 1, onlineTime1, offlineTime1, duration);
 		
 		
-		Sink sink = new Sink("Sink");
+//		Sink sink = new Sink("Sink");
 		
-//		SinkOvrlNet sink = new SinkOvrlNet("Sink");
+		SinkOvrlNet sink = new SinkOvrlNet("Sink");
 
 
 		source.setLink(new Link(on0ff_1));
@@ -102,7 +103,7 @@ class OneOnOffSim extends Sim {
 	}
 
 	public static void main(String args[]) {
-		new OneOnOffSim(15000000);
+		new OneOnOffSim(1000000);
 		
 		Network.displayResults( 0.01 ) ;
 		
@@ -110,44 +111,44 @@ class OneOnOffSim extends Sim {
 		
 		
 		
-		try {
-
-			AnalyticalModelsONOFF an = new AnalyticalModelsONOFF(Network.responseTime.mean(), Network.responseTimeON.mean(),
-					Network.responseTimeOFF.mean(), Network.completions, Network.completionsON, Network.completionsOFF, duration,
-					serviceTime.average(), Network.virtualServiceTime.mean(), Network.virtualServiceTime.variance(),
-					Network.serviceTimeON.mean(), Network.serviceTimeOFF.mean(), durationOn, durationOff, averageOn, averageOff);
-
-			String data = "Lsim: " + an.computeL() + " -- S-sim: " + serviceTime.average() + " -- avgON: " + averageOn
-					+ " -- avgOFF: " + averageOff + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
-
-			String simulator = "R-sim (mean resp time in system): " + Network.responseTime.mean() + " -- R-model (mean resp time in system): " + an.computeR()
-					+ " -- R-sim-queue (mean resp time in queue): " + avgTimeinQueue + " -- R-model-mosxolios (mean resp time in system): " + an.computeR_mosxolios();
-			String model = " Q-moscholios_paper: " + an.computeEN_mosxolios() + " Q-sim: " + Network.responseTime.mean() * an.computeL();
-			
-			String R_paper = " -- R_paper: " + an.computeR_paper();
-			
-			File file = new File("results_onoff.txt");
-
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-
-			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(data);
-			bw.write("\n");
-			bw.write(simulator);
-			bw.write("\n");
-			bw.write(model);
-			bw.write("\n");
-			bw.write(R_paper);
-			bw.write("\n");
-			bw.close();
-
-			System.out.println("Done");
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//
+//			AnalyticalModelsONOFF an = new AnalyticalModelsONOFF(Network.responseTime.mean(), Network.responseTimeON.mean(),
+//					Network.responseTimeOFF.mean(), Network.completions, Network.completionsON, Network.completionsOFF, duration,
+//					serviceTime.average(), Network.virtualServiceTime.mean(), Network.virtualServiceTime.variance(),
+//					Network.serviceTimeON.mean(), Network.serviceTimeOFF.mean(), durationOn, durationOff, averageOn, averageOff);
+//
+//			String data = "Lsim: " + an.computeL() + " -- S-sim: " + serviceTime.average() + " -- avgON: " + averageOn
+//					+ " -- avgOFF: " + averageOff + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
+//
+//			String simulator = "R-sim (mean resp time in system): " + Network.responseTime.mean() + " -- R-model (mean resp time in system): " + an.computeR()
+//					+ " -- R-sim-queue (mean resp time in queue): " + avgTimeinQueue + " -- R-model-mosxolios (mean resp time in system): " + an.computeR_mosxolios();
+//			String model = " Q-moscholios_paper: " + an.computeEN_mosxolios() + " Q-sim: " + Network.responseTime.mean() * an.computeL();
+//			
+//			String R_paper = " -- R_paper: " + an.computeR_paper();
+//			
+//			File file = new File("results_onoff.txt");
+//
+//			if (!file.exists()) {
+//				file.createNewFile();
+//			}
+//
+//			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+//			BufferedWriter bw = new BufferedWriter(fw);
+//			bw.write(data);
+//			bw.write("\n");
+//			bw.write(simulator);
+//			bw.write("\n");
+//			bw.write(model);
+//			bw.write("\n");
+//			bw.write(R_paper);
+//			bw.write("\n");
+//			bw.close();
+//
+//			System.out.println("Done");
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }

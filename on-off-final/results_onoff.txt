@@ -15,4 +15,3 @@ R-sim (mean resp time in system): 7.887080641992009 -- R-model (mean resp time i
 R-sim (mean resp time in system): 24.629662755524347 -- R-model (mean resp time in system): 24.35384531697496 -- R-sim-queue (mean resp time in queue): 0.0 -- R-model-mosxolios (mean resp time in system): 24.35384531697498
  Q-moscholios_paper: 19.477101443528884 Q-sim: 19.697687727156787
  -- R_paper: 21.516366564427027
-

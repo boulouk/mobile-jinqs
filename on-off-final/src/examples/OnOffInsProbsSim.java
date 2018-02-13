@@ -48,8 +48,11 @@ class OnOffInsProbsSim extends Sim {
 		Delay serveTime = new Delay(serviceTime);
 		Delay serveTime2 = new Delay(serviceTime2);
 		
-		Source source = new Source("Source", new Exp(5));
-		OnOffRInsProbsQN on0ff_1 = new OnOffRInsProbsQN("ON-OFF-1", serveTime, 1, onlineTime1, offlineTime1, 0.5, duration);
+		double L = 3.9;
+		double prob = 0.75;
+		
+		Source source = new Source("Source", new Exp(L));
+		OnOffRInsProbsQN on0ff_1 = new OnOffRInsProbsQN("ON-OFF-1", serveTime, 1, onlineTime1, offlineTime1, prob, duration);
 				
 		Sink sink = new Sink("Sink");
 

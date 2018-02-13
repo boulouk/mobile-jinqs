@@ -54,7 +54,8 @@ class UnreliableOneOnOffSim extends Sim {
 //		Exp lifetime = new Exp(0.1);
 //		Deterministic lifetime = new Deterministic(0.3);
 
-		Source source = new Source("Source", new Exp(1));
+		double L = 3;
+		Source source = new Source("Source", new Exp(3));
 //		
 //		Source source = new Source("Source", new Exp(2), lifetime, "lifetime");
 		
@@ -98,50 +99,50 @@ class UnreliableOneOnOffSim extends Sim {
 	}
 
 	public static void main(String args[]) {
-		new UnreliableOneOnOffSim(2500000);
+		new UnreliableOneOnOffSim(1000000);
 		
 		Network.displayResults( 0.01 ) ;
 		
 		Network.logResults();
 		
-		try {
-
-			AnalyticalModelsONOFF an = new AnalyticalModelsONOFF(Network.responseTime.mean(), Network.responseTimeON.mean(),
-					Network.responseTimeOFF.mean(), Network.completions, Network.completionsON, Network.completionsOFF, duration,
-					serviceTime.average(), Network.virtualServiceTime.mean(), Network.virtualServiceTime.variance(),
-					Network.serviceTimeON.mean(), Network.serviceTimeOFF.mean(), durationOn, durationOff, averageOn, averageOff);
-
-			String data = "Lsim: " + an.computeL() + " -- S-sim: " + serviceTime.average() + " -- avgON: " + averageOn
-					+ " -- avgOFF: " + averageOff + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
-
-			String simulator = "R-sim (mean resp time in system): " + Network.responseTime.mean() + " -- R-model (mean resp time in system): " + an.computeR()
-					+ " -- R-sim-queue (mean resp time in queue): " + avgTimeinQueue + " -- R-model-mosxolios (mean resp time in system): " + an.computeR_mosxolios();
-			String model = " Q-sim (num of cust in queue): " + noOfCust + " -- Q-sim (num of cust in system): " + an.computeQsim();
-			
-			String R_paper = " -- R_paper: " + an.computeR_paper();
-			
-			File file = new File("results_onoff.txt");
-
-			if (!file.exists()) {
-				file.createNewFile();
-			}
-
-			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
-			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(data);
-			bw.write("\n");
-			bw.write(simulator);
-			bw.write("\n");
-			bw.write(model);
-			bw.write("\n");
-			bw.write(R_paper);
-			bw.write("\n");
-			bw.close();
-
-			System.out.println("Done");
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+//		try {
+//
+//			AnalyticalModelsONOFF an = new AnalyticalModelsONOFF(Network.responseTime.mean(), Network.responseTimeON.mean(),
+//					Network.responseTimeOFF.mean(), Network.completions, Network.completionsON, Network.completionsOFF, duration,
+//					serviceTime.average(), Network.virtualServiceTime.mean(), Network.virtualServiceTime.variance(),
+//					Network.serviceTimeON.mean(), Network.serviceTimeOFF.mean(), durationOn, durationOff, averageOn, averageOff);
+//
+//			String data = "Lsim: " + an.computeL() + " -- S-sim: " + serviceTime.average() + " -- avgON: " + averageOn
+//					+ " -- avgOFF: " + averageOff + " -- Arrivals: " + Network.completions + " -- Duration: " + duration;
+//
+//			String simulator = "R-sim (mean resp time in system): " + Network.responseTime.mean() + " -- R-model (mean resp time in system): " + an.computeR()
+//					+ " -- R-sim-queue (mean resp time in queue): " + avgTimeinQueue + " -- R-model-mosxolios (mean resp time in system): " + an.computeR_mosxolios();
+//			String model = " Q-sim (num of cust in queue): " + noOfCust + " -- Q-sim (num of cust in system): " + an.computeQsim();
+//			
+//			String R_paper = " -- R_paper: " + an.computeR_paper();
+//			
+//			File file = new File("results_onoff.txt");
+//
+//			if (!file.exists()) {
+//				file.createNewFile();
+//			}
+//
+//			FileWriter fw = new FileWriter(file.getAbsoluteFile(), true);
+//			BufferedWriter bw = new BufferedWriter(fw);
+//			bw.write(data);
+//			bw.write("\n");
+//			bw.write(simulator);
+//			bw.write("\n");
+//			bw.write(model);
+//			bw.write("\n");
+//			bw.write(R_paper);
+//			bw.write("\n");
+//			bw.close();
+//
+//			System.out.println("Done");
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 }
