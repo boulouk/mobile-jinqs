@@ -14,11 +14,17 @@ public class Network {
   
   public static int completionsExpired = 0;
   
+  public static int completionsPrio0 = 0;
+  public static int completionsPrio1 = 0;
+  
   public static CustomerMeasure responseTime = new CustomerMeasure();
   public static CustomerMeasure responseTimeON = new CustomerMeasure();
   public static CustomerMeasure responseTimeOFF = new CustomerMeasure();
   
   public static CustomerMeasure responseTimeExpired = new CustomerMeasure();
+  
+  public static CustomerMeasure responseTimePrio0 = new CustomerMeasure();
+  public static CustomerMeasure responseTimePrio1 = new CustomerMeasure();
   
   public static CustomerMeasure virtualServiceTime = new CustomerMeasure();
   public static CustomerMeasure serviceTimeON = new CustomerMeasure();
@@ -39,6 +45,10 @@ public class Network {
     responseTime = new CustomerMeasure();
     responseTimeON = new CustomerMeasure();
     responseTimeOFF = new CustomerMeasure();
+    
+    responseTimePrio0 = new CustomerMeasure();
+    responseTimePrio1 = new CustomerMeasure();
+    
     virtualServiceTime = new CustomerMeasure();
     serviceTimeON = new CustomerMeasure();
     serviceTimeOFF = new CustomerMeasure();
@@ -78,6 +88,14 @@ public class Network {
   
   public static void registerCompletionOFF( double t ) {
 	    responseTimeOFF.add( t ) ;
+  }
+  
+  public static void registerPrio0( double t ) {
+	    responseTimePrio0.add( t ) ;
+  }
+  
+  public static void registerPrio1( double t ) {
+	    responseTimePrio1.add( t ) ;
   }
   
   public static void computeVirtualST ( double t ) {
