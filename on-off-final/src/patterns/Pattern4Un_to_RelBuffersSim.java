@@ -18,7 +18,7 @@ import network.*;
 import tools.*;
 
 
-class Pattern4Unreliable_to_ReliableSim extends Sim {
+class Pattern4Un_to_RelBuffersSim extends Sim {
 	
 	public static double duration = 0;
 	public static Exp processingServiceTime;
@@ -41,17 +41,18 @@ class Pattern4Unreliable_to_ReliableSim extends Sim {
 
 
 	// Here, the constructor starts the simulation.
-	public Pattern4Unreliable_to_ReliableSim(double d) {
+	public Pattern4Un_to_RelBuffersSim(double d) {
 
 		duration = d;
+		int bufferSize = 10;
 
 		Network.initialise();
 		
-//		Source source = new Source("Source", new Exp(1));
+		Source src = new Source("Source", new Exp(15));
 		
 //		Exp lifetime = new Exp(0.1);
-		Deterministic lifetime = new Deterministic(30);
-		Source src = new Source("Source", new Exp(20), lifetime, "lifetime");
+//		Deterministic lifetime = new Deterministic(10);
+//		Source src = new Source("Source", new Exp(2), lifetime, "lifetime");
 		
 		processingServiceTime = new Exp(64);
 		transmissionServiceTime = new Exp(32);
@@ -72,20 +73,24 @@ class Pattern4Unreliable_to_ReliableSim extends Sim {
 		
 		Exp ONOvrlBrSub = new Exp(0.05);
 		Exp OFFOvrlBrSub = new Exp(0.1);
-
-		OnOffRQN pub_app = new OnOffRQN("PUB-APP", prMsg, 1, ONOvrlPubBr, OFFOvrlPubBr, duration);
-		QueueingNode pub_mdw = new QueueingNode("PUB-MDW", trMsg, 1);
-		QueueingNode br_in = new QueueingNode("BR-IN", prMsg, 1);
+		
+		FIFOQueue fq1 = new FIFOQueue(bufferSize) ;
+		OnOffRQN pub_app = new OnOffRQN("PUB-APP", prMsg, 1, fq1, ONOvrlPubBr, OFFOvrlPubBr, duration);
+		FIFOQueue fq2 = new FIFOQueue(bufferSize) ;
+		QueueingNode pub_mdw = new QueueingNode("PUB-MDW", trMsg, 1, fq2);
+		FIFOQueue fq3 = new FIFOQueue(bufferSize) ;
+		QueueingNode br_in = new QueueingNode("BR-IN", prMsg, 1, fq3);
+//		FIFOQueue fq4 = new FIFOQueue(bufferSize) ;
 		OnOffUQN br_out = new OnOffUQN("BR-OUT", trMsg, 1, ONOvrlBrSub, OFFOvrlBrSub, duration);
-//		OnOffRQN br_out = new OnOffRQN("BR-OUT", trMsg, 1, ONOvrlBrSub, OFFOvrlBrSub, duration);
-		QueueingNode sub_mdw = new QueueingNode("SUB-MDW", prMsg, 1);
-		QueueingNode sub_app = new QueueingNode("SUB-APP", prMsg, 1);
+		FIFOQueue fq5 = new FIFOQueue(bufferSize) ;
+		QueueingNode sub_mdw = new QueueingNode("SUB-MDW", prMsg, 1, fq5);
+		FIFOQueue fq6 = new FIFOQueue(bufferSize) ;
+		QueueingNode sub_app = new QueueingNode("SUB-APP", prMsg, 1, fq6);
 		
 		
 		SinkLftLses sinkPubApp = new SinkLftLses("SINK-PUB-APP");		
 		SinkLftLses sinkBrIn = new SinkLftLses("SINK-BR-IN");
 		
-//		SinkLftLses sinkBrOut = new SinkLftLses("SINK-BR-OUT");
 		SinkBothLses sinkBrOut = new SinkBothLses("SINK-BR-OUT");
 		
 		SinkOvrlNet sinkSubEnd = new SinkOvrlNet("SINK-SUB-APP");
@@ -129,7 +134,14 @@ class Pattern4Unreliable_to_ReliableSim extends Sim {
 		Network.logResult("Completions", Network.completions);
 		Network.logResult("ResponseTime", Network.responseTime.mean());
 		
-		System.out.println("SuccesRate: " + ((double)(Network.completions) / (double) (Network.completions + Network.completionsExpired)));
+//		System.out.println("SuccesRate: " + ((double)(Network.completions) / (double) (Network.completions + Network.completionsExpired)));
+		
+		double ov_buffer_losses = pub_app.getLosses() + pub_mdw.getLosses() + br_in.getLosses() + br_out.getLosses() + sub_mdw.getLosses() + sub_app.getLosses();
+		System.out.println("middleware: " + Network.completionsExpired);
+		System.out.println("buffer losses: " + ov_buffer_losses);
+
+		
+		System.out.println("SuccesRateBufferLosses: " + ((double)(Network.completions) / (double) (Network.completions + ov_buffer_losses + Network.completionsExpired)));
 		
 //		Network.responseTime.saveResponseMeasures();
 	}
@@ -137,8 +149,7 @@ class Pattern4Unreliable_to_ReliableSim extends Sim {
 	public static void main(String args[]) {
 //		new Pattern1UnreliableSim(500000);
 		
-		
-		new Pattern4Unreliable_to_ReliableSim(200000);
+		new Pattern4Un_to_RelBuffersSim(200000);
 		
 		
 		Network.displayResults( 0.01 ) ;

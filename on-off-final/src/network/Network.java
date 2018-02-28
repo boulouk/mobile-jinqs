@@ -1,21 +1,25 @@
 package network ;
+import java.util.HashMap;
+import java.util.Map;
+
 import tools.* ;
 
 public class Network {
   static final int maxNodes = 1000 ;
-  static final int maxClasses = 100 ;
+  static final int maxClasses = 1000 ;
   static final int maxPriorities = 100 ;
  
   static Node[] nodes = new Node[ maxNodes ] ;
   static int nodeCount = 0 ;
   public static int completions = 0;
+  
+  public static int dropPackets = 0;
+  public static int eventsDrop = 0;
+  
   public static int completionsON = 0;
   public static int completionsOFF = 0;
   
   public static int completionsExpired = 0;
-  
-  public static int completionsPrio0 = 0;
-  public static int completionsPrio1 = 0;
   
   public static CustomerMeasure responseTime = new CustomerMeasure();
   public static CustomerMeasure responseTimeON = new CustomerMeasure();
@@ -23,8 +27,12 @@ public class Network {
   
   public static CustomerMeasure responseTimeExpired = new CustomerMeasure();
   
-  public static CustomerMeasure responseTimePrio0 = new CustomerMeasure();
-  public static CustomerMeasure responseTimePrio1 = new CustomerMeasure();
+  public static Map<Integer,CustomerMeasure> responseTimePrioMap = new HashMap<Integer,CustomerMeasure>();
+  public static Map<Integer,CustomerMeasure> responseTimeClassMap = new HashMap<Integer,CustomerMeasure>();
+  
+  public static Map<Integer,Integer> completionsPrioMap = new HashMap<Integer,Integer>();
+  public static Map<Integer,Integer> completionsClassMap = new HashMap<Integer,Integer>();
+  public static Map<Integer,Integer> dropsClassMap = new HashMap<Integer,Integer>();
   
   public static CustomerMeasure virtualServiceTime = new CustomerMeasure();
   public static CustomerMeasure serviceTimeON = new CustomerMeasure();
@@ -40,14 +48,20 @@ public class Network {
     nodes = new Node[1000] ;
     nodeCount = 0 ;
     completions = 0 ;
+    dropPackets = 0;
+    eventsDrop = 0;
     completionsON = 0;
     completionsOFF = 0;
     responseTime = new CustomerMeasure();
     responseTimeON = new CustomerMeasure();
     responseTimeOFF = new CustomerMeasure();
     
-    responseTimePrio0 = new CustomerMeasure();
-    responseTimePrio1 = new CustomerMeasure();
+    responseTimePrioMap = new HashMap<Integer,CustomerMeasure>();
+    responseTimeClassMap = new HashMap<Integer,CustomerMeasure>();
+    
+    completionsPrioMap = new HashMap<Integer,Integer>();
+    completionsClassMap = new HashMap<Integer,Integer>();
+    dropsClassMap = new HashMap<Integer,Integer>();
     
     virtualServiceTime = new CustomerMeasure();
     serviceTimeON = new CustomerMeasure();
@@ -90,12 +104,22 @@ public class Network {
 	    responseTimeOFF.add( t ) ;
   }
   
-  public static void registerPrio0( double t ) {
-	    responseTimePrio0.add( t ) ;
+  public static void registerPrio( double t, int priority ) {
+	  if(responseTimePrioMap.get(priority) == null) {
+		  CustomerMeasure responseTimePrio = new CustomerMeasure();
+		  responseTimePrioMap.put(priority, responseTimePrio);
+		  responseTimePrioMap.get(priority).add(t);	  
+	  } else 
+		  responseTimePrioMap.get(priority).add(t);
   }
   
-  public static void registerPrio1( double t ) {
-	    responseTimePrio1.add( t ) ;
+  public static void registerClass(double t, int typeClass) {
+	  if(responseTimeClassMap.get(typeClass) == null) {
+		  CustomerMeasure responseTimeClass = new CustomerMeasure();
+		  responseTimeClassMap.put(typeClass, responseTimeClass);
+		  responseTimeClassMap.get(typeClass).add(t);	  
+	  } else 
+		  responseTimeClassMap.get(typeClass).add(t);
   }
   
   public static void computeVirtualST ( double t ) {

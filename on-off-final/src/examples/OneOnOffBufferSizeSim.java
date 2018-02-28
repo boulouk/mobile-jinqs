@@ -53,7 +53,7 @@ class OneOnOffBufferSizeSim extends Sim {
 //		
 //		Source source = new Source("Source", new Exp(2), lifetime, "lifetime");
 		
-		//without buffer size
+		//with buffer size
 		int bufferSize = 100;
 		FIFOQueue fq = new FIFOQueue(bufferSize) ;
 		OnOffRQN on0ff_1 = new OnOffRQN("ON-OFF-1", serveTime, 1, fq, onlineTime1, offlineTime1, duration);

@@ -18,12 +18,12 @@ import tools.*;
  * @param b
  *            The {@link DistributionSampler} used to generate the batch sizes
  */
-public class SinkPriorities extends Node {
-	public SinkPriorities() {
-		super("Sink");
+public class SinkMulticlass extends Node {
+	public SinkMulticlass() {
+		super("SinkMulticlass");
 	}
 
-	public SinkPriorities(String name) {
+	public SinkMulticlass(String name) {
 		super(name);
 	}
 
@@ -32,9 +32,16 @@ public class SinkPriorities extends Node {
 	//
 	protected void accept(Customer c) {
 		
+		// overall completions
 		Network.completions++;
-		Network.registerPrio(Sim.now() - c.getArrivalTime(), c.getPriority());		
-//		TODO: completions
+		// register response time for each class
+		Network.registerClass(Sim.now() - c.getArrivalTime(), c.getclass());
+		
+		// completions for each class
+		if(Network.completionsClassMap.get(c.getclass()) == null) {
+			Network.completionsClassMap.put(c.getclass(), 1);  
+		  } else
+			  Network.completionsClassMap.put(c.getclass(), Network.completionsClassMap.get(c.getclass())+1);  
 		
 	}
 
