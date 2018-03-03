@@ -14,6 +14,7 @@ public class Network {
   public static int completions = 0;
   
   public static int dropPackets = 0;
+  public static int dropPrioPackets = 0;
   public static int eventsDrop = 0;
   
   public static int completionsON = 0;
@@ -33,7 +34,8 @@ public class Network {
   public static Map<Integer,Integer> completionsPrioMap = new HashMap<Integer,Integer>();
   public static Map<Integer,Integer> completionsClassMap = new HashMap<Integer,Integer>();
   public static Map<Integer,Integer> dropsClassMap = new HashMap<Integer,Integer>();
-  
+  public static Map<Integer,Integer> dropPrioClassMap = new HashMap<Integer,Integer>();
+
   public static CustomerMeasure virtualServiceTime = new CustomerMeasure();
   public static CustomerMeasure serviceTimeON = new CustomerMeasure();
   public static CustomerMeasure serviceTimeOFF = new CustomerMeasure();
@@ -62,6 +64,7 @@ public class Network {
     completionsPrioMap = new HashMap<Integer,Integer>();
     completionsClassMap = new HashMap<Integer,Integer>();
     dropsClassMap = new HashMap<Integer,Integer>();
+    dropPrioClassMap = new HashMap<Integer,Integer>();
     
     virtualServiceTime = new CustomerMeasure();
     serviceTimeON = new CustomerMeasure();
@@ -114,11 +117,11 @@ public class Network {
   }
   
   public static void registerClass(double t, int typeClass) {
-	  if(responseTimeClassMap.get(typeClass) == null) {
-		  CustomerMeasure responseTimeClass = new CustomerMeasure();
-		  responseTimeClassMap.put(typeClass, responseTimeClass);
-		  responseTimeClassMap.get(typeClass).add(t);	  
-	  } else 
+//	  if(responseTimeClassMap.get(typeClass) == null) {
+//		  CustomerMeasure responseTimeClass = new CustomerMeasure();
+//		  responseTimeClassMap.put(typeClass, responseTimeClass);
+//		  responseTimeClassMap.get(typeClass).add(t);	  
+//	  } else 
 		  responseTimeClassMap.get(typeClass).add(t);
   }
   

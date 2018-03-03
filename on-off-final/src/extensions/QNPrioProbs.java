@@ -50,6 +50,14 @@ public class QNPrioProbs extends QueueingNode {
 			}
 		} else {
 //			TODO count losses
+			
+			Network.dropPrioPackets++;
+
+			// completions for each class
+//			if (Network.dropPrioClassMap.get(c.getclass()) == null) {
+//				Network.dropPrioClassMap.put(c.getclass(), 1);
+//			} else
+				Network.dropPrioClassMap.put(c.getclass(), Network.dropPrioClassMap.get(c.getclass()) + 1);
 		}
 			
 	}
