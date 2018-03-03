@@ -50,9 +50,13 @@ class MulticlassSim extends Sim {
 		double r2 = D2 / (1 - ((lambda1 * D1) + (lambda2 * D2) + (lambda3 * D3)));
 		double r3 = D3 / (1 - ((lambda1 * D1) + (lambda2 * D2) + (lambda3 * D3)));
 		
-		System.out.println("MODEL: Response Time class 1: " + r1);
-		System.out.println("MODEL: Response Time class 2: " + r2);
-		System.out.println("MODEL: Response Time class 3: " + r3);
+		double r1_mu = 1 / (mu1 - (mu1 * ((lambda1/mu1) + (lambda2/mu2) + (lambda3/mu3))));
+		double r2_mu = 1 / (mu2 - (mu2 * ((lambda1/mu1) + (lambda2/mu2) + (lambda3/mu3))));
+		double r3_mu = 1 / (mu3 - (mu3 * ((lambda1/mu1) + (lambda2/mu2) + (lambda3/mu3))));
+		
+		System.out.println("MODEL: Response Time class 1: " + r1_mu);
+		System.out.println("MODEL: Response Time class 2: " + r2_mu);
+		System.out.println("MODEL: Response Time class 3: " + r3_mu);
 
 		
 		Network.logResult("Mean Queue Size", mm1.meanNoOfQueuedCustomers());

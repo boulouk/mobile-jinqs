@@ -10,7 +10,7 @@ class MM1Sim extends Sim {
     double mu = 8;
     Delay serveTime = new Delay( new Exp(mu) ) ;
 
-    double lambda1 = 1;
+    double lambda1 = 5;
     double lambda2 = 1.5;
     
     
@@ -27,6 +27,8 @@ class MM1Sim extends Sim {
     
     double R = (1/mu) / (1 - ((lambda1) * (1/mu)));
     System.out.println("MODEL R: " + R);
+    
+    System.out.println("MODEL R2: " + (1/(mu - lambda1)));
 
     Network.logResult( "Utilisation", mm1.serverUtilisation() ) ;
 	Network.logResult("Response Time", Network.responseTime.mean());

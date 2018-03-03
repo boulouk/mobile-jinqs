@@ -47,6 +47,7 @@ public class ResourcePool extends InfiniteServerNode {
         Debug.trace( "No resources. Enqueueing customer..." ) ;
         queue.enqueue( c ) ;
       } else {
+    	  System.out.println("hrloo");
         losses++ ;
         Debug.trace( "No resources. Queue full - customer sent to " + 
                      lossNode.getId() ) ;

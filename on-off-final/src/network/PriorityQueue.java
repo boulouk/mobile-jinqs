@@ -4,7 +4,7 @@ import tools.* ;
 
 public class PriorityQueue extends Queue  {
   int nqueues ;
-  Queue[] qs ;
+  protected Queue[] qs ;
 
 //
 // Customer priorities must be 0, 1, .., nqueues-1
