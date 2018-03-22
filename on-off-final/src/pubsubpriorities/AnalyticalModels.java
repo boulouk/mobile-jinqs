@@ -18,6 +18,45 @@ public class AnalyticalModels {
 		return overallambda;
 	}
 	
+	public static double getOveralRodevMu (Map lambdamap, double rate) {
+		double overalrodevmu = 0;
+		
+		Iterator entries = lambdamap.entrySet().iterator();
+		while (entries.hasNext()) {
+			Map.Entry entry = (Map.Entry) entries.next();
+			Double lambdavalue = (Double) entry.getValue();
+			overalrodevmu = overalrodevmu + ((lambdavalue/rate)/rate);
+		}
+		
+		return overalrodevmu;
+	}
+	
+	public static double getSigmaRobyPrio (Map lambdamap, int prio, double rate) {
+		double overalro = 0;
+		
+		if (prio < 0) {
+			overalro = 0;
+		} else {
+			int i = 0;
+			Iterator entries = lambdamap.entrySet().iterator();
+			while (entries.hasNext()) {
+				Map.Entry entry = (Map.Entry) entries.next();
+				Double lambdavalue = (Double) entry.getValue();
+				
+				if (i == prio) {
+					overalro = overalro + (lambdavalue/rate);
+					break;
+				}
+				
+				overalro = overalro + (lambdavalue/rate);
+				i++;
+			}
+		}
+		
+		
+		return overalro;
+	}
+	
 	public static double r_mm1(Map lambdamap, double rate) {
 		double r = 0;
 		double overallambda = getOveralLambda(lambdamap); 
@@ -27,30 +66,19 @@ public class AnalyticalModels {
 		return r;
 	}
 
-	public static double r_multiclass(int topicID, Map lambdamap, Map<Integer, Double> topicratemap) {
+	
+	
+	public static double r_prio(Map lambdapriomap, int priority, double priorate) {
 		double r = 0;
-		double r_numerator = 0;
-		double r_denominator_part = 0;
-		double r_denominator = 0;
+		double numerator = getOveralRodevMu(lambdapriomap,priorate); 
 
-		r_numerator = 1 / topicratemap.get(topicID);
-
-		Iterator entries = lambdamap.entrySet().iterator();
-		while (entries.hasNext()) {
-			Map.Entry entry = (Map.Entry) entries.next();
-			Integer key = (Integer) entry.getKey();
-			Double lambdavalue = (Double) entry.getValue();
-
-			r_denominator_part = r_denominator_part + (lambdavalue * (1 / topicratemap.get(key)));
-		}
-
-		r_denominator = 1 - r_denominator_part;
-		r = r_numerator / r_denominator;
-
+		double denominator = (1-getSigmaRobyPrio(lambdapriomap, priority-1, priorate)) * (1-getSigmaRobyPrio(lambdapriomap, priority, priorate));
+		
+		r = (numerator/denominator) + 1/priorate; 
 		return r;
 	}
 	
-	public static double r_prio(Map lambdapriomap, int priority, double priorate) {
+	public static double r_prio_old(Map lambdapriomap, int priority, double priorate) {
 		double r = 0;
 		double overallambda = getOveralLambda(lambdapriomap); 
 		double lambdasum1 = 0;
@@ -75,6 +103,29 @@ public class AnalyticalModels {
 		}
 		
 		r = (overallambda / ((priorate - lambdasum1) * (priorate - lambdasum2))) + (1/priorate);
+
+		return r;
+	}
+	
+	public static double r_multiclass(int topicID, Map lambdamap, Map<Integer, Double> topicratemap) {
+		double r = 0;
+		double r_numerator = 0;
+		double r_denominator_part = 0;
+		double r_denominator = 0;
+
+		r_numerator = 1 / topicratemap.get(topicID);
+
+		Iterator entries = lambdamap.entrySet().iterator();
+		while (entries.hasNext()) {
+			Map.Entry entry = (Map.Entry) entries.next();
+			Integer key = (Integer) entry.getKey();
+			Double lambdavalue = (Double) entry.getValue();
+
+			r_denominator_part = r_denominator_part + (lambdavalue * (1 / topicratemap.get(key)));
+		}
+
+		r_denominator = 1 - r_denominator_part;
+		r = r_numerator / r_denominator;
 
 		return r;
 	}

@@ -60,7 +60,7 @@ class PubsubV5Sim extends Sim {
 		}
 
 		// initialization of list of probabilities for each priority
-		Iterator<Double> prioProbsIterator = JsonRead.getJSONArray(inParams, "prio_drops").iterator();
+		Iterator<Double> prioProbsIterator = JsonRead.getJSONArray(inParams, "prio_probs").iterator();
 		ArrayList<Double> prioProbs = new ArrayList<Double>();
 		while (prioProbsIterator.hasNext()) {
 			double prob = (double) prioProbsIterator.next();
@@ -76,16 +76,16 @@ class PubsubV5Sim extends Sim {
 		Iterator<Double> getLambdasIterator = JsonRead.getJSONArray(inParams, "lambdas").iterator();
 		Iterator<Double> getMusIterator = JsonRead.getJSONArray(inParams, "mus").iterator();
 
-		for (int i = 0; i < numOfTopics; i++) {
+		for (int topic = 0; topic < numOfTopics; topic++) {
 			if (getLambdasIterator.hasNext() && getMusIterator.hasNext()) {
 				double lamb = getLambdasIterator.next();
-				lambdaMap.put(i, lamb);
-				topicRateMap.put(i, getMusIterator.next());
+				lambdaMap.put(topic, lamb);
+				topicRateMap.put(topic, getMusIterator.next());
 
-				if (listOfSubsptions.contains(i)) {
-					lambdaSubscriptionsMap.put(i, lamb);
+				if (listOfSubsptions.contains(topic)) {
+					lambdaSubscriptionsMap.put(topic, lamb);
 				} else
-					lambdaSubscriptionsMap.put(i, (double) 0);
+					lambdaSubscriptionsMap.put(topic, (double) 0);
 			}
 		}
 
@@ -99,7 +99,7 @@ class PubsubV5Sim extends Sim {
 		int intprio = 0;
 		int maxPrio = 0;
 
-		for (int i = 0; i < numOfTopics; i++) {
+		for (int topic = 0; topic < numOfTopics; topic++) {
 			Node source = null;
 
 			if (getPrioIterator.hasNext()) {
@@ -108,51 +108,84 @@ class PubsubV5Sim extends Sim {
 				if (intprio > maxPrio)
 					maxPrio = intprio;
 
-				if (lambdaMap.get(i) != 0)
-					source = new PrioSource("Topic Source " + i, new Exp(lambdaMap.get(i)), i, intprio);
+				if (lambdaMap.get(topic) != 0)
+					source = new PrioSource("Topic Source " + topic, new Exp(lambdaMap.get(topic)), topic, intprio);
 
-				prioritiesMap.put(i, intprio);
+				prioritiesMap.put(topic, intprio);
 
-				// initialization of lambda priority rates
+				// initialization of lambda priority rates. If there is not subscription for a topic, I do not add its rate to the lambda prio map
 				if (lambdaPriorityMap.get(intprio) == null)
-					lambdaPriorityMap.put(intprio, lambdaSubscriptionsMap.get(i));
+					lambdaPriorityMap.put(intprio, lambdaSubscriptionsMap.get(topic));
 				else
-					lambdaPriorityMap.put(intprio, lambdaPriorityMap.get(intprio) + lambdaSubscriptionsMap.get(i));
+					lambdaPriorityMap.put(intprio, lambdaPriorityMap.get(intprio) + lambdaSubscriptionsMap.get(topic));
 			}
 
-			System.out.println("Topic Source " + i + " Priority: " + intprio);
-			sourceMap.put(i, source);
+			System.out.println("Topic Source " + topic + " Priority: " + intprio);
+			sourceMap.put(topic, source);
 
 		}
+		
+		// check if there are probabilities for each priority class
+		if((maxPrio+1) != prioProbs.size()) {
+			System.err.println("There are not probs for each priority class!");
+			System.exit(1);
+		}
+		
+		
+		double ro1stMM1queue = AnalyticalModels.ro_mm1(lambdaMap, BRInPrRate);
+		System.out.println("RO on 1st (MM1) queue: " + ro1stMM1queue);
+		
+		if (ro1stMM1queue >= 1) {
+			System.err.println("RO > 1 on 1st (MM1) Queue");
+			System.exit(1);
+		}
+		
+		double ro2ndMM1queue = AnalyticalModels.ro_mm1(lambdaSubscriptionsMap, BRInPrRate);
+		System.out.println("RO on 2nd (MM1) queue: " + ro2ndMM1queue);
+		
+		if (ro2ndMM1queue >= 1) {
+			System.err.println("RO > 1 on 2nd (MM1) Queue");
+			System.exit(1);
+		}
+		
+		// UPDATE lambdaPriorityMap based on probs for each prio
+		for (int prio = 0; prio < lambdaPriorityMap.size(); prio++) {
+			if (lambdaPriorityMap.get(prio) == null)
+				lambdaPriorityMap.put(prio, 0.0);
+			else
+				lambdaPriorityMap.put(prio, lambdaPriorityMap.get(prio) * prioProbs.get(prio));
+		}
+		
+		double ro3rdPRIOqueue = AnalyticalModels.ro_prio(lambdaPriorityMap, SDNInPrRate);
+		System.out.println("RO on 3rd (NON-preemptive Priority) queue: " + ro3rdPRIOqueue);
+		
+		if (ro3rdPRIOqueue >= 1) {
+			System.err.println("RO > 1 on 3rd (NON-preemptive Priority) Queue");
+			System.exit(1);
+		} 
+		
+		// UPDATE lambda subscriptions based on the priority probabilities
+		for (int topic = 0; topic < numOfTopics; topic++) {
+			lambdaSubscriptionsMap.put(topic, lambdaSubscriptionsMap.get(topic) * prioProbs.get(prioritiesMap.get(topic)));
 
-		// update lambda prio and subscriptions based on the priority probabilities
-		for (int i = 0; i < numOfTopics; i++) {
-			lambdaSubscriptionsMap.put(i, lambdaSubscriptionsMap.get(i) * prioProbs.get(prioritiesMap.get(i)));
-
-			// initialization of resp times, drops, etc for the simulation results
-			Network.dropsClassMap.put(i, 0);
-			Network.dropPrioClassMap.put(i, 0);
-			Network.completionsClassMap.put(i, 0);
+			// initialization of resp times, drops, etc of the simulator
+//			TODO: do this initialization in another point
+			Network.dropsClassMap.put(topic, 0);
+			Network.dropPrioClassMap.put(topic, 0);
+			Network.completionsClassMap.put(topic, 0);
 			CustomerMeasure responseTime = new CustomerMeasure();
-			Network.responseTimeClassMap.put(i, responseTime);
-			Network.responseTimeClassMap.get(i).add(0);
+			Network.responseTimeClassMap.put(topic, responseTime);
+			Network.responseTimeClassMap.get(topic).add(0);
+			
+//			System.out.println("Final Lambda for each topic: " + topic + ": " + lambdaSubscriptionsMap.get(topic));
 
 		}
-		for (int i = 0; i < lambdaPriorityMap.size(); i++) {
-			lambdaPriorityMap.put(i, lambdaPriorityMap.get(i) * prioProbs.get(i));
-		}
-
-		if (AnalyticalModels.ro_mm1(lambdaMap, BRInPrRate) >= 1) {
-			System.err.println("RO > 1 on 1st Queue (MM1)");
-			System.exit(1);
-		} else if (AnalyticalModels.ro_mm1(lambdaSubscriptionsMap, BRInPrRate) >= 1) {
-			System.err.println("RO > 1 on 2nd Queue (MM1)");
-			System.exit(1);
-		} else if (AnalyticalModels.ro_prio(lambdaPriorityMap, SDNInPrRate) >= 1) {
-			System.err.println("RO > 1 on 3rd Queue (NON-preemptive Priority)");
-			System.exit(1);
-		} else if (AnalyticalModels.ro_multiclass(lambdaSubscriptionsMap, topicRateMap) >= 1) {
-			System.err.println("RO > 1 on 4th Queue (Multiclass)");
+		
+		double ro4thMULTIqueue = AnalyticalModels.ro_multiclass(lambdaSubscriptionsMap, topicRateMap);
+		System.out.println("RO on 4th (Multi-class) queue: " + ro4thMULTIqueue);
+		
+		if (ro4thMULTIqueue >= 1) {
+			System.err.println("RO > 1 on 4th (Multi-class) Queue");
 			System.exit(1);
 		} else
 			System.out.println("RO at every queue is OK");
@@ -175,9 +208,9 @@ class PubsubV5Sim extends Sim {
 		int[] arrayOfTopics = new int[numOfTopics];
 
 		DistributionSampler[] arrayOfTopicRateDistrib = new DistributionSampler[numOfTopics];
-		for (int i = 0; i < arrayOfTopics.length; i++) {
-			arrayOfTopics[i] = i;
-			arrayOfTopicRateDistrib[i] = new Exp(topicRateMap.get(i));
+		for (int topic = 0; topic < arrayOfTopics.length; topic++) {
+			arrayOfTopics[topic] = topic;
+			arrayOfTopicRateDistrib[topic] = new Exp(topicRateMap.get(topic));
 		}
 
 		ClassDependentDelay SDNOutTrOveralDelay = new ClassDependentDelay(arrayOfTopics, arrayOfTopicRateDistrib);
@@ -194,9 +227,9 @@ class PubsubV5Sim extends Sim {
 				new Node[] { sinkError, sinkMulticlass });
 
 		// set link from sources to 1st queue
-		for (int i = 0; i < numOfTopics; i++) {
-			if (sourceMap.get(i) != null)
-				sourceMap.get(i).setLink(new Link(broker_in));
+		for (int topic = 0; topic < numOfTopics; topic++) {
+			if (sourceMap.get(topic) != null)
+				sourceMap.get(topic).setLink(new Link(broker_in));
 		}
 
 		// broker_in.setLink(new Link(broker_out));
@@ -211,19 +244,19 @@ class PubsubV5Sim extends Sim {
 		double R_broker_out = AnalyticalModels.r_mm1(lambdaSubscriptionsMap, BROutTrRate);
 
 		double R_model_of_topic = 0;
-		for (int i = 0; i < numOfTopics; i++) {
+		for (int topic = 0; topic < numOfTopics; topic++) {
 
-			if (listOfSubsptions.contains(i) && lambdaSubscriptionsMap.get(i) != 0) {
+			if (listOfSubsptions.contains(topic) && lambdaSubscriptionsMap.get(topic) != 0) {
 				R_model_of_topic = R_broker_in + R_broker_out
-						+ AnalyticalModels.r_prio(lambdaPriorityMap, prioritiesMap.get(i), SDNInPrRate)
-						+ AnalyticalModels.r_multiclass(i, lambdaSubscriptionsMap, topicRateMap);
-			} else if (!listOfSubsptions.contains(i) && lambdaMap.get(i) != 0) {
+						+ AnalyticalModels.r_prio(lambdaPriorityMap, prioritiesMap.get(topic), SDNInPrRate)
+						+ AnalyticalModels.r_multiclass(topic, lambdaSubscriptionsMap, topicRateMap);
+			} else if (!listOfSubsptions.contains(topic) && lambdaMap.get(topic) != 0) {
 				R_model_of_topic = R_broker_in;
 			} else
 				R_model_of_topic = 0;
 
-			System.out.println("MODEL: Response Time Topic " + i + ": " + R_model_of_topic);
-			respTimeClassModelMap.put(i, R_model_of_topic);
+			System.out.println("MODEL: Response Time Topic " + topic + ": " + R_model_of_topic);
+			respTimeClassModelMap.put(topic, R_model_of_topic);
 		}
 
 		Iterator entries = Network.responseTimeClassMap.entrySet().iterator();
@@ -232,12 +265,7 @@ class PubsubV5Sim extends Sim {
 			Integer key = (Integer) entry.getKey();
 			CustomerMeasure value = (CustomerMeasure) entry.getValue();
 			System.out.println("SIM: Response Time Topic " + key + ", Value = " + value.mean());
-			// System.out.println("SIM: Completions of Topic " + key + ", Value = " +
-			// Network.completionsClassMap.get(key));
-			// System.out.println("SIM: Prio drops of Topic " + key + ", Value = " +
-			// Network.dropPrioClassMap.get(key));
-			// System.out.println("SIM: Drops of Topic " + key + ", Value = " +
-			// Network.dropsClassMap.get(key));
+
 		}
 
 		System.out.println("Completions: " + Network.completions);

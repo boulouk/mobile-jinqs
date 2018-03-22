@@ -10,6 +10,7 @@ import extensions.QNPrioProbs;
 import extensions.SinkMulticlass;
 import extensions.SinkPriorities;
 import network.*;
+import pubsubpriorities.AnalyticalModels;
 import tools.*;
 
 class PrioritySim extends Sim {
@@ -25,33 +26,41 @@ class PrioritySim extends Sim {
 
 		Map<Integer, Double> lambdaMap = new HashMap<Integer, Double>();
 
-		double lambda0 = 0.5;
-		lambdaMap.put(1, lambda0);
-		double lambda1 = 0.5;
-		lambdaMap.put(2, lambda1);
-		double lambda2 = 0.5;
-		lambdaMap.put(3, lambda2);
-		double lambda3 = 0.5;
-		lambdaMap.put(4, lambda3);
+		double lambda0 = 1;
+		lambdaMap.put(0, lambda0);
+		double lambda1 = 1;
+		lambdaMap.put(1, lambda1);
+		double lambda2 = 1;
+		lambdaMap.put(2, lambda2);
+		double lambda3 = 1;
+		lambdaMap.put(3, lambda3);
+		double lambda4 = 1;
+		lambdaMap.put(4, lambda4);
+		double lambda5 = 1;
+		lambdaMap.put(5, lambda5);
 
-		Node source0 = new PrioSource("Source", new Exp(lambda0), 1, 0);
-		Node source1 = new PrioSource("Source", new Exp(lambda1), 2, 1);
-		Node source2 = new PrioSource("Source", new Exp(lambda2), 3, 2);
-		Node source3 = new PrioSource("Source", new Exp(lambda3), 4, 3);
+		Node source0 = new PrioSource("Source", new Exp(lambda0), 0, 0);
+		Node source1 = new PrioSource("Source", new Exp(lambda1), 1, 1);
+		Node source2 = new PrioSource("Source", new Exp(lambda2), 2, 2);
+		Node source3 = new PrioSource("Source", new Exp(lambda3), 3, 3);
+		Node source4 = new PrioSource("Source", new Exp(lambda3), 4, 4);
+		Node source5 = new PrioSource("Source", new Exp(lambda3), 5, 5);
 
 		// QueueingNode mm1 = new QueueingNode("MM1", serveTime, 1);
 		SinkPriorities sink_prio = new SinkPriorities("Sink Priorities");
 
 		// SinkMulticlass sink_prio = new SinkMulticlass("Sink Priorities");
 
-		int noprio = 4;
+		int noprio = 5;
 		ArrayList<Double> prioprobs = new ArrayList<Double>(noprio);
 		prioprobs.add(1.0);
 		prioprobs.add(1.0);
 		prioprobs.add(1.0);
 		prioprobs.add(1.0);
+		prioprobs.add(1.0);
+		prioprobs.add(1.0);
 
-		PriorityQueue prioq = new PriorityQueue(4);
+		PriorityQueue prioq = new PriorityQueue(6);
 		QNPrioProbs prio_qn = new QNPrioProbs("PR_QN", serveTime, 1, prioq, prioprobs);
 //		QueueingNode prio_qn = new QueueingNode("PR_QN", serveTime, 1, prioq);
 
@@ -59,43 +68,15 @@ class PrioritySim extends Sim {
 		source1.setLink(new Link(prio_qn));
 		source2.setLink(new Link(prio_qn));
 		source3.setLink(new Link(prio_qn));
+		source4.setLink(new Link(prio_qn));
+		source5.setLink(new Link(prio_qn));
 		prio_qn.setLink(new Link(sink_prio));
 
 		simulate();
-		
-
-		double ro0 = lambda0 / mu;
-		double ro1 = lambda1 / mu;
-		double ro2 = lambda2 / mu;
-		double ro3 = lambda3 / mu;
-
-		// double R0 = ((1 + ro1) / mu) / (1 - ro0);
-		// double R1 = ((1 - (ro0 * (1 - ro0 - ro1))) / mu) / ((1 - ro0)*(1 - ro0 -
-		// ro1));
-
-		double RESIDUAL = 0.5 * (lambda0 * Math.pow(D, 2) + (lambda1 * Math.pow(D, 2)));
-
-		double L0 = ((ro0 / mu)) / (1 - ro0);
-		double L1 = (((ro0 / mu) + (ro1 / mu))) / ((1 - ro0) * (1 - ro0 - ro1));
-		double L2 = (((ro0 / mu) + (ro1 / mu) + (ro2 / mu))) / ((1 - ro0 - ro1) * (1 - ro0 - ro1 - ro2));
-		double L3 = (((ro0 / mu) + (ro1 / mu) + (ro2 / mu) + (ro3 / mu)))
-				/ ((1 - ro0 - ro1 - ro2) * (1 - ro0 - ro1 - ro2 - ro3));
-
-		double R0 = (L0 + (lambda0 / mu)) / lambda0;
-		double R1 = (L1 + (lambda1 / mu)) / lambda1;
-		double R2 = (L2 + (lambda2 / mu)) / lambda2;
-		double R3 = (L3 + (lambda3 / mu)) / lambda3;
-		
-		// double R0 = RESIDUAL0 / (1 - ro0);
-		// double R1 = RESIDUAL1 / (1 - ro0) * (1 - ro0 - ro1);
 
 		Network.logResult("Response Time", Network.responseTime.mean());
 		Network.logResult("Mean Queue Size", prio_qn.meanNoOfQueuedCustomers());
 
-		// System.out.println("MODEL: Response Time Prio 0 " + "Value = " + R0);
-		// System.out.println("MODEL: Response Time Prio 1 " + "Value = " + R1);
-		// System.out.println("MODEL: Response Time Prio 2 " + "Value = " + R2);
-		// System.out.println("MODEL: Response Time Prio 3 " + "Value = " + R3);
 
 		Iterator entries = Network.responseTimePrioMap.entrySet().iterator();
 		while (entries.hasNext()) {
@@ -106,6 +87,7 @@ class PrioritySim extends Sim {
 		}
 
 		double overalambda = 0;
+		double sum_ro_div_mu = 0;
 		Iterator entries2 = lambdaMap.entrySet().iterator();
 		while (entries2.hasNext()) {
 			Map.Entry entry = (Map.Entry) entries2.next();
@@ -122,7 +104,7 @@ class PrioritySim extends Sim {
 		Iterator entries3 = lambdaMap.entrySet().iterator();
 		double denominator_part1 = 0;
 		double denominator_part2 = 0;
-		int j = 1;
+		int j = 0;
 		int size = lambdaMap.size();
 		double R_prio = 0;
 		System.out.println(size);
@@ -130,19 +112,11 @@ class PrioritySim extends Sim {
 			Map.Entry entry = (Map.Entry) entries3.next();
 			Integer key = (Integer) entry.getKey();
 			Double lambdavalue = (Double) entry.getValue();
+					
+			System.out.println("MODEL: Response Time Prio " + key + " Value = " + AnalyticalModels.r_prio(lambdaMap, key, mu));
 
-			if (j < size) {
-				denominator_part1 = denominator_part1 + lambdavalue;
-
-			}
-			denominator_part2 = denominator_part2 + lambdavalue;
-
-			R_prio = (overalambda / ((mu - denominator_part1) * (mu - denominator_part2))) + D;
-
-			System.out.println("MODEL: Response Time Prio " + key + " Value = " + R_prio);
-
-			j++;
 		}
+
 		
 		System.out.println("Completions: " + Network.completions);
 		System.out.println("Losses: " + prio_qn.getLosses());
