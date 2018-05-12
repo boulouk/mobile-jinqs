@@ -16,6 +16,7 @@ public class QNPrioProbs extends QueueingNode {
 
 	ArrayList<Double> prioprobs;
 	ArrayList<Geometric> prioDistrib;
+	private int max = 0;
 
 	public QNPrioProbs(String s, Delay d, int n, Queue q, ArrayList<Double> probs) {
 		super(s, d, n, q);
@@ -27,10 +28,28 @@ public class QNPrioProbs extends QueueingNode {
 			prioDistrib.add(new Geometric(prioprobs.get(i)));
 		}
 	}
+	
+	public QNPrioProbs(String s, Delay d, int n, ArrayList<Double> probs) {
+		super(s, d, n);
+
+		prioprobs = probs;
+		prioDistrib = new ArrayList<Geometric>();
+
+		for (int i = 0; i < prioprobs.size(); i++) {
+			prioDistrib.add(new Geometric(prioprobs.get(i)));
+		}
+	}
+	
+	public int maxQueueLenght() {
+	    return max ;
+	}
 
 	@Override
 	protected void accept(Customer c) {
 		
+		if(queue.queueLength() > max) {
+			max = queue.queueLength();
+		}
 		
 		if (checkInsertProb(c.getPriority())) {
 			if (resources.resourceIsAvailable()) {
@@ -43,6 +62,13 @@ public class QNPrioProbs extends QueueingNode {
 						Debug.trace("No resources. Enqueueing customer...");
 						queue.enqueue(c);
 					} else {
+						
+						// drops for each class
+						if (Network.dropsBufferClassMap.get(c.getclass()) == null) {
+							Network.dropsBufferClassMap.put(c.getclass(), 1);
+						} else
+							Network.dropsBufferClassMap.put(c.getclass(), Network.dropsBufferClassMap.get(c.getclass()) + 1);
+						
 						losses++;
 						Debug.trace("No resources. Queue full - customer sent to " + lossNode.getId());
 						lossNode.enter(c);
@@ -54,9 +80,9 @@ public class QNPrioProbs extends QueueingNode {
 			Network.dropPrioPackets++;
 
 			// completions for each class
-//			if (Network.dropPrioClassMap.get(c.getclass()) == null) {
-//				Network.dropPrioClassMap.put(c.getclass(), 1);
-//			} else
+			if (Network.dropPrioClassMap.get(c.getclass()) == null) {
+				Network.dropPrioClassMap.put(c.getclass(), 1);
+			} else
 				Network.dropPrioClassMap.put(c.getclass(), Network.dropPrioClassMap.get(c.getclass()) + 1);
 		}
 			

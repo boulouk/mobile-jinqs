@@ -1,77 +1,89 @@
-package network ;
+package network;
 
-import tools.* ;
+import tools.*;
 
-public class PriorityQueue extends Queue  {
-  int nqueues ;
-  protected Queue[] qs ;
+public class PriorityQueue extends Queue {
+	int nqueues;
+	protected Queue[] qs;
 
-//
-// Customer priorities must be 0, 1, .., nqueues-1
-// Priority 0 is the highest priority
-//
-  public PriorityQueue( int n ) {
-    nqueues = n ;
-    buildPriorityQueue() ;
-  }
+	//
+	// Customer priorities must be 0, 1, .., nqueues-1
+	// Priority 0 is the highest priority
+	//
+	public PriorityQueue(int n) {
+		nqueues = n;
+		buildPriorityQueue();
+	}
 
-//
-// By default each individual queue is FIFO...
-//
-  protected Queue buildOneQueue() {
-    return new FIFOQueue() ;
-  }
+	public PriorityQueue(int n, int bcap) {
+		nqueues = n;
+		buildPriorityQueue(bcap);
+	}
 
-  void buildPriorityQueue() {
-    qs = new Queue[ nqueues ] ;
-    for ( int i = 0 ; i < nqueues ; i++ ) {
-      qs[ i ] = buildOneQueue() ;
-    }
-  }
+	//
+	// By default each individual queue is FIFO...
+	//
+	protected Queue buildOneQueue() {
+		return new FIFOQueue();
+	}
+	
+	protected Queue buildOneQueue(int bcap) {
+		return new FIFOQueue(bcap);
+	}
 
-//
-// Overrides superclass method.
-//
-  public boolean canAccept( Customer c ) {
-    return qs[ c.getPriority() ].canAccept( c ) ;
-  }
+	void buildPriorityQueue() {
+		qs = new Queue[nqueues];
+		for (int i = 0; i < nqueues; i++) {
+			qs[i] = buildOneQueue();
+		}
+	}
 
-//
-// Define superclass abstract methods...
-//
+	void buildPriorityQueue(int bcap) {
+		qs = new Queue[nqueues];
+		for (int i = 0; i < nqueues; i++) {
+			qs[i] = buildOneQueue(bcap);
+		}
+	}
 
-  protected void insertIntoQueue( Customer e ) {
-    int priority = e.getPriority() ;
-    qs[ priority ].enqueue( e ) ;
-  }
+	//
+	// Overrides superclass method.
+	//
+	public boolean canAccept(Customer c) {
+		return qs[c.getPriority()].canAccept(c);
+	}
 
-  protected void insertAtHeadOfQueue( Customer e ) {
-    int priority = e.getPriority() ;
-    qs[ priority ].enqueueAtHead( e ) ;
-  }
+	//
+	// Define superclass abstract methods...
+	//
 
-  protected Customer headOfQueue() {
-    for ( int i = 0 ; i < nqueues ; i++ ) {
-      if ( qs[ i ].queueLength() > 0 ) {
-        return qs[ i ].head() ;
-      }
-    }
-    Check.check( false, "Priority queue - " +
-                        "all queues empty during head\n" +
-                        "(This cannot happen!)" ) ;
-    return null ;
-  }
+	protected void insertIntoQueue(Customer e) {
+		int priority = e.getPriority();
+		qs[priority].enqueue(e);
+	}
 
-  protected Customer removeFromQueue() {
-    for ( int i = 0 ; i < nqueues ; i++ ) {
-      if ( qs[ i ].queueLength() > 0 ) {
-        return qs[ i ].dequeue() ;
-      }
-    }
-    Check.check( false, "Priority queue - " +
-                        "all queues empty during remove\n" +
-                        "(This cannot happen!)" ) ;
-    return null ;
-  }
+	protected void insertAtHeadOfQueue(Customer e) {
+		int priority = e.getPriority();
+		qs[priority].enqueueAtHead(e);
+	}
+
+	protected Customer headOfQueue() {
+		for (int i = 0; i < nqueues; i++) {
+			if (qs[i].queueLength() > 0) {
+				return qs[i].head();
+			}
+		}
+		Check.check(false, "Priority queue - " + "all queues empty during head\n" + "(This cannot happen!)");
+		return null;
+	}
+
+	protected Customer removeFromQueue() {
+		for (int i = 0; i < nqueues; i++) {
+			if (qs[i].queueLength() > 0) {
+				return qs[i].dequeue();
+			}
+		}
+		Check.check(false, "Priority queue - " + "all queues empty during remove\n" + "(This cannot happen!)");
+		return null;
+	}
 
 }

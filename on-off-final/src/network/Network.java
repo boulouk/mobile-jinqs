@@ -36,6 +36,8 @@ public class Network {
   public static Map<Integer,Integer> dropsClassMap = new HashMap<Integer,Integer>();
   public static Map<Integer,Integer> dropPrioClassMap = new HashMap<Integer,Integer>();
 
+  public static Map<Integer,Integer> dropsBufferClassMap = new HashMap<Integer,Integer>();
+  
   public static CustomerMeasure virtualServiceTime = new CustomerMeasure();
   public static CustomerMeasure serviceTimeON = new CustomerMeasure();
   public static CustomerMeasure serviceTimeOFF = new CustomerMeasure();
@@ -65,6 +67,8 @@ public class Network {
     completionsClassMap = new HashMap<Integer,Integer>();
     dropsClassMap = new HashMap<Integer,Integer>();
     dropPrioClassMap = new HashMap<Integer,Integer>();
+    
+    dropsBufferClassMap = new HashMap<Integer,Integer>();
     
     virtualServiceTime = new CustomerMeasure();
     serviceTimeON = new CustomerMeasure();
@@ -117,11 +121,11 @@ public class Network {
   }
   
   public static void registerClass(double t, int typeClass) {
-//	  if(responseTimeClassMap.get(typeClass) == null) {
-//		  CustomerMeasure responseTimeClass = new CustomerMeasure();
-//		  responseTimeClassMap.put(typeClass, responseTimeClass);
-//		  responseTimeClassMap.get(typeClass).add(t);	  
-//	  } else 
+	  if(responseTimeClassMap.get(typeClass) == null) {
+		  CustomerMeasure responseTimeClass = new CustomerMeasure();
+		  responseTimeClassMap.put(typeClass, responseTimeClass);
+		  responseTimeClassMap.get(typeClass).add(t);	  
+	  } else 
 		  responseTimeClassMap.get(typeClass).add(t);
   }
   

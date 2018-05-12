@@ -31,6 +31,23 @@ public class AnalyticalModels {
 		return overalrodevmu;
 	}
 	
+	public static double getOveralRodevMu (Map lambdamap, Map ratepriomap) {
+		double overalrodevmu = 0;
+		
+		Iterator entries = lambdamap.entrySet().iterator();
+		Iterator m_entries = ratepriomap.entrySet().iterator();
+		while (entries.hasNext()) {
+			Map.Entry entry = (Map.Entry) entries.next();
+			Map.Entry m_entry = (Map.Entry) m_entries.next();
+			Double lambdavalue = (Double) entry.getValue();
+			Double ratepriovalue = (Double) m_entry.getValue();
+			
+			overalrodevmu = overalrodevmu + ((lambdavalue/ratepriovalue)/ratepriovalue);
+		}
+		
+		return overalrodevmu;
+	}
+	
 	public static double getSigmaRobyPrio (Map lambdamap, int prio, double rate) {
 		double overalro = 0;
 		
@@ -57,6 +74,33 @@ public class AnalyticalModels {
 		return overalro;
 	}
 	
+	public static double getSigmaRobyPrio (Map lambdamap, int prio, Map ratepriomap) {
+		double overalro = 0;
+		
+		if (prio < 0) {
+			overalro = 0;
+		} else {
+			int i = 0;
+			Iterator entries = lambdamap.entrySet().iterator();
+			Iterator m_entries = ratepriomap.entrySet().iterator();
+			while (entries.hasNext()) {
+				Map.Entry entry = (Map.Entry) entries.next();
+				Map.Entry m_entry = (Map.Entry) m_entries.next();
+				Double lambdavalue = (Double) entry.getValue();
+				Double ratepriovalue = (Double) m_entry.getValue();
+				
+				if (i == prio) {
+					overalro = overalro + (lambdavalue/ratepriovalue);
+					break;
+				}
+				
+				overalro = overalro + (lambdavalue/ratepriovalue);
+				i++;
+			}
+		}
+		return overalro;
+	}
+	
 	public static double r_mm1(Map lambdamap, double rate) {
 		double r = 0;
 		double overallambda = getOveralLambda(lambdamap); 
@@ -75,6 +119,35 @@ public class AnalyticalModels {
 		double denominator = (1-getSigmaRobyPrio(lambdapriomap, priority-1, priorate)) * (1-getSigmaRobyPrio(lambdapriomap, priority, priorate));
 		
 		r = (numerator/denominator) + 1/priorate; 
+		return r;
+	}
+	
+	public static double r_prio(Map lambdapriomap, int priority, Map<Integer, Double> prioratemap) {
+		double r = 0;
+		double r_q = AnalyticalModels.r_q_prio(lambdapriomap, priority, prioratemap);
+		
+		r = r_q + (1/prioratemap.get(priority)); 
+		return r;
+	}
+	
+	public static double l_q_prio(Map<Integer, Double> lambdapriomap, int priority, Map prioratemap) {
+		double l_q = 0;
+		double r_q = AnalyticalModels.r_q_prio(lambdapriomap, priority, prioratemap);
+		
+		l_q = r_q * lambdapriomap.get(priority); 
+		return l_q;
+	}
+	
+	public static double r_q_prio(Map lambdapriomap, int priority, Map prioratemap) {
+		double r = 0;
+		double numerator = getOveralRodevMu(lambdapriomap,prioratemap); 
+		
+		double sigma1 = getSigmaRobyPrio(lambdapriomap, priority-1, prioratemap);
+		double sigma2 = getSigmaRobyPrio(lambdapriomap, priority, prioratemap);
+		
+		double denominator = (1-sigma1) * (1-sigma2);
+		
+		r = (numerator/denominator); 
 		return r;
 	}
 	
@@ -156,7 +229,7 @@ public class AnalyticalModels {
 			Integer key = (Integer) entry.getKey();
 			Double lambdavalue = (Double) entry.getValue();
 
-			ro = ro + lambdavalue / topicratemap.get(key);
+			ro = ro + (lambdavalue / topicratemap.get(key));
 		}
 
 		return ro;
