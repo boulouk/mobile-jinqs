@@ -28,7 +28,7 @@ import extensions.SubscriptionsBranch;
 import network.*;
 import tools.*;
 
-class PubsubV8Sim extends Sim {
+class PubsubV9Sim extends Sim {
 
 	public static double duration = 0;
 	public static int completions = 0;
@@ -42,11 +42,13 @@ class PubsubV8Sim extends Sim {
 //		return Network.completions == completions;
 	}
 	
-	public PubsubV8Sim(double d, int c, String inParams) {
+	public PubsubV9Sim(double d, int c, String inParams) {
 		duration = d;
 		completions = c;
 		Network.initialise();
 		respTimeClassModelMap = new HashMap<Integer, Double>();
+		
+		String bufferUse = JsonRead.getStringParam(inParams, "buffer_use");
 
 		double BRInPrRate = 64000;
 		double BROutTrRate = 64000;
@@ -58,7 +60,7 @@ class PubsubV8Sim extends Sim {
 		int numOfTopics = JsonRead.getJSONArray(inParams, "lambdas").size();
 		int numOfPrios = JsonRead.getJSONArray(inParams, "prio_probs").size();
 		double errorRate = JsonRead.getParam(inParams, "error_rate");
-		
+
 		// initialization of list of subscriptions
 		Iterator<Long> subsIterator = JsonRead.getJSONArray(inParams, "subscriptions").iterator();
 		ArrayList<Integer> listOfSubsptions = new ArrayList<Integer>();
@@ -198,9 +200,13 @@ class PubsubV8Sim extends Sim {
 		double ro4thMULTIqueue = AnalyticalModels.ro_multiclass(lambdaSubscriptionsMap, topicRateMap);
 		System.out.println("RO on 4th (NON-preemptive Priority Multi-class) queue: " + ro4thMULTIqueue);
 		
-		if (ro4thMULTIqueue >= 1) {
+		System.out.println(Boolean.valueOf(bufferUse));
+		
+		if (ro4thMULTIqueue >= 1 && !Boolean.valueOf(bufferUse)) {
 			System.err.println("RO > 1 on 4th (NON-preemptive Priority Multi-class) Queue");
 			System.exit(1);
+		} else if (ro4thMULTIqueue >= 1 && Boolean.valueOf(bufferUse)) {
+			System.err.println("RO > 1 on 4th (NON-preemptive Priority Multi-class) Queue with Buffer");
 		} else
 			System.out.println("RO at every queue is OK");
 
@@ -396,11 +402,11 @@ class PubsubV8Sim extends Sim {
 //		args[0] = "tests/sat_200_topics_prioprobs.json";
 		
 //		args[0] = "tests/sat_200_topics_noprios_v3.json";
-//		args[0] = "tests/sat_200_topics_prios_v3.json";
+		args[0] = "tests/sat_200_topics_prios_v3.json";
 //		args[0] = "tests/sat_200_topics_prioprobs_v3.json";
 		
 		
-		new PubsubV8Sim(3000, 2000000, args[0]);
+		new PubsubV9Sim(3000, 2000000, args[0]);
 		// Network.displayResults(0.01);
 
 		try {

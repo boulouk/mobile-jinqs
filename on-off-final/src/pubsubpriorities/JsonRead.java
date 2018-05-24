@@ -10,6 +10,8 @@ import org.json.simple.parser.ParseException;
 
 public class JsonRead {
 	
+	private static final boolean True = false;
+
 	public static JSONArray getJSONArray(String file, String listname) {
 
 		JSONParser parser = new JSONParser();
@@ -41,6 +43,26 @@ public class JsonRead {
 			JSONObject jsonObject = (JSONObject) obj;
 			
 			param = (double) jsonObject.get(panamname);
+
+		} catch (IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return param;
+	}
+	
+	public static String getStringParam(String file, String panamname) {
+
+		JSONParser parser = new JSONParser();
+		Object obj;
+		String param = "";
+
+		try {
+			obj = parser.parse(new FileReader(file));
+			JSONObject jsonObject = (JSONObject) obj;
+			
+			param = (String) jsonObject.get(panamname);
 
 		} catch (IOException | ParseException e) {
 			// TODO Auto-generated catch block
